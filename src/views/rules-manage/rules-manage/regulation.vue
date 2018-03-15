@@ -16,7 +16,7 @@
             <!-- 业务描述 -->
             <el-table-column label="描述" width="" prop="describe"></el-table-column>
             <el-table-column label="操作">
-                <template scope="scope" class="clearfix">
+                <template slot-scope="scope" class="clearfix">
                     <el-button type="primary" class="down_btn" size="small" @click="download(scope.row.id, scope.row.rule_file)">下载</el-button>
                     <el-upload class="upload-demo down_btn" :action="rule_file_info" list-type="text">
                         <el-button type="primary" size="small" @click="upload(scope.row.id, scope.row.rule_file)" >上传</el-button>
@@ -139,7 +139,7 @@ export default {
                 } else {
                     this.$Message.error(response.data.desc)
                 }
-            })   
+            })
         }
     }
 }
