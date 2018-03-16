@@ -3,8 +3,8 @@
   <div class="sidebar-menu-con" :style="{width: shrink?'60px':'200px', overflow: shrink ? 'visible' : 'auto'}">
     <shrinkable-menu :shrink="shrink" @on-change="handleSubmenuChange" :theme="menuTheme" :before-push="beforePush" :open-names="openedSubmenuArr" :menu-list="menuList">
       <div slot="top" class="logo-con">
-        <img v-show="!shrink" src="../images/logo.png" key="max-logo" />
-        <img v-show="shrink" src="../images/logo-min.png" key="min-logo" />
+        <!-- <img v-show="!shrink" src="../images/logo.png" key="max-logo" /> -->
+        <!-- <img v-show="shrink" src="../images/logo-min.png" key="min-logo" /> -->
       </div>
     </shrinkable-menu>
   </div>
@@ -12,8 +12,8 @@
     <div class="main-header">
       <div class="navicon-con">
         <Button :style="{transform: 'rotateZ(' + (this.shrink ? '-90' : '0') + 'deg)'}" type="text" @click="toggleClick">
-                        <Icon type="navicon" size="32"></Icon>
-                    </Button>
+          <Icon type="navicon" size="32"></Icon>
+        </Button>
       </div>
       <div class="header-middle-con">
         <div class="main-breadcrumb">
@@ -30,9 +30,9 @@
           <Row type="flex" justify="end" align="middle" class="user-dropdown-innercon">
             <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown">
               <a href="javascript:void(0)">
-                                    <span class="main-user-name">{{userName}}</span>
-                                    <Icon type="arrow-down-b"></Icon>
-                                </a>
+                <span class="main-user-name">{{userName}}</span>
+                <Icon type="arrow-down-b"></Icon>
+              </a>
               <DropdownMenu slot="list">
                 <!-- <DropdownItem name="ownSpace">个人中心</DropdownItem> -->
                 <DropdownItem name="loginout" divided>退出登录</DropdownItem>

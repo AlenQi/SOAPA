@@ -1,3 +1,3 @@
-const AssetsIP = '192.183.0.1:8080'
+const AssetsIP = '192.168.4.182:8092'
 
 export { AssetsIP }

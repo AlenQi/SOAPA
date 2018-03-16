@@ -1,14 +1,13 @@
 import nprogress from 'nprogress'
+import { AssetsIP } from 'conf/url.conf'
 
 class Interceptor {
-  constructor(
-    {
-      progress = false,
-      configure = {},
-      beforeRequest = [],
-      afterResponse = []
-    } = {}
-  ) {
+  constructor({
+    progress = false,
+    configure = {},
+    beforeRequest = [],
+    afterResponse = []
+  } = {}) {
     progress && this.progressInit(configure)
 
     this.beforeRequest = [
@@ -76,14 +75,11 @@ class Interceptor {
   }
 
   progressInit(configure) {
-    nprogress.configure({
-      showSpinner: false,
-      configure
-    })
+    nprogress.configure({ showSpinner: false, configure })
   }
 }
 
-const BASE_URL = 'http://192.168.4.182:8092/asset/api'
+const BASE_URL = `http://${AssetsIP}/asset/api`
 
 export { BASE_URL }
 export default Interceptor
