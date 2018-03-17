@@ -1,5 +1,5 @@
 <template>
-<div class="blog-manage">
+<div>
   <row>
     <i-col span="20">
       <collapse v-model="value1">
@@ -91,7 +91,7 @@
       <Page :total="total" @on-change="handleSizeChange" :current.sync="currentPage1" :page-size="pageSize"></Page>
     </div>
   </div>
-  <modal v-model="modalDetail" title="详情" :mask-closable="false">
+  <modal v-model="modalDetail" title="详情">
     <div class="modal_content clearfix">
       <div class="level_name">
         <label>城市：</label>

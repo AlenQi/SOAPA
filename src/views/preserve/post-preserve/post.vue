@@ -16,7 +16,7 @@
                 <Page show-total :total="total" :current="pageSize" @on-change="changePage"></Page>
             </div>
         </div>
-         <modal v-model="modal" :title="title" :mask-closable="false">
+         <modal v-model="modal" :title="title">
             <i-form ref="formItem" :model="formItem" :rules="ruleValidate" :label-width="100">
                 <form-item label="ID" prop="ID">
                     <i-input v-model="formItem.ID"></i-input>
@@ -119,19 +119,19 @@ export default {
                     describe:'eeee'
                 },
             ],
-            formItem: 
+            formItem:
             {
                 ID:'',
                 postName:'',
                 describe:''
             },
-            ruleValidate: 
+            ruleValidate:
             {
                 ID: [
                     {
                         required: true,
-                        message: '请填写您的ID！', 
-                        trigger: 'blur' 
+                        message: '请填写您的ID！',
+                        trigger: 'blur'
                     }
                 ],
                 postName: [
@@ -156,7 +156,7 @@ export default {
             changePage (num) {
                 console.log(num)
                 // this.tableData1 = this.mockTableData1();
-            }, 
+            },
             addProperty() {
                 // console.log('add')
                  this.$refs['formItem'].resetFields();
@@ -184,8 +184,6 @@ export default {
                 this.modal = false
             }
      }
-        
+
 };
 </script>
-
-

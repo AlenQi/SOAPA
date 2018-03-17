@@ -7,13 +7,16 @@
           <Icon type="plus-round" class="icon"></Icon>添加
         </Button>
       </div>
-      <modal v-model="modal" :title="title" :mask-closable="false">
+      <modal v-model="modal" :title="title">
         <i-form ref="formItem" :model="formItem" :rules="ruleValidate" :label-width="100">
           <form-item label="账号" prop="cname">
             <i-input v-model="formItem.cname"></i-input>
           </form-item>
           <form-item label="用户名" prop="name">
             <i-input v-model="formItem.name"></i-input>
+          </form-item>
+          <form-item label="密码" prop="password">
+            <i-input type="password" v-model="formItem.password"></i-input>
           </form-item>
           <form-item label="手机" prop="mobile">
             <i-input v-model="formItem.mobile"></i-input>
@@ -36,7 +39,7 @@
           <i-button type="ghost" @click="handleReset('formItem')" style="margin-left: 8px">取消</i-button>
         </div>
       </modal>
-      <modal v-model="modal2" title="修改密码" :mask-closable="false">
+      <modal v-model="modal2" title="修改密码">
         <i-form ref="formItem2" :model="formItem2" :rules="ruleValidate2" :label-width="100">
           <form-item label="用户名" prop="username">
             <i-input v-model="formItem2.username"></i-input>
@@ -90,7 +93,7 @@
                         <Icon type="plus-round" class="icon"></Icon>添加
                     </Button>
       </div>
-      <modal v-model="modal3" title="请提交用户组信息:" :mask-closable="false">
+      <modal v-model="modal3" title="请提交用户组信息:">
         <i-form ref="formItem3" :model="formItem3" :rules="ruleValidate3" :label-width="100">
           <form-item label="名称" prop="cname">
             <i-input v-model="formItem3.cname"></i-input>
@@ -136,7 +139,7 @@
           <Icon type="plus-round" class="icon"></Icon>添加
         </Button>
       </div>
-      <modal v-model="modal4" title="请提交权限信息:" :mask-closable="false">
+      <modal v-model="modal4" title="请提交权限信息:">
         <i-form ref="formItem4" :model="formItem4" :rules="ruleValidate4" :label-width="100">
           <form-item label="名称" prop="name">
             <i-input v-model="formItem4.name"></i-input>
@@ -220,6 +223,7 @@ export default {
       tableData3: [],
       formItem: {
         name: '', //用户名
+        password: '',
         group_ids: '', //用户组
         status: true,
         department: '',
@@ -386,6 +390,7 @@ export default {
                 if (response.data.status) {
                   this.modal = false
                   this.$Message.info('添加成功')
+                  this.queryUsers()
                 } else {
                   this.$Message.error(response.data.desc)
                 }
@@ -401,6 +406,7 @@ export default {
                 if (response.data.status) {
                   this.modal = false
                   this.$Message.info('修改成功')
+                  this.queryUsers()
                 } else {
                   this.$Message.error(response.data.desc)
                 }

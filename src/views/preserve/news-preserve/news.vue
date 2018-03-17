@@ -16,7 +16,7 @@
                 <Page show-total :total="total" :current="pageSize" @on-change="changePage"></Page>
             </div>
         </div>
-         <modal v-model="modal" :title="title" :mask-closable="false">
+         <modal v-model="modal" :title="title">
             <i-form ref="formItem" :model="formItem" :rules="ruleValidate" :label-width="100">
                 <form-item label="模板名称" prop="newsName">
                     <i-input v-model="formItem.newsName"></i-input>
@@ -130,19 +130,19 @@ export default {
                     content:'fwefw'
                 },
             ],
-            formItem: 
+            formItem:
             {
                 newsName:'',
                 newsType:'',
                 content:''
             },
-            ruleValidate: 
+            ruleValidate:
             {
                 newsName: [
                     {
                         required: true,
-                        message: '请填写模板类型！', 
-                        trigger: 'blur' 
+                        message: '请填写模板类型！',
+                        trigger: 'blur'
                     }
                 ],
                 newsType: [
@@ -200,7 +200,7 @@ export default {
             changePage (num) {
                 // console.log(num)
                 // this.tableData1 = this.mockTableData1();
-            }, 
+            },
             editPlan(params) {
                 // this.$refs['formItem'].resetFields();
                  console.log(params)
@@ -222,8 +222,6 @@ export default {
                 this.modal = false
             }
      }
-        
+
 };
 </script>
-
-

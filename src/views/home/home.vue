@@ -2,11 +2,11 @@
 <div class="home-main">
   <div>
     <Button @click="addProperty" class="add-btn"><Icon type="plus-round" class="icon"></Icon>添加</Button>
-    <upload :action="actionUrl">
+    <Upload :action="actionUrl">
       <Button><Icon type="share" class="icon"></Icon>Excel导入</Button>
-    </upload>
+    </Upload>
   </div>
-  <modal v-model="modal" :title="title" :mask-closable="false">
+  <modal v-model="modal" :title="title">
     <i-form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="120">
       <form-item label="资产编号" prop="serial_no">
         <i-input v-model="formValidate.serial_no" placeholder="8位数的资产编号"></i-input>

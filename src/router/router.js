@@ -395,16 +395,6 @@ export const appRouter = [
   //         { path: 'mutative-router', title: '动态路由', name: 'mutative-router', icon: 'link', component: () => import('@/views/advanced-router/mutative-router.vue') },
   //         { path: 'argument-page', title: '带参页面', name: 'argument-page', icon: 'android-send', component: () => import('@/views/advanced-router/argument-page.vue') }
   //     ]
-  // },
-  // {
-  //     path: '/error-page',
-  //     icon: 'android-sad',
-  //     title: '错误页面',
-  //     name: 'errorpage',
-  //     component: Main,
-  //     children: [
-  //         { path: 'index', title: '错误页面', name: 'errorpage_index', component: () => import('@/views/error-page/error-page.vue') }
-  //     ]
   // }
 ]
 
