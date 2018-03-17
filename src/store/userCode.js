@@ -1,7 +1,8 @@
 import * as types from './type/userCode-types'
+import { AssetsIP } from 'conf/url.conf'
 
 const state = {
-  url: 'http://114.55.219.41:8092',
+  url: `http://${AssetsIP}`,
   inspId: null
 }
 const actions = {

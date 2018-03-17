@@ -46,8 +46,7 @@
   </div>
   <div>
     <div class="block" v-if="total > pageSize" style="float: right">
-      <el-pagination @size-change="handleSizeChange" :current-page.sync="currentPage1" :page-size="pageSize" layout="prev, pager, next" :total="total">
-      </el-pagination>
+      <Page :total="total" @on-change="handleSizeChange" :current.sync="currentPage1" :page-size="pageSize"></Page>
     </div>
   </div>
 </div>

@@ -630,7 +630,7 @@ export default {
 </style>
 <style>
 .el-tabs__item.is-active {
-  background: #20a0ff;
+  background: #2d8cf0;
   color: #fff
 }
 </style>

@@ -175,21 +175,21 @@ export const appRouter = [
       }
     ]
   },
-  // {
-  //   path: '/rules',
-  //   icon: 'key',
-  //   name: 'rules',
-  //   title: '安全规则',
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       title: '规则配置',
-  //       name: 'allcontion',
-  //       component: () => import('@/views/rules/allcontion/rule.vue')
-  //     }
-  //   ]
-  // },
+  {
+    path: '/rules',
+    icon: 'key',
+    name: 'rules',
+    title: '安全规则',
+    component: Main,
+    children: [
+      {
+        path: 'index',
+        title: '规则配置',
+        name: 'allcontion',
+        component: () => import('@/views/rules/allcontion/rule.vue')
+      }
+    ]
+  },
   {
     path: '/preserve',
     icon: 'key',

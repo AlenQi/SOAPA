@@ -1,8 +1,8 @@
 <template>
 <div class="home-main">
   <div>
-    <Button @click="addProperty"><Icon type="plus-round" class="icon"></Icon>添加</Button>
-    <upload :action="actionUrl" style="display: inline-block;">
+    <Button @click="addProperty" class="add-btn"><Icon type="plus-round" class="icon"></Icon>添加</Button>
+    <upload :action="actionUrl">
       <Button><Icon type="share" class="icon"></Icon>Excel导入</Button>
     </upload>
   </div>
@@ -81,7 +81,6 @@ export default {
   name: 'home',
   components: {},
   data() {
-    console.log('AssetsIP', AssetsIP)
     return {
       actionUrl: `http://${AssetsIP}/asset/api/v1.0/assets/file`,
       // value: '',
@@ -437,4 +436,9 @@ export default {
 <style lang="less">
 @import './home.less';
 @import '../../styles/common.less';
+
+.add-btn {
+  margin-right: 5px;
+  float: left;
+}
 </style>
