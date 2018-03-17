@@ -66,21 +66,6 @@ export const otherRouter = {
       component: () => import('@/views/own-space/own-space.vue')
     },
     {
-      path: 'order/:order_id',
-      title: '订单详情',
-      name: 'order-info',
-      component: () =>
-        import('@/views/advanced-router/component/order-info.vue')
-    },
-    {
-      // 用于展示动态路由
-      path: 'shopping',
-      title: '购物详情',
-      name: 'shopping',
-      component: () =>
-        import('@/views/advanced-router/component/shopping-info.vue')
-    },
-    {
       // 用于展示带参路由
       path: 'message',
       title: '消息中心',
