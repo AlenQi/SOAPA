@@ -159,8 +159,8 @@ export default {
           title: '操作',
           key: 'action',
           width: 140,
-          // align: 'center',
-          // fixed: 'right',
+          align: 'center',
+          fixed: 'right',
           render: (h, params) => {
             return h('div', [
               h(

@@ -16,11 +16,19 @@
     <el-table-column label="描述" width="" prop="describe"></el-table-column>
     <el-table-column label="操作">
       <template slot-scope="scope" class="clearfix">
+        <el-popover ref="popover" placement="top" width="160" v-model="scope.row.deleteVisible">
+          <p>您确定删除当前信息么？</p>
+          <div style="text-align: right; margin: 0">
+            <el-button size="mini" type="text" @click="scope.row.deleteVisible = false">取消</el-button>
+            <el-button type="primary" size="mini" @click="delRule(scope.row.id)">确定</el-button>
+          </div>
+        </el-popover>
         <el-button type="primary" class="down_btn" size="small" @click="download(scope.row.id, scope.row.rule_file)">下载</el-button>
         <Upload class="upload-demo down_btn" :action="rule_file_info" list-type="text">
           <el-button type="primary" size="small" @click="upload(scope.row.id, scope.row.rule_file)" >上传</el-button>
         </Upload>
         <el-button type="primary" class="down_btn" size="small" @click="show(scope.row.id, scope.row.rule_file)">查看</el-button>
+        <el-button type="primary" class="del_btn" size="small" v-popover:popover>删除</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -71,6 +79,19 @@ export default {
     }
   },
   methods: {
+    delRule(id) {
+      axios({
+        method: 'delete',
+        url: this.url + '/log_an/api/v1.0/rule/types/' + id
+      }).then(response => {
+        if (response.data.status) {
+          this.$Message.success(response.data.desc)
+          this.queryAboutList()
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
     show(id, name) {
       this.modalDetail = true
       axios({

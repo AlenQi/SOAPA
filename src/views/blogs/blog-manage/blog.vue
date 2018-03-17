@@ -1,7 +1,7 @@
 <template>
 <div>
   <row>
-    <i-col span="20">
+    <i-col span="12">
       <collapse v-model="value1">
         <panel name="1">
           展开搜索条件
@@ -79,7 +79,8 @@
         </panel>
       </collapse>
     </i-col>
-    <i-col span="4">
+
+    <i-col offset="1" span="2">
       <div>
         <i-button type="primary" @click="searchInfo">查询</i-button>
       </div>

@@ -34,17 +34,7 @@ npm run build
     - 权限切换
 - 多语言切换
 - 组件
-    - 富文本编辑器
-    - Markdown编辑器
     - 城市级联
-    - 图片预览编辑
-    - 可拖拽列表
-    - 文件上传
-    - 数字渐变
-    - split-pane
-- 表单编辑
-    - 文章发布
-    - 工作流
 - 表格
     - 可拖拽排序
     - 可编辑表格
@@ -62,9 +52,7 @@ npm run build
 - 高级路由
     - 动态路由
     - 带参页面
-- 换肤
 - 收缩侧边栏
-- tag标签导航
 - 面包屑导航
 - 全屏/退出全屏
 - 锁屏
@@ -75,6 +63,7 @@ npm run build
 ```shell
 .
 ├── build  项目构建配置
+├── config 公共配置
 └── src
     ├── images  图片文件
     ├── libs  工具方法
@@ -88,23 +77,15 @@ npm run build
         ├── access  权限管理
         ├── advanced-router  高级路由
         ├── error_page  错误页面
-        ├── form  表单编辑
         ├── home  首页
         │   ├── components  首页组件
         ├── international  多语言
         ├── main_components  Main组件
         │   ├── lockscreen  锁屏
         │   ├── shrinkable-menu  可收缩菜单
-        │   └── theme-switch  主题切换
         ├── message  消息中心
         ├── my_components  业务组件
         │   ├── area-linkage  中国行政区级联选择器
-        │   ├── count-to  数字渐变
-        │   ├── draggable-list  可拖拽列表
-        │   ├── file-upload  文件上传
-        │   ├── image-editor  图片预览编辑
-        │   ├── markdown-editor  Markdown编辑器
-        │   └── text-editor  富文本编辑器
         ├── own-space  个人中心
         └── tables  综合表格
 ```
