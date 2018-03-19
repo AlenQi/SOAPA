@@ -90,8 +90,8 @@
     <el-tab-pane label="用户组" name="second">
       <div>
         <Button @click="addGroup">
-                        <Icon type="plus-round" class="icon"></Icon>添加
-                    </Button>
+          <Icon type="plus-round" class="icon"></Icon>添加
+        </Button>
       </div>
       <modal v-model="modal3" title="请提交用户组信息:">
         <i-form ref="formItem3" :model="formItem3" :rules="ruleValidate3" :label-width="100">
