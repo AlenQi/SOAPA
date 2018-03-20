@@ -74,7 +74,7 @@
 
 <script>
 import { AssetsIP } from 'conf/url.conf'
-import Resource from '@/store/recouse/recouse'
+import Resource from '@/store/resource/resource'
 import axios from 'axios'
 
 export default {

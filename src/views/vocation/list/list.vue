@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import Resource from '@/store/recouse/recouse'
+import Resource from '@/store/resource/resource'
 import 'element-ui/lib/theme-default/index.css'
 import { mapActions } from 'vuex'
 import axios from 'axios'

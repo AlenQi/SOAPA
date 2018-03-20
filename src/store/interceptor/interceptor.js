@@ -40,13 +40,6 @@ class Interceptor {
             window.location.href = '/login'
             return Promise.reject(error)
           }
-          if (
-            response.data.status.code === 16161 ||
-            response.data.status.code === 1124
-          ) {
-            const error = response.data.status
-            return Promise.reject(error)
-          }
           if (response.data.status.code !== 1) {
             const error = response.data
             return Promise.reject(error)

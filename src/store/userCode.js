@@ -1,4 +1,4 @@
-import * as types from './type/userCode-types'
+import * as types from './type/userCodeTypes'
 import { AssetsIP } from 'conf/url.conf'
 
 const state = {
