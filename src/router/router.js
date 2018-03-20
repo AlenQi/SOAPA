@@ -259,6 +259,31 @@ export const appRouter = [
           import('@/views/rules-manage/rules-manage/regulation.vue')
       }
     ]
+  },
+  {
+    path: '/operation-response',
+    icon: 'ios-grid-view',
+    name: 'operation-response',
+    title: '运维响应',
+    component: Main,
+    children: [
+      {
+        path: 'erxpert-information',
+        title: '专家信息库',
+        name: 'erxpert-information',
+        icon: 'arrow-move',
+        component: () =>
+          import('@/views/operation-response/expert-information/expert.vue')
+      },
+      {
+        path: 'event-processing',
+        title: '事件处理信息库',
+        name: 'event-processing',
+        icon: 'edit',
+        component: () =>
+          import('@/views/operation-response/event-processing/event.vue')
+      }
+    ]
   }
   // {
   //     path: '/component',

@@ -79,7 +79,6 @@
         </panel>
       </collapse>
     </i-col>
-
     <i-col offset="1" span="2">
       <div>
         <i-button type="primary" @click="searchInfo">查询</i-button>
@@ -150,6 +149,10 @@ export default {
         {
           title: 'ID',
           key: 'log_id'
+        },
+        {
+          title: '规则ID',
+          key: 'rule_id'
         },
         {
           title: '时间',
@@ -341,7 +344,7 @@ export default {
             }
             logsList.push({
               log_id: v.log_id,
-              host: v.host,
+              rule_id: v.rule_id,
               describe: v.describe,
               attack_time: v.attack_time,
               level: v.level,
