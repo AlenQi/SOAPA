@@ -41,11 +41,18 @@
         </form-item>
         <form-item label="擅长安全领域">
           <template>
-            <Cascader :data="fieldData" trigger="hover" v-model="selectedField"></Cascader>
+            <Select v-model="expertInfo.expert_field_ids" multiple>
+                <OptionGroup v-for="fields in fieldData" :key="fields.id" :value="fields.id" :label="fields.type_name">
+                  <Option v-for="item in fields.fields" :value="item.id" :key="item.id">{{ item.field_name }}</Option>
+                </OptionGroup>
+            </Select>
           </template>
         </form-item>
         <form-item label="联系电话" prop="phone">
           <i-input v-model="expertInfo.phone"></i-input>
+        </form-item>
+        <form-item label="电子邮箱" prop="email">
+          <i-input v-model="expertInfo.email"></i-input>
         </form-item>
       </i-form>
       <div slot="footer">
@@ -57,75 +64,42 @@
 </template>
 
 <script>
-import axios from 'axios'
-// import DialogExpert form './dialogExpert'
+import SourceOperationResource from '@/resources/SourceOperationResource'
 
 export default {
-  components: {
-    // DialogExpert
-  },
   data() {
     return {
       expertList: [],
       visible: false,
       expertInfo: {
-        name: '', //用户名
+        name: '',
         resume: '',
         expert_field_ids: [],
-        expert_rule_ids: [31103, 31166],
+        expert_rule_ids: [],
         phone: '',
-        email: '13838383838@qq.com'
+        email: ''
       },
       fieldData: [],
-      selectedField: []
+      flag: true
     }
   },
   created() {
     this.queryExpertList()
     this.querySecurityField()
   },
-  computed: {
-    url() {
-      return this.$store.state.userCode.url
-    }
-  },
   methods: {
     querySecurityField() {
-      const url = this.url + '/ops/api/v1.0/sec_field_types'
-      axios({
-        method: 'get',
-        url: url
-      }).then(response => {
+      SourceOperationResource.querySecurityField().then(response => {
         if (response.data.status) {
           const res = response.data
-          this.formatCascader(res.security_field_types)
+          this.fieldData = res.security_field_types
         } else {
           this.$Message.error(response.data.desc)
         }
       })
     },
-    formatCascader(data) {
-      data.forEach((item, index) => {
-        this.fieldData.push({})
-        this.fieldData[index].value = item.id
-        this.fieldData[index].label = item.type_name
-        let flag = index
-        if (item.fields) {
-          this.fieldData[flag].children = []
-          item.fields.forEach((item, index) => {
-            this.fieldData[flag].children.push({})
-            this.fieldData[flag].children[index].value = item.id
-            this.fieldData[flag].children[index].label = item.field_name
-          })
-        }
-      })
-    },
     queryExpertList() {
-      const url = this.url + '/ops/api/v1.0/experts'
-      axios({
-        method: 'get',
-        url: url
-      }).then(response => {
+      SourceOperationResource.queryExpertList().then(response => {
         if (response.data.status) {
           const res = response.data
           this.expertList = res.experts
@@ -134,27 +108,54 @@ export default {
         }
       })
     },
-    editExpert() {},
-    deleteExpert() {},
-    addExpert() {
+    editExpert(index, row) {
+      this.expertInfo.name = row.name
+      this.expertInfo.resume = row.resume
+      this.expertInfo.expert_field_ids = []
+      row.fields.forEach(item => {
+        this.expertInfo.expert_field_ids.push(item.id)
+      })
+      this.expertInfo.phone = row.phone
+      this.expertInfo.email = row.email
       this.visible = true
+      this.flag = false
     },
-    handleAddExpertSubmit() {
-      this.expertInfo.expert_field_ids = this.selectedField
-      const url = this.url + '/ops/api/v1.0/experts'
-      axios({
-        method: 'post',
-        url: url,
-        data: this.expertInfo
-      }).then(response => {
+    deleteExpert(index, id) {
+      SourceOperationResource.delExpert(id).then(response => {
         if (response.data.status) {
-          this.visible = false
           this.$Message.info(response.data.desc)
           this.queryExpertList()
         } else {
           this.$Message.error(response.data.desc)
         }
       })
+    },
+    addExpert() {
+      this.visible = true
+      this.flag = true
+    },
+    handleAddExpertSubmit() {
+      if (this.flag) {
+        SourceOperationResource.addExpert(this.expertInfo).then(response => {
+          if (response.data.status) {
+            this.visible = false
+            this.$Message.info(response.data.desc)
+            this.queryExpertList()
+          } else {
+            this.$Message.error(response.data.desc)
+          }
+        })
+      } else {
+        SourceOperationResource.modifyExpert(this.expertInfo).then(response => {
+          if (response.data.status) {
+            this.visible = false
+            this.$Message.info(response.data.desc)
+            this.queryExpertList()
+          } else {
+            this.$Message.error(response.data.desc)
+          }
+        })
+      }
     }
   }
 }

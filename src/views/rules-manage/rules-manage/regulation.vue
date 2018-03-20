@@ -16,6 +16,9 @@
     <el-table-column label="描述" width="" prop="describe"></el-table-column>
     <el-table-column label="操作">
       <template slot-scope="scope" class="clearfix">
+        <Upload class="upload-demo down_btn" :action="rule_file_info" list-type="text">
+          <el-button type="primary" size="small" @click="upload(scope.row.id, scope.row.rule_file)" >上传</el-button>
+        </Upload>
         <el-popover ref="popover" placement="top" width="160" v-model="scope.row.deleteVisible">
           <p>您确定删除当前信息么？</p>
           <div style="text-align: right; margin: 0">
@@ -24,9 +27,6 @@
           </div>
         </el-popover>
         <el-button type="primary" class="down_btn" size="small" @click="download(scope.row.id, scope.row.rule_file)">下载</el-button>
-        <Upload class="upload-demo down_btn" :action="rule_file_info" list-type="text">
-          <el-button type="primary" size="small" @click="upload(scope.row.id, scope.row.rule_file)" >上传</el-button>
-        </Upload>
         <el-button type="primary" class="down_btn" size="small" @click="show(scope.row.id, scope.row.rule_file)">查看</el-button>
         <el-button type="primary" class="del_btn" size="small" v-popover:popover>删除</el-button>
       </template>

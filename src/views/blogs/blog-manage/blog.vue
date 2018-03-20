@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import SourceBlogsResource from '@/resources/SourceBlogsResource'
 
 export default {
   data() {
@@ -185,7 +185,7 @@ export default {
           render: (h, params) => {
             return h('div', [
               h(
-                'Button',
+                'el-button',
                 {
                   props: {
                     type: 'primary',
@@ -237,16 +237,11 @@ export default {
         this.$Message.error('截止时间不能小于开始时间')
         return false
       }
-      const url =
-        this.url +
-        '/log_an/api/v1.0/log/logs?page=' +
-        this.pageNum +
-        '&per_page=10'
-      axios({
-        method: 'post',
-        url: url,
+      const params = {
         data: this.searchData
-      }).then(response => {
+      }
+      const urlParams = `?page=${this.pageNum}&per_page=10`
+      SourceBlogsResource.searchBlogInfo(params, urlParams).then(response => {
         if (response.data.status) {
           const res = response.data
           const logs = res.logs
@@ -279,11 +274,7 @@ export default {
     },
     show(id, name) {
       this.modalDetail = true
-      const url = this.url + '/log_an/api/v1.0/log/logs/' + id
-      axios({
-        method: 'get',
-        url: url
-      }).then(response => {
+      SourceBlogsResource.queryBlogDetail(id).then(response => {
         if (response.data.status) {
           this.details = response.data.log_detail
         } else {
@@ -324,11 +315,7 @@ export default {
         page: this.pageNum,
         per_page: this.pageSize
       }
-      axios({
-        method: 'get',
-        url: this.url + '/log_an/api/v1.0/log/logs',
-        params: params
-      }).then(response => {
+      SourceBlogsResource.queryBlogList(params).then(response => {
         if (response.data.status) {
           const res = response.data
           const logs = res.logs

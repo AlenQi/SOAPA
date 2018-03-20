@@ -1,4 +1,5 @@
 import nprogress from 'nprogress'
+import { Button, Table } from 'iview'
 import { AssetsIP } from 'conf/url.conf'
 
 class Interceptor {
@@ -35,13 +36,14 @@ class Interceptor {
         if (afterResponse[0]) {
           afterResponse[0](response)
         } else {
-          if (response.data.status.code === 16149) {
-            const error = response.data.status
-            window.location.href = '/login'
-            return Promise.reject(error)
-          }
-          if (response.data.status.code !== 1) {
+          // if (response.data.status.code === 16149) {
+          //   const error = response.data.status
+          //   window.location.href = '/login'
+          //   return Promise.reject(error)
+          // }
+          if (!response.data.status) {
             const error = response.data
+            Message.error({ content: error.desc })
             return Promise.reject(error)
           } else {
             return response
@@ -72,7 +74,7 @@ class Interceptor {
   }
 }
 
-const BASE_URL = `http://${AssetsIP}/asset/api`
+const BASE_URL = `http://${AssetsIP}`
 
 export { BASE_URL }
 export default Interceptor

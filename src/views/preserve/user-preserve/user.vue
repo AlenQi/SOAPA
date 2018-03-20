@@ -184,31 +184,31 @@
 </template>
 
 <script>
-import axios from 'axios';
+import SourceUserResource from '@/resources/SourceUserResource'
 import 'element-ui/lib/theme-default/index.css'
 
 export default {
   data() {
     const validatePass = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入新密码'));
+        callback(new Error('请输入新密码'))
       } else {
         if (this.formCustom.passwdCheck !== '') {
           // 对第二个密码框单独验证
-          this.$refs.formCustom.validateField('passwdCheck');
+          this.$refs.formCustom.validateField('passwdCheck')
         }
-        callback();
+        callback()
       }
-    };
+    }
     const validatePassCheck = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请再次输入新密码'));
+        callback(new Error('请再次输入新密码'))
       } else if (value !== this.formCustom.passwd) {
-        callback(new Error('两次密码不一致!'));
+        callback(new Error('两次密码不一致!'))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     return {
       activeName2: 'first',
       total: 0,
@@ -232,46 +232,62 @@ export default {
         cname: ''
       },
       ruleValidate: {
-        cname: [{
-          required: true,
-          message: '请填写您的账号！',
-          trigger: 'blur'
-        }],
-        name: [{
-          required: true,
-          message: '请填写您的用户名！',
-          trigger: 'blur'
-        }],
-        password: [{
-          required: true,
-          message: '请填写您的密码！',
-          trigger: 'blur'
-        }],
-        confirmPassword: [{
-          required: true,
-          message: '请确认密码是否一致！',
-          trigger: 'blur'
-        }],
-        address: [{
-          required: 'ture',
-          message: '请填写您的地址！'
-        }],
-        phone: [{
-          required: 'true',
-          message: '请填写您的手机号！',
-          trigger: 'blur'
-        }],
-        email: [{
-          required: 'true',
-          message: '请填写您的邮箱！',
-          trigger: 'blur'
-        }],
-        use: [{
-          required: true,
-          type: 'date',
-          message: '请选择资产类型',
-          trigger: 'change'
-        }]
+        cname: [
+          {
+            required: true,
+            message: '请填写您的账号！',
+            trigger: 'blur'
+          }
+        ],
+        name: [
+          {
+            required: true,
+            message: '请填写您的用户名！',
+            trigger: 'blur'
+          }
+        ],
+        password: [
+          {
+            required: true,
+            message: '请填写您的密码！',
+            trigger: 'blur'
+          }
+        ],
+        confirmPassword: [
+          {
+            required: true,
+            message: '请确认密码是否一致！',
+            trigger: 'blur'
+          }
+        ],
+        address: [
+          {
+            required: 'ture',
+            message: '请填写您的地址！'
+          }
+        ],
+        phone: [
+          {
+            required: 'true',
+            message: '请填写您的手机号！',
+            trigger: 'blur'
+          }
+        ],
+        email: [
+          {
+            required: 'true',
+            message: '请填写您的邮箱！',
+            trigger: 'blur'
+          }
+        ],
+        use: [
+          {
+            required: true,
+            type: 'date',
+            message: '请选择资产类型',
+            trigger: 'change'
+          }
+        ]
       },
       formItem2: {
         username: '',
@@ -279,14 +295,18 @@ export default {
         passwords: ''
       },
       ruleValidate2: {
-        passwd: [{
-          validator: validatePass,
-          trigger: 'blur'
-        }],
-        passwords: [{
-          validator: validatePassCheck,
-          trigger: 'blur'
-        }]
+        passwd: [
+          {
+            validator: validatePass,
+            trigger: 'blur'
+          }
+        ],
+        passwords: [
+          {
+            validator: validatePassCheck,
+            trigger: 'blur'
+          }
+        ]
       },
       formItem3: {
         cname: '',
@@ -294,21 +314,27 @@ export default {
         selectors: ''
       },
       ruleValidate3: {
-        cname: [{
-          required: true,
-          message: '请填写您的名称！',
-          trigger: 'blur'
-        }],
-        name: [{
-          required: true,
-          message: '请填写您的说明！',
-          trigger: 'blur'
-        }],
-        selectors: [{
-          required: true,
-          message: '请填写您的权限！',
-          trigger: 'blur'
-        }]
+        cname: [
+          {
+            required: true,
+            message: '请填写您的名称！',
+            trigger: 'blur'
+          }
+        ],
+        name: [
+          {
+            required: true,
+            message: '请填写您的说明！',
+            trigger: 'blur'
+          }
+        ],
+        selectors: [
+          {
+            required: true,
+            message: '请填写您的权限！',
+            trigger: 'blur'
+          }
+        ]
       },
       title1: '增加用户组信息',
       formItem4: {
@@ -317,23 +343,29 @@ export default {
         kind: ''
       },
       ruleValidate4: {
-        cname: [{
-          required: true,
-          message: '请填写您的名称！',
-          trigger: 'blur'
-        }],
-        name: [{
-          required: true,
-          message: '请填写您的说明！',
-          trigger: 'blur'
-        }],
-        kind: [{
-          required: true,
-          message: '请填写您的类型！',
-          trigger: 'blur'
-        }]
+        cname: [
+          {
+            required: true,
+            message: '请填写您的名称！',
+            trigger: 'blur'
+          }
+        ],
+        name: [
+          {
+            required: true,
+            message: '请填写您的说明！',
+            trigger: 'blur'
+          }
+        ],
+        kind: [
+          {
+            required: true,
+            message: '请填写您的类型！',
+            trigger: 'blur'
+          }
+        ]
       },
-      title2: '增加权限信息',
+      title2: '增加权限信息'
     }
   },
   computed: {
@@ -351,22 +383,17 @@ export default {
       console.log(tab, event)
     },
     queryUsers() {
-      const url = this.url + '/user/api/v1.0/users'
-      axios({
-          method: 'get',
-          url: url,
-        })
-        .then(response => {
-          if (response.data.status) {
-            const res = response.data
-            this.tableData1 = res.users
-          } else {
-            this.$Message.error(response.data.desc)
-          }
-        })
+      SourceUserResource.queryUsers().then(response => {
+        if (response.data.status) {
+          const res = response.data
+          this.tableData1 = res.users
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
     },
     addProperty() {
-      this.$refs['formItem'].resetFields();
+      this.$refs['formItem'].resetFields()
       this.title = '增加用户信息'
       this.modal = true
     },
@@ -376,44 +403,33 @@ export default {
       this.modal = true
     },
     handleSubmit(name) {
-      this.$refs[name].validate((valid) => {
+      this.$refs[name].validate(valid => {
         if (valid) {
           let url
           if (this.title === '增加用户信息') {
-            url = this.url + '/user/api/v1.0/users'
-            axios({
-                method: 'post',
-                url: url,
-                data: this.formItem
-              })
-              .then(response => {
-                if (response.data.status) {
-                  this.modal = false
-                  this.$Message.info('添加成功')
-                  this.queryUsers()
-                } else {
-                  this.$Message.error(response.data.desc)
-                }
-              })
+            SourceUserResource.addUser(this.formItem).then(response => {
+              if (response.data.status) {
+                this.modal = false
+                this.$Message.info('添加成功')
+                this.queryUsers()
+              } else {
+                this.$Message.error(response.data.desc)
+              }
+            })
           } else {
-            url = this.url + '/user/api/v1.0/users/' + this.formItem.id
-            axios({
-                method: 'put',
-                url: url,
-                data: this.formItem
-              })
-              .then(response => {
-                if (response.data.status) {
-                  this.modal = false
-                  this.$Message.info('修改成功')
-                  this.queryUsers()
-                } else {
-                  this.$Message.error(response.data.desc)
-                }
-              })
+            const id = this.formItem.id
+            SourceUserResource.modifyUserInfo(this.formItem, id).then(response => {
+              if (response.data.status) {
+                this.modal = false
+                this.$Message.info('修改成功')
+                this.queryUsers()
+              } else {
+                this.$Message.error(response.data.desc)
+              }
+            })
           }
         } else {
-          this.$Message.error('提交失败');
+          this.$Message.error('提交失败')
         }
       })
     },
@@ -424,19 +440,15 @@ export default {
       deleteVisible = true
     },
     deleteUsers(index, id) {
-      const url = this.url + '/user/api/v1.0/users/' + id
-      axios({
-          method: 'delete',
-          url: url,
-        })
-        .then(response => {
-          if (response.data.status) {
-            this.$Message.info('删除成功')
-            this.queryUsers()
-          } else {
-            this.$Message.error(response.data.desc)
-          }
-        })
+      const idParams = id
+      SourceUserResource.delUser(idParams).then(response => {
+        if (response.data.status) {
+          this.$Message.info('删除成功')
+          this.queryUsers()
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
     },
     changePassWords(parmas, id) {
       this.formItem2.username = parmas.name
@@ -444,25 +456,18 @@ export default {
       this.modal2 = true
     },
     handleSubmitPassWords(name) {
-      this.$refs[name].validate((valid) => {
+      this.$refs[name].validate(valid => {
         if (valid) {
-          const url = this.url + '/user/api/v1.0/password'
-          axios({
-              method: 'post',
-              url: url,
-              data: this.formItem2
-            })
-            .then(response => {
-              if (response.data.status) {
-                this.modal2 = false
-                this.$Message.info('修改成功')
-                this.queryUsers()
-              } else {
-                this.$Message.error(response.data.desc)
-              }
-            })
+          SourceUserResource.modifyPassword(this.formItem2).then(response => {
+            if (response.data.status) {
+              this.modal2 = false
+              this.$Message.info('修改成功')
+              this.queryUsers()
+            } else {
+              this.$Message.error(response.data.desc)
+            }
+          })
         } else {
-
         }
       })
     },
@@ -471,19 +476,14 @@ export default {
     },
     //用户组
     queryAboutGroup() {
-      const url = this.url + '/group/api/v1.0/groups'
-      axios({
-          method: 'get',
-          url: url,
-        })
-        .then(response => {
-          if (response.data.status) {
-            const res = response.data
-            this.tableData2 = res.groups
-          } else {
-            this.$Message.error(response.data.desc)
-          }
-        })
+      SourceUserResource.queryUserGroup().then(response => {
+        if (response.data.status) {
+          const res = response.data
+          this.tableData2 = res.groups
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
     },
     addGroup() {
       this.title1 = '增加用户组信息'
@@ -500,22 +500,18 @@ export default {
       this.modal3 = true
     },
     deleteUsers2(index, id) {
-      const url = this.url + '/group/api/v1.0/groups/' + id
-      axios({
-          method: 'delete',
-          url: url,
-        })
-        .then(response => {
-          if (response.data.status) {
-            this.$Message.info('删除成功')
-            this.queryAboutGroup()
-          } else {
-            this.$Message.error(response.data.desc)
-          }
-        })
+      const idParams = id
+      SourceUserResource.delUser2(idParams).then(response => {
+        if (response.data.status) {
+          this.$Message.info('删除成功')
+          this.queryAboutGroup()
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
     },
     handleInfoAboutUsers(name) {
-      this.$refs[name].validate((valid) => {
+      this.$refs[name].validate(valid => {
         if (valid) {
           let url
           let methodT
@@ -527,21 +523,19 @@ export default {
             url = this.url + '/group/api/v1.0/groups/' + this.formItem3.id
           }
           axios({
-              method: methodT,
-              url: url,
-              data: this.formItem3
-            })
-            .then(response => {
-              if (response.data.status) {
-                this.modal3 = false
-                this.$Message.info('操作成功')
-                this.queryAboutGroup()
-              } else {
-                this.$Message.error(response.data.desc)
-              }
-            })
+            method: methodT,
+            url: url,
+            data: this.formItem3
+          }).then(response => {
+            if (response.data.status) {
+              this.modal3 = false
+              this.$Message.info('操作成功')
+              this.queryAboutGroup()
+            } else {
+              this.$Message.error(response.data.desc)
+            }
+          })
         } else {
-
         }
       })
     },
@@ -550,19 +544,14 @@ export default {
     },
     //权限
     queryPower() {
-      const url = this.url + '/selector/api/v1.0/selectors'
-      axios({
-          method: 'get',
-          url: url,
-        })
-        .then(response => {
-          if (response.data.status) {
-            const res = response.data
-            this.tableData3 = res.selectors
-          } else {
-            this.$Message.error(response.data.desc)
-          }
-        })
+      SourceUserResource.queryUserPower().then(response => {
+        if (response.data.status) {
+          const res = response.data
+          this.tableData3 = res.selectors
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
     },
     addPower() {
       this.title2 = '增加权限信息'
@@ -579,22 +568,18 @@ export default {
       this.modal4 = true
     },
     deleteUsers3(index, id) {
-      const url = this.url + '/selector/api/v1.0/selectors/' + id
-      axios({
-          method: 'delete',
-          url: url,
-        })
-        .then(response => {
-          if (response.data.status) {
-            this.$Message.info('删除成功')
-            this.queryPower()
-          } else {
-            this.$Message.error(response.data.desc)
-          }
-        })
+      const idParams = id
+      SourceUserResource.delUser3(idParams).then(response => {
+        if (response.data.status) {
+          this.$Message.info('删除成功')
+          this.queryPower()
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
     },
     handlePrower(name) {
-      this.$refs[name].validate((valid) => {
+      this.$refs[name].validate(valid => {
         if (valid) {
           let url
           let methodT
@@ -606,21 +591,19 @@ export default {
             url = this.url + '/selector/api/v1.0/selectors/' + this.formItem4.id
           }
           axios({
-              method: methodT,
-              url: url,
-              data: this.formItem4
-            })
-            .then(response => {
-              if (response.data.status) {
-                this.modal4 = false
-                this.$Message.info('操作成功')
-                this.queryPower()
-              } else {
-                this.$Message.error(response.data.desc)
-              }
-            })
+            method: methodT,
+            url: url,
+            data: this.formItem4
+          }).then(response => {
+            if (response.data.status) {
+              this.modal4 = false
+              this.$Message.info('操作成功')
+              this.queryPower()
+            } else {
+              this.$Message.error(response.data.desc)
+            }
+          })
         } else {
-
         }
       })
     },
@@ -628,7 +611,7 @@ export default {
       this.modal4 = false
     }
   }
-};
+}
 </script>
 
 <style lang="less">
@@ -636,7 +619,7 @@ export default {
 </style>
 <style>
 .el-tabs__item.is-active {
-  background: #2d8cf0;
-  color: #fff
+  background: #2d90e6;
+  color: #fff;
 }
 </style>

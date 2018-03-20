@@ -74,7 +74,7 @@
 
 <script>
 import { AssetsIP } from 'conf/url.conf'
-import Resource from '@/store/resource/resource'
+import SourceHomeResource from '@/resources/SourceHomeResource'
 import axios from 'axios'
 
 export default {
@@ -164,10 +164,11 @@ export default {
           render: (h, params) => {
             return h('div', [
               h(
-                'Button',
+                'el-button',
                 {
                   props: {
-                    size: 'small'
+                    size: 'small',
+                    type: 'primary'
                   },
                   style: {
                     marginRight: '5px'
@@ -198,14 +199,15 @@ export default {
                 },
                 [
                   h(
-                    'Button',
+                    'el-button',
                     {
                       style: {
                         marginRight: '5px'
                       },
                       props: {
                         size: 'small',
-                        placement: 'top'
+                        placement: 'top',
+                        type: 'primary'
                       }
                     },
                     '删除'
@@ -338,20 +340,16 @@ export default {
     }
   },
   created() {
-    this.queryAboutList()
+    this.queryInitList()
   },
   methods: {
-    queryAboutList() {
+    queryInitList() {
       const params = {
         page: this.pageNum,
         per_page: this.pageSize,
         search_msg: ''
       }
-      axios({
-        method: 'get',
-        url: this.url + '/asset/api/v1.0/assets',
-        params: params
-      }).then(response => {
+      SourceHomeResource.queryAssetList(params).then(response => {
         if (response.data.status) {
           const res = response.data
           this.total = res.total
@@ -363,14 +361,12 @@ export default {
     },
     changePage(num) {
       this.pageNum = num
-      this.queryAboutList()
+      this.queryInitList()
     },
     deletelist(params) {
-      const url = this.url + '/asset/api/v1.0/assets/' + params.row.id
-      axios({
-        method: 'delete',
-        url: url
-      }).then(response => {
+      const urlParams = params.row.id
+      console.log('urlParams', urlParams);
+      SourceHomeResource.delAssetInfo(urlParams).then(response => {
         if (response.data.status) {
           this.$Message.success('删除成功!')
           this.tableData.splice(params.index, 1)
@@ -392,15 +388,9 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          let url
           const params = this.formValidate
           if (this.title === '增加资产信息') {
-            url = this.url + '/asset/api/v1.0/assets'
-            axios({
-              method: 'post',
-              url: url,
-              data: params
-            }).then(response => {
+            SourceHomeResource.addAssetInfo(params).then(response => {
               if (response.data.status) {
                 this.$Message.success('保存成功!')
               } else {
@@ -408,12 +398,8 @@ export default {
               }
             })
           } else {
-            url = this.url + '/asset/api/v1.0/assets/' + this.formValidate.id
-            axios({
-              method: 'put',
-              url: url,
-              data: params
-            }).then(response => {
+            const urlParams = this.formValidate.id
+            SourceHomeResource.modifyAssetInfo(params, urlParams).then(response => {
               if (response.data.status) {
                 this.$Message.success('保存成功!')
               } else {

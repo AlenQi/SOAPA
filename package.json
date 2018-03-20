@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "init": "webpack --progress --config build/webpack.dev.config.js",
-    "dev":
-      "webpack-dev-server --content-base ./ --open --inline --hot --compress --config build/webpack.dev.config.js",
-    "build":
-      "webpack --progress --hide-modules --config build/webpack.prod.config.js",
+    "dev": "webpack-dev-server --content-base ./ --open --inline --hot --compress --config build/webpack.dev.config.js",
+    "build": "webpack --progress --hide-modules --config build/webpack.prod.config.js",
     "lint": "eslint --fix --ext .js,.vue src",
     "test": "npm run lint"
   },
@@ -19,8 +17,7 @@
         "prettier --jsx-bracket-same-line --single-quote --no-semi --write",
         "git add"
       ],
-      "*.{js,vue}":
-        "eslint --quiet --format node_modules/eslint-friendly-formatter"
+      "*.{js,vue}": "eslint --quiet --format node_modules/eslint-friendly-formatter"
     }
   },
   "repository": {
@@ -58,6 +55,7 @@
     "babel-core": "^6.23.1",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
+    "babel-plugin-import": "^1.6.7",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.12.0",
     "babel-preset-env": "^1.6.1",

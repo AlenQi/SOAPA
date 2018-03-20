@@ -42,7 +42,8 @@
 
 <script>
 import Cookies from 'js-cookie'
-import axios from 'axios'
+import SourceLoginResource from '@/resources/SourceLoginResource'
+
 export default {
   data() {
     return {
@@ -82,18 +83,13 @@ export default {
     // this.getAuthCode()
   },
   methods: {
-    getAuthCode() {
-      this.src = this.url + '/users/code'
-    },
+    // getAuthCode() {
+    //   this.src = this.url + '/users/code'
+    // },
     handleSubmit() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          const url = this.url + '/api/login'
-          axios({
-            method: 'post',
-            url: url,
-            data: this.form
-          }).then(response => {
+          SourceLoginResource.handleLogin(this.form).then(response => {
             if (response.data.status) {
               Cookies.set('user', this.form.userName)
               Cookies.set('user_suofangsoapa', this.form.userName)
