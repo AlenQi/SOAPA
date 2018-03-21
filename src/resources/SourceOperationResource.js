@@ -13,6 +13,10 @@ export default {
         ...params
       }
     }),
+  searchExpertList: params =>
+    SourceOperationResource.post('/ops/api/v1.0/search/experts', {
+      ...params
+    }),
   addExpert: params =>
     SourceOperationResource.post('/ops/api/v1.0/experts', {
       ...params

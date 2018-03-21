@@ -1,10 +1,58 @@
 <template lang="html">
   <div class="">
-    <div>
-      <Button @click="addExpert">
-        <Icon type="plus-round" class="icon"></Icon>添加
-      </Button>
-    </div>
+    <row>
+      <i-col span="12">
+        <collapse>
+          <panel name="1">
+            展开搜索条件
+            <div slot="content">
+              <div class="threat_level clearfix">
+                <div class="level_name">专家姓名：</div>
+                <div class="level_name">
+                  <i-input v-model="searchExpert.name" style="width: 300px"></i-input>
+                </div>
+              </div>
+              <div class="threat_level clearfix">
+                <div class="level_name">专家简介：</div>
+                <div class="level_name">
+                  <i-input v-model="searchExpert.resume" style="width: 300px"></i-input>
+                </div>
+              </div>
+              <div class="threat_level clearfix">
+                <div class="level_name">擅长领域：</div>
+                <div class="level_name">
+                  <Select style="width: 300px" v-model="searchExpert.expert_field_ids" multiple>
+                      <OptionGroup v-for="fields in fieldData" :key="fields.id" :value="fields.id" :label="fields.type_name">
+                        <Option v-for="item in fields.fields" :value="item.id" :key="item.id">{{ item.field_name }}</Option>
+                      </OptionGroup>
+                  </Select>
+                </div>
+              </div>
+              <div class="threat_level clearfix">
+                <div class="level_name">手机号码：</div>
+                <div class="level_name">
+                  <i-input v-model="searchExpert.phone" style="width: 300px"></i-input>
+                </div>
+              </div>
+              <div class="threat_level clearfix">
+                <div class="level_name">电子邮箱：</div>
+                <div class="level_name">
+                  <i-input v-model="searchExpert.email" style="width: 300px"></i-input>
+                </div>
+              </div>
+            </div>
+          </panel>
+        </collapse>
+      </i-col>
+      <i-col offset="1" span="1">
+        <i-button type="primary" @click="searchExpertList">查询</i-button>
+      </i-col>
+      <i-col offset="1" span="1">
+        <i-button type="primary" @click="addExpert">
+          <Icon type="plus-round" class="icon"></Icon>添加
+        </i-button>
+      </i-col>
+    </row>
     <el-table class="table" :data="expertList" border style="width: 100%">
       <el-table-column label="专家姓名" width="180" prop="name"></el-table-column>
       <el-table-column label="专家简介" prop="resume"></el-table-column>
@@ -80,7 +128,14 @@ export default {
         email: ''
       },
       fieldData: [],
-      flag: true
+      flag: true,
+      searchExpert: {
+        name: '',
+        resume: '',
+        phone: '',
+        email: '',
+        expert_field_ids: []
+      }
     }
   },
   created() {
@@ -100,6 +155,16 @@ export default {
     },
     queryExpertList() {
       SourceOperationResource.queryExpertList().then(response => {
+        if (response.data.status) {
+          const res = response.data
+          this.expertList = res.experts
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
+    searchExpertList() {
+      SourceOperationResource.searchExpertList(this.searchExpert).then(response => {
         if (response.data.status) {
           const res = response.data
           this.expertList = res.experts
@@ -133,6 +198,14 @@ export default {
     addExpert() {
       this.visible = true
       this.flag = true
+      this.expertInfo = {
+        name: '',
+        resume: '',
+        expert_field_ids: [],
+        expert_rule_ids: [],
+        phone: '',
+        email: ''
+      }
     },
     handleAddExpertSubmit() {
       if (this.flag) {
@@ -162,6 +235,7 @@ export default {
 </script>
 
 <style lang="less" scoped="scoped">
+@import '../../../styles/search.less';
 .table {
   margin-top: 10px;
 }

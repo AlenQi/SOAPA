@@ -352,4 +352,5 @@ export default {
 
 <style lang="less">
 @import 'blog.less';
+@import '../../../styles/search.less';
 </style>
