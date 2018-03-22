@@ -41,13 +41,13 @@ class Interceptor {
           //   window.location.href = '/login'
           //   return Promise.reject(error)
           // }
-          if (!response.data.status) {
-            const error = response.data
-            Message.error({ content: error.desc })
-            return Promise.reject(error)
-          } else {
-            return response
-          }
+          return response
+          // if (!response.data.status) {
+          //   const error = response.data
+          //   Message.error({ content: error.desc })
+          //   return Promise.reject(error)
+          // } else {
+          // }
         }
       },
       ...error => {

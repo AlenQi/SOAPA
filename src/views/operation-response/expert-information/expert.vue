@@ -105,7 +105,7 @@
       </i-form>
       <div slot="footer">
         <i-button type="primary" @click="handleAddExpertSubmit()">保存</i-button>
-        <i-button type="ghost" @click="handleAddExpertReset()" style="margin-left: 8px">取消</i-button>
+        <i-button type="ghost" @click="visible = false" style="margin-left: 8px">取消</i-button>
       </div>
     </Modal>
   </div>
@@ -117,6 +117,7 @@ import SourceOperationResource from '@/resources/SourceOperationResource'
 export default {
   data() {
     return {
+      modifyId: '',
       expertList: [],
       visible: false,
       expertInfo: {
@@ -139,8 +140,15 @@ export default {
     }
   },
   created() {
-    this.queryExpertList()
     this.querySecurityField()
+  },
+  mounted() {
+    if (this.$route.query.rule_id) {
+      this.queryLoginExpertList(this.$route.query.rule_id)
+    } else {
+      this.queryExpertList()
+    }
+    console.log('12',this.$route.query.rule_id)
   },
   methods: {
     querySecurityField() {
@@ -163,6 +171,16 @@ export default {
         }
       })
     },
+    queryLoginExpertList(id) {
+      SourceOperationResource.queryLoginExpertList(id).then(response => {
+        if (response.data.status) {
+          const res = response.data
+          this.expertList = res.experts
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
     searchExpertList() {
       SourceOperationResource.searchExpertList(this.searchExpert).then(response => {
         if (response.data.status) {
@@ -174,6 +192,7 @@ export default {
       })
     },
     editExpert(index, row) {
+      this.modifyId = row.id
       this.expertInfo.name = row.name
       this.expertInfo.resume = row.resume
       this.expertInfo.expert_field_ids = []
@@ -219,7 +238,7 @@ export default {
           }
         })
       } else {
-        SourceOperationResource.modifyExpert(this.expertInfo).then(response => {
+        SourceOperationResource.modifyExpert(this.expertInfo, this.modifyId).then(response => {
           if (response.data.status) {
             this.visible = false
             this.$Message.info(response.data.desc)

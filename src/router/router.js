@@ -141,7 +141,7 @@ export const otherRouter = {
 export const appRouter = [
   {
     path: '/property',
-    icon: 'key',
+    icon: 'soup-can-outline',
     name: 'property',
     title: '资产管理',
     component: Main,
@@ -171,7 +171,7 @@ export const appRouter = [
   // },
   {
     path: '/preserve',
-    icon: 'key',
+    icon: 'person',
     name: 'preserve',
     title: '系统管理',
     component: Main,
@@ -210,8 +210,8 @@ export const appRouter = [
   },
   {
     path: '/vocation',
-    icon: 'key',
-    name: 'vocation',
+    icon: 'clipboard',
+    name: 'lock-combination',
     title: '合规检测',
     component: Main,
     children: [
@@ -231,7 +231,7 @@ export const appRouter = [
   },
   {
     path: '/blogs',
-    icon: 'key',
+    icon: 'clipboard',
     name: 'blogs',
     title: '日志管理',
     component: Main,
@@ -246,7 +246,7 @@ export const appRouter = [
   },
   {
     path: '/rules-manage',
-    icon: 'key',
+    icon: 'settings',
     name: 'rules-manage',
     title: '规则管理',
     component: Main,

@@ -179,6 +179,37 @@ export default {
           key: 'dealing'
         },
         {
+          title: '对应专家',
+          width: 150,
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h(
+                'el-button',
+                {
+                  props: {
+                    type: 'primary',
+                    size: 'small'
+                  },
+                  style: {
+                    marginRight: '5px'
+                  },
+                  on: {
+                    click: () => {
+                      let query = { rule_id: params.row.rule_id }
+                      this.$router.push({
+                        name: 'erxpert-information',
+                        query: query
+                      })
+                    }
+                  }
+                },
+                '查看专家'
+              )
+            ])
+          }
+        },
+        {
           title: '详情',
           width: 150,
           align: 'center',
@@ -213,7 +244,8 @@ export default {
         srcip: '',
         id: null,
         country_name: '',
-        city_name: ''
+        city_name: '',
+        rule_id: ''
       }
     }
   },
@@ -296,19 +328,7 @@ export default {
       const hour = now.getHours()
       const minute = now.getMinutes()
       const second = now.getSeconds()
-      return (
-        year +
-        '-' +
-        month +
-        '-' +
-        date +
-        ' ' +
-        hour +
-        ':' +
-        minute +
-        ':' +
-        second
-      )
+      return year + '-' + month + '-' + date + ' ' + hour + ':' + minute + ':' + second
     },
     queryAboutList() {
       const params = {
