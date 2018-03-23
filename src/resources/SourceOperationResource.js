@@ -44,5 +44,24 @@ export default {
   modifyEvent: (params, id) =>
     SourceOperationResource.put(`/ops/api/v1.0/solutions/${id}`, {
       ...params
-    })
+    }),
+
+  // agent
+  queryAgentList: params =>
+    SourceOperationResource.get('/ops/api/v1.0/agents', {
+      params: {
+        ...params
+      }
+    }),
+  queryAgentDetails: id => SourceOperationResource.get(`/ops/api/v1.0/agents/${id}`),
+  queryAgentKey: agent_id => SourceOperationResource.get(`/ops/api/v1.0/agents/${agent_id}?key`),
+  addAgent: params =>
+    SourceOperationResource.post('/ops/api/v1.0/agents', {
+      ...params
+    }),
+  delAgent: agent_id => SourceOperationResource.delete(`/ops/api/v1.0/agents/${agent_id}`),
+  restartAllAgent: () => SourceOperationResource.put('/ops/api/v1.0/agents'),
+  restartPartAgent: params => SourceOperationResource.post('/ops/api/v1.0/agents?restart=yes', {
+    ...params
+  })
 }
