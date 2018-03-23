@@ -282,6 +282,14 @@ export const appRouter = [
         icon: 'edit',
         component: () =>
           import('@/views/operation-response/event-processing/event.vue')
+      },
+      {
+        path: 'agents-manage',
+        title: 'Agent管理',
+        name: 'agents-manage',
+        icon: 'edit',
+        component: () =>
+          import('@/views/operation-response/agents-manage/agents.vue')
       }
     ]
   }
