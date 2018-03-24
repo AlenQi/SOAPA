@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
     <row>
-      <i-col span="12">
+      <i-col span="10">
         <collapse>
           <panel name="1">
             展开搜索条件
@@ -50,6 +50,16 @@
       <i-col offset="1" span="1">
         <i-button type="primary" @click="addAgent">
           <Icon type="plus-round" class="icon"></Icon>添加
+        </i-button>
+      </i-col>
+      <i-col offset="1" span="1">
+        <i-button type="primary" @click="restartAllAgent">
+          重启所有
+        </i-button>
+      </i-col>
+      <i-col offset="1" span="1">
+        <i-button type="primary" @click="restartPartAgent">
+          重启部分
         </i-button>
       </i-col>
     </row>
@@ -127,7 +137,10 @@ export default {
   },
   methods: {
     handleSelectionChange(val) {
-      this.multipleSelection = val
+      this.multipleSelection = []
+      val.forEach(item => {
+        this.multipleSelection.push(item.id)
+      })
     },
     querySecurityField() {
       SourceOperationResource.querySecurityField().then(response => {
@@ -143,7 +156,7 @@ export default {
       SourceOperationResource.queryAgentList().then(response => {
         if (response.data.status) {
           const res = response.data
-          this.agentsList = res.agents
+          this.agentsList = res.agents.items
         } else {
           this.$Message.error(response.data.desc)
         }
@@ -153,7 +166,7 @@ export default {
       SourceOperationResource.queryLoginExpertList(id).then(response => {
         if (response.data.status) {
           const res = response.data
-          this.agentsList = res.experts
+          this.agentsList = res.agents.items
         } else {
           this.$Message.error(response.data.desc)
         }
@@ -163,7 +176,7 @@ export default {
       SourceOperationResource.searchExpertList(this.searchExpert).then(response => {
         if (response.data.status) {
           const res = response.data
-          this.agentsList = res.experts
+          this.agentsList = res.agents.items
         } else {
           this.$Message.error(response.data.desc)
         }
@@ -199,6 +212,33 @@ export default {
         name: '',
         ip: ''
       }
+    },
+    restartAllAgent() {
+      SourceOperationResource.restartAllAgent().then(response => {
+        if (response.data.status) {
+          this.$Message.info(response.data.desc)
+          this.queryAgentList()
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
+    restartPartAgent() {
+      if (Object.is(this.multipleSelection.length, 0)) {
+        this.$Message.info('请先选择一个Agent！')
+        return
+      }
+      const params = {
+        ids: this.multipleSelection
+      }
+      SourceOperationResource.restartPartAgent(params).then(response => {
+        if (response.data.status) {
+          this.$Message.info(response.data.desc)
+          this.queryAgentList()
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
     },
     handleAddExpertSubmit() {
       if (this.flag) {

@@ -38,8 +38,7 @@
       </i-col>
     </row>
     <el-table class="table" :data="eventList" border style="width: 100%">
-      <el-table-column label="规则ID" width="100" prop="id"></el-table-column>
-      <el-table-column label="描述" prop="describe"></el-table-column>
+      <el-table-column label="ID" width="100" prop="id"></el-table-column>
       <el-table-column label="处理方案信息" prop="solution_info"></el-table-column>
       <el-table-column label="处理方案文件">
         <template slot-scope="scope">
@@ -48,6 +47,8 @@
           </p>
         </template>
       </el-table-column>
+      <el-table-column label="规则ID" prop="rule.rule_id"></el-table-column>
+      <el-table-column label="规则描述" prop="rule.describe"></el-table-column>
       <el-table-column label="操作" width="250">
         <template slot-scope="scope">
           <el-button type="primary" size="small" @click="editEvent(scope.$index, scope.row)">修改</el-button>
