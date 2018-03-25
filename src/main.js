@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import iView from 'iview'
 import './styles/my-theme.less';
+import '@/styles/common.less'
 import ElementUI from 'element-ui'
 import { router } from './router/index'
 import { appRouter } from './router/router'

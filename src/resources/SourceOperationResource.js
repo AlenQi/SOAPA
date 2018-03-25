@@ -63,5 +63,6 @@ export default {
   restartAllAgent: () => SourceOperationResource.put('/ops/api/v1.0/agents'),
   restartPartAgent: params => SourceOperationResource.post('/ops/api/v1.0/agents?restart=yes', {
     ...params
-  })
+  }),
+  queryAgentSummary: id => SourceOperationResource.get('/ops/api/v1.0/agents/summary')
 }

@@ -1,7 +1,21 @@
 <template lang="html">
   <div class="">
-    <row>
-      <i-col span="10">
+    <Row :gutter="16" class="margin-bottom-10">
+      <Col span="12">
+        <AgentChart />
+      </Col>
+      <Col span="12">
+        <Card>
+          <p slot="title" class="card-title">
+            <Icon type="ios-shuffle-strong"></Icon>
+            Agent操作系统概要信息
+          </p>
+          <p v-for=""></p>
+        </Card>
+      </Col>
+    </Row>
+    <Row :gutter="16">
+      <Col span="10">
         <collapse>
           <panel name="1">
             展开搜索条件
@@ -43,26 +57,26 @@
             </div>
           </panel>
         </collapse>
-      </i-col>
-      <i-col offset="1" span="1">
+      </Col>
+      <Col offset="1" span="1">
         <i-button type="primary" @click="searchExpertList">查询</i-button>
-      </i-col>
-      <i-col offset="1" span="1">
+      </Col>
+      <Col offset="1" span="1">
         <i-button type="primary" @click="addAgent">
           <Icon type="plus-round" class="icon"></Icon>添加
         </i-button>
-      </i-col>
-      <i-col offset="1" span="1">
+      </Col>
+      <Col offset="1" span="1">
         <i-button type="primary" @click="restartAllAgent">
           重启所有
         </i-button>
-      </i-col>
-      <i-col offset="1" span="1">
+      </Col>
+      <Col offset="1" span="1">
         <i-button type="primary" @click="restartPartAgent">
           重启部分
         </i-button>
-      </i-col>
-    </row>
+      </Col>
+    </Row>
     <el-table @selection-change="handleSelectionChange" ref="multipleTable" class="table" :data="agentsList" border style="width: 100%">
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column label="名称" width="180" prop="name"></el-table-column>
@@ -101,8 +115,12 @@
 
 <script>
 import SourceOperationResource from '@/resources/SourceOperationResource'
+import AgentChart from '../components/AgentChart'
 
 export default {
+  components: {
+    AgentChart
+  },
   data() {
     return {
       modifyId: '',
@@ -270,6 +288,6 @@ export default {
 <style lang="less" scoped="scoped">
 @import '../../../styles/search.less';
 .table {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 </style>
