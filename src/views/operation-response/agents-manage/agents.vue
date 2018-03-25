@@ -84,6 +84,7 @@
       <el-table-column label="IP" width="180" prop="ip"></el-table-column>
       <el-table-column label="操作" width="250">
         <template slot-scope="scope">
+          <el-button type="primary" size="small" @click="queryAgentDetails(scope.row.id)">详情</el-button>
           <el-button type="primary" size="small" @click="editExpert(scope.$index, scope.row)">修改</el-button>
           <el-popover ref="agentPopover" placement="top" width="160" v-model="scope.row.deleteVisible">
             <p>您确定删除当前专家么？</p>
@@ -96,7 +97,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <Modal v-model="visible" title="添加专家信息">
+    <Modal v-model="visible" title="添加专家信息" width="900">
       <i-form ref="addAgentInfo" :model="addAgentInfo" :label-width="100">
         <form-item label="名称" prop="name">
           <i-input v-model="addAgentInfo.name"></i-input>
@@ -109,6 +110,15 @@
         <i-button type="primary" @click="handleAddExpertSubmit()">保存</i-button>
         <i-button type="ghost" @click="visible = false" style="margin-left: 8px">取消</i-button>
       </div>
+    </Modal>
+    <Modal width="960" v-model="detailsVisible" title="Agent详情">
+      <el-table :data="agentsDetailsList" border style="width: 100%">
+        <el-table-column label="名称" prop="name"></el-table-column>
+        <el-table-column label="状态" prop="status"></el-table-column>
+        <el-table-column label="IP" prop="ip"></el-table-column>
+        <el-table-column label="添加时间" prop="dateAdd"></el-table-column>
+        <el-table-column label="版本" prop="version"></el-table-column>
+      </el-table>
     </Modal>
   </div>
 </template>
@@ -123,8 +133,10 @@ export default {
   },
   data() {
     return {
+      detailsVisible: false,
       modifyId: '',
       agentsList: [],
+      agentsDetailsList: [],
       visible: false,
       addAgentInfo: {
         name: '',
@@ -154,6 +166,16 @@ export default {
     console.log('12', this.$route.query.rule_id)
   },
   methods: {
+    queryAgentDetails(id) {
+      this.detailsVisible = true
+      SourceOperationResource.queryAgentDetails(id).then(response => {
+        if (response.data.status) {
+          this.agentsDetailsList.push(response.data.agent)
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
     handleSelectionChange(val) {
       this.multipleSelection = []
       val.forEach(item => {

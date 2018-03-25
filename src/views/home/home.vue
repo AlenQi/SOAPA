@@ -6,7 +6,7 @@
       <Button><Icon type="share" class="icon"></Icon>Excel导入</Button>
     </Upload>
   </div>
-  <modal v-model="modal" :title="title">
+  <Modal v-model="modal" :title="title">
     <i-form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="120">
       <form-item label="资产编号" prop="serial_no">
         <i-input v-model="formValidate.serial_no" placeholder="8位数的资产编号"></i-input>
@@ -31,6 +31,9 @@
           <radio label="周边设备"></radio>
           <radio label="应用系统"></radio>
         </radio-group>
+      </form-item>
+      <form-item label="应用系统类型" prop="app_type">
+        <i-input v-model="formValidate.app_type" placeholder="应用系统类型"></i-input>
       </form-item>
       <form-item label="IP地址" prop="ip">
         <i-input v-model="formValidate.ip" placeholder="IP地址"></i-input>
@@ -62,7 +65,7 @@
       <i-button type="primary" @click="handleSubmit('formValidate')">保存</i-button>
       <i-button type="ghost" @click="handleReset('formValidate')" style="margin-left: 8px">取消</i-button>
     </div>
-  </modal>
+  </Modal>
   <div style="margin-top:10px">
     <i-table width="80%" border :columns="tableHeader" :data="tableData"></i-table>
     <div style="margin: 10px;overflow: hidden;float: right;">
@@ -119,6 +122,11 @@ export default {
           title: '资产类型',
           key: 'asset_type_name',
           width: 100
+        },
+        {
+          title: '应用系统类型',
+          key: 'app_type',
+          width: 120
         },
         {
           title: 'IP地址',
@@ -226,6 +234,7 @@ export default {
         owner: '',
         owner_contact: '',
         asset_type_name: '',
+        app_type: '',
         ip: '',
         port: '',
         network: '',
@@ -275,6 +284,13 @@ export default {
             required: true,
             // type: 'date',
             message: '请选择资产类型',
+            trigger: 'change'
+          }
+        ],
+        app_type: [
+          {
+            required: true,
+            message: '请选择输入应用系统类型',
             trigger: 'change'
           }
         ],

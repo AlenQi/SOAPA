@@ -128,6 +128,20 @@ import SourceBlogsResource from '@/resources/SourceBlogsResource'
 export default {
   data() {
     return {
+      status: [
+        {
+          value: 1,
+          name: '未处置'
+        },
+        {
+          value: 2,
+          name: '应急处置'
+        },
+        {
+          value: 3,
+          name: '安全处置'
+        }
+      ],
       value1: '',
       searchData: {
         dstip: '',
@@ -176,7 +190,45 @@ export default {
         },
         {
           title: '处理情况',
-          key: 'dealing'
+          width: 130,
+          align: 'center',
+          render: (h, params) => {
+            console.log('params', params)
+            return h('div', [
+              h(
+                'Select',
+                {
+                  props: {
+                    type: 'primary',
+                    size: 'small',
+                    value: params.row.dealing
+                  },
+                  on: {
+                    'on-change': () => {
+                      SourceBlogsResource.modifyBlogStatus(params.row.log_id).then(response => {
+                        if (response.data.status) {
+                          this.$Message.info(response.data.desc)
+                        } else {
+                          this.$Message.error(response.data.desc)
+                        }
+                      })
+                    }
+                  }
+                },
+                Array.apply(
+                  null,
+                  this.status.map(function(item) {
+                    return h('Option', {
+                      props: {
+                        value: item.value,
+                        label: item.name
+                      }
+                    })
+                  })
+                )
+              )
+            ])
+          }
         },
         {
           title: '对应专家',

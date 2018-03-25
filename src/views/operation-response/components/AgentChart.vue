@@ -16,11 +16,19 @@ export default {
   name: 'agent-chart',
   data() {
     return {
-      //
+      Active: 2,
+      Disconnected: 0,
+      neverConnected: 0
     }
   },
   created() {
-    SourceOperationResource.queryAgentSummary().then(response => {})
+    SourceOperationResource.queryAgentSummary().then(response => {
+      if (response.data.status) {
+        console.log(response.data.agent_summary)
+      } else {
+        this.$Message.error(response.data.desc)
+      }
+    })
   },
   mounted() {
     this.$nextTick(() => {
