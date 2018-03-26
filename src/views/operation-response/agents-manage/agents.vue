@@ -10,58 +10,16 @@
             <Icon type="ios-shuffle-strong"></Icon>
             Agent操作系统概要信息
           </p>
-          <p v-for=""></p>
+          <div class="block">
+            <p v-for="value in agentOS">
+              {{ value }}
+            </p>
+          </div>
         </Card>
       </Col>
     </Row>
     <Row :gutter="16">
-      <Col span="10">
-        <collapse>
-          <panel name="1">
-            展开搜索条件
-            <div slot="content">
-              <div class="threat_level clearfix">
-                <div class="level_name">专家姓名：</div>
-                <div class="level_name">
-                  <i-input v-model="searchExpert.name" style="width: 300px"></i-input>
-                </div>
-              </div>
-              <div class="threat_level clearfix">
-                <div class="level_name">专家简介：</div>
-                <div class="level_name">
-                  <i-input v-model="searchExpert.resume" style="width: 300px"></i-input>
-                </div>
-              </div>
-              <div class="threat_level clearfix">
-                <div class="level_name">擅长领域：</div>
-                <div class="level_name">
-                  <Select style="width: 300px" v-model="searchExpert.expert_field_ids" multiple>
-                      <OptionGroup v-for="fields in fieldData" :key="fields.id" :value="fields.id" :label="fields.type_name">
-                        <Option v-for="item in fields.fields" :value="item.id" :key="item.id">{{ item.field_name }}</Option>
-                      </OptionGroup>
-                  </Select>
-                </div>
-              </div>
-              <div class="threat_level clearfix">
-                <div class="level_name">手机号码：</div>
-                <div class="level_name">
-                  <i-input v-model="searchExpert.phone" style="width: 300px"></i-input>
-                </div>
-              </div>
-              <div class="threat_level clearfix">
-                <div class="level_name">电子邮箱：</div>
-                <div class="level_name">
-                  <i-input v-model="searchExpert.email" style="width: 300px"></i-input>
-                </div>
-              </div>
-            </div>
-          </panel>
-        </collapse>
-      </Col>
-      <Col offset="1" span="1">
-        <i-button type="primary" @click="searchExpertList">查询</i-button>
-      </Col>
-      <Col offset="1" span="1">
+      <Col span="1">
         <i-button type="primary" @click="addAgent">
           <Icon type="plus-round" class="icon"></Icon>添加
         </i-button>
@@ -82,7 +40,7 @@
       <el-table-column label="名称" width="180" prop="name"></el-table-column>
       <el-table-column label="状态" prop="status"></el-table-column>
       <el-table-column label="IP" width="180" prop="ip"></el-table-column>
-      <el-table-column label="操作" width="250">
+      <el-table-column label="操作" width="280" align="center">
         <template slot-scope="scope">
           <el-button type="primary" size="small" @click="queryAgentDetails(scope.row.id)">详情</el-button>
           <el-button type="primary" size="small" @click="editExpert(scope.$index, scope.row)">修改</el-button>
@@ -94,6 +52,7 @@
             </div>
           </el-popover>
           <el-button type="primary" size="small" v-popover:agentPopover>删除</el-button>
+          <el-button type="primary" size="small" @click="queryAgentKey(scope.row.id)">查看Key</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -113,12 +72,39 @@
     </Modal>
     <Modal width="960" v-model="detailsVisible" title="Agent详情">
       <el-table :data="agentsDetailsList" border style="width: 100%">
+        <el-table-column type="expand">
+          <template slot-scope="scope">
+            <el-form label-position="left" inline class="table-expand">
+              <el-form-item label="major">
+                <span>{{ scope.row.os.major }}</span>
+              </el-form-item>
+              <el-form-item label="name">
+                <span>{{ scope.row.os.name }}</span>
+              </el-form-item>
+              <el-form-item label="uname">
+                <span>{{ scope.row.os.uname }}</span>
+              </el-form-item>
+              <el-form-item label="platform">
+                <span>{{ scope.row.os.platform }}</span>
+              </el-form-item>
+              <el-form-item label="version">
+                <span>{{ scope.row.os.version }}</span>
+              </el-form-item>
+              <el-form-item label="codename">
+                <span>{{ scope.row.os.codename }}</span>
+              </el-form-item>
+            </el-form>
+          </template>
+        </el-table-column>
         <el-table-column label="名称" prop="name"></el-table-column>
         <el-table-column label="状态" prop="status"></el-table-column>
         <el-table-column label="IP" prop="ip"></el-table-column>
         <el-table-column label="添加时间" prop="dateAdd"></el-table-column>
         <el-table-column label="版本" prop="version"></el-table-column>
       </el-table>
+    </Modal>
+    <Modal width="960" v-model="agentKeyVisible" title="AgentKey">
+      <p>AgnetKey: {{ agentKey }}</p>
     </Modal>
   </div>
 </template>
@@ -133,7 +119,10 @@ export default {
   },
   data() {
     return {
+      agentOS: [],
+      agentKey: '',
       detailsVisible: false,
+      agentKeyVisible: false,
       modifyId: '',
       agentsList: [],
       agentsDetailsList: [],
@@ -144,18 +133,11 @@ export default {
       },
       fieldData: [],
       flag: true,
-      searchExpert: {
-        name: '',
-        resume: '',
-        phone: '',
-        email: '',
-        expert_field_ids: []
-      },
       multipleSelection: []
     }
   },
   created() {
-    this.querySecurityField()
+    this.queryAgentOS()
   },
   mounted() {
     if (this.$route.query.rule_id) {
@@ -166,6 +148,25 @@ export default {
     console.log('12', this.$route.query.rule_id)
   },
   methods: {
+    queryAgentKey(id) {
+      this.agentKeyVisible = true
+      SourceOperationResource.queryAgentKey(id).then(response => {
+        if (response.data.status) {
+          this.agentKey = response.data.agent_key
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
+    queryAgentOS() {
+      SourceOperationResource.queryAgentOS().then(response => {
+        if (response.data.status) {
+          this.agentOS = response.data.agent_os.items
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
     queryAgentDetails(id) {
       this.detailsVisible = true
       SourceOperationResource.queryAgentDetails(id).then(response => {
@@ -182,16 +183,6 @@ export default {
         this.multipleSelection.push(item.id)
       })
     },
-    querySecurityField() {
-      SourceOperationResource.querySecurityField().then(response => {
-        if (response.data.status) {
-          const res = response.data
-          this.fieldData = res.security_field_types
-        } else {
-          this.$Message.error(response.data.desc)
-        }
-      })
-    },
     queryAgentList() {
       SourceOperationResource.queryAgentList().then(response => {
         if (response.data.status) {
@@ -204,16 +195,6 @@ export default {
     },
     queryLoginExpertList(id) {
       SourceOperationResource.queryLoginExpertList(id).then(response => {
-        if (response.data.status) {
-          const res = response.data
-          this.agentsList = res.agents.items
-        } else {
-          this.$Message.error(response.data.desc)
-        }
-      })
-    },
-    searchExpertList() {
-      SourceOperationResource.searchExpertList(this.searchExpert).then(response => {
         if (response.data.status) {
           const res = response.data
           this.agentsList = res.agents.items
@@ -310,6 +291,25 @@ export default {
 <style lang="less" scoped="scoped">
 @import '../../../styles/search.less';
 .table {
-    margin-top: 10px;
+  margin-top: 10px;
+}
+
+.block {
+  height: 300px;
+}
+
+.table-expand {
+  font-size: 0;
+}
+
+.table-expand label {
+  width: 90px;
+  color: #99a9bf;
+}
+
+.table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 100%;
 }
 </style>

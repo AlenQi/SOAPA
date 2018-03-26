@@ -16,47 +16,50 @@ export default {
   name: 'agent-chart',
   data() {
     return {
-      Active: 2,
-      Disconnected: 0,
-      neverConnected: 0
+      summary: {}
     }
   },
-  created() {
+  mounted() {
     SourceOperationResource.queryAgentSummary().then(response => {
       if (response.data.status) {
-        console.log(response.data.agent_summary)
+        this.summary = response.data.agent_summary
+        this.renderChart()
       } else {
         this.$Message.error(response.data.desc)
       }
     })
   },
-  mounted() {
-    this.$nextTick(() => {
+  methods: {
+    renderChart() {
       var dataSourcePie = echarts.init(document.getElementById('data_source_con'))
       const option = {
         tooltip: {
           trigger: 'item',
-          formatter: '{a} <br/>{b} : {c} ({d}%)'
+          formatter: '{a} <br/>{b} : {c}'
         },
         legend: {
           orient: 'vertical',
           left: 'right',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+          data: ['Active', 'Disconnected', 'NeverConnected']
         },
         xAxis: {
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+          data: ['Active', 'Disconnected', 'NeverConnected']
         },
-        yAxis: {
-          type: 'value'
-        },
+        yAxis: [
+          {
+            type: 'value',
+            min: 0,
+            interval: 1
+          }
+        ],
         series: [
           {
-            name: '访问来源',
+            name: 'Agent操作系统概要信息',
             data: [
               {
-                value: 2103456,
-                name: 'ios',
+                value: this.summary.Active,
+                name: 'Active',
                 itemStyle: {
                   normal: {
                     color: '#9bd598'
@@ -64,38 +67,20 @@ export default {
                 }
               },
               {
-                value: 1305923,
+                value: this.summary.Disconnected,
                 name: 'android',
                 itemStyle: {
                   normal: {
-                    color: '#ffd58f'
+                    color: '#e14f60'
                   }
                 }
               },
               {
-                value: 543250,
+                value: this.summary.NeverConnected,
                 name: 'pc',
                 itemStyle: {
                   normal: {
                     color: '#abd5f2'
-                  }
-                }
-              },
-              {
-                value: 798403,
-                name: 'web',
-                itemStyle: {
-                  normal: {
-                    color: '#ab8df2'
-                  }
-                }
-              },
-              {
-                value: 302340,
-                name: 'others',
-                itemStyle: {
-                  normal: {
-                    color: '#e14f60'
                   }
                 }
               }
@@ -108,7 +93,7 @@ export default {
       window.addEventListener('resize', function() {
         dataSourcePie.resize()
       })
-    })
+    }
   }
 }
 </script>

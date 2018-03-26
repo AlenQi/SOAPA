@@ -40,6 +40,8 @@ const app = {
       let accessCode = parseInt(Cookies.get('access'))
       let menuList = []
       appRouter.forEach((item, index) => {
+        // TODO: 保存accessCode 对比item.name
+        console.log('item', item)
         if (item.access !== undefined) {
           if (Util.showThisRoute(item.access, accessCode)) {
             if (item.children.length === 1) {

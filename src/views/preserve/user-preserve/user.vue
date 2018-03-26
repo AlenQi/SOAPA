@@ -233,62 +233,46 @@ export default {
         cname: ''
       },
       ruleValidate: {
-        cname: [
-          {
-            required: true,
-            message: '请填写您的账号！',
-            trigger: 'blur'
-          }
-        ],
-        name: [
-          {
-            required: true,
-            message: '请填写您的用户名！',
-            trigger: 'blur'
-          }
-        ],
-        password: [
-          {
-            required: true,
-            message: '请填写您的密码！',
-            trigger: 'blur'
-          }
-        ],
-        confirmPassword: [
-          {
-            required: true,
-            message: '请确认密码是否一致！',
-            trigger: 'blur'
-          }
-        ],
-        address: [
-          {
-            required: 'ture',
-            message: '请填写您的地址！'
-          }
-        ],
-        phone: [
-          {
-            required: 'true',
-            message: '请填写您的手机号！',
-            trigger: 'blur'
-          }
-        ],
-        email: [
-          {
-            required: 'true',
-            message: '请填写您的邮箱！',
-            trigger: 'blur'
-          }
-        ],
-        use: [
-          {
-            required: true,
-            type: 'date',
-            message: '请选择资产类型',
-            trigger: 'change'
-          }
-        ]
+        cname: [{
+          required: true,
+          message: '请填写您的账号！',
+          trigger: 'blur'
+        }],
+        name: [{
+          required: true,
+          message: '请填写您的用户名！',
+          trigger: 'blur'
+        }],
+        password: [{
+          required: true,
+          message: '请填写您的密码！',
+          trigger: 'blur'
+        }],
+        confirmPassword: [{
+          required: true,
+          message: '请确认密码是否一致！',
+          trigger: 'blur'
+        }],
+        address: [{
+          required: 'ture',
+          message: '请填写您的地址！'
+        }],
+        phone: [{
+          required: 'true',
+          message: '请填写您的手机号！',
+          trigger: 'blur'
+        }],
+        email: [{
+          required: 'true',
+          message: '请填写您的邮箱！',
+          trigger: 'blur'
+        }],
+        use: [{
+          required: true,
+          type: 'date',
+          message: '请选择资产类型',
+          trigger: 'change'
+        }]
       },
       formItem2: {
         username: '',
@@ -296,18 +280,14 @@ export default {
         passwords: ''
       },
       ruleValidate2: {
-        passwd: [
-          {
-            validator: validatePass,
-            trigger: 'blur'
-          }
-        ],
-        passwords: [
-          {
-            validator: validatePassCheck,
-            trigger: 'blur'
-          }
-        ]
+        passwd: [{
+          validator: validatePass,
+          trigger: 'blur'
+        }],
+        passwords: [{
+          validator: validatePassCheck,
+          trigger: 'blur'
+        }]
       },
       formItem3: {
         cname: '',
@@ -315,27 +295,21 @@ export default {
         selectors: ''
       },
       ruleValidate3: {
-        cname: [
-          {
-            required: true,
-            message: '请填写您的名称！',
-            trigger: 'blur'
-          }
-        ],
-        name: [
-          {
-            required: true,
-            message: '请填写您的说明！',
-            trigger: 'blur'
-          }
-        ],
-        selectors: [
-          {
-            required: true,
-            message: '请填写您的权限！',
-            trigger: 'blur'
-          }
-        ]
+        cname: [{
+          required: true,
+          message: '请填写您的名称！',
+          trigger: 'blur'
+        }],
+        name: [{
+          required: true,
+          message: '请填写您的说明！',
+          trigger: 'blur'
+        }],
+        selectors: [{
+          required: true,
+          message: '请填写您的权限！',
+          trigger: 'blur'
+        }]
       },
       title1: '增加用户组信息',
       formItem4: {
@@ -344,27 +318,21 @@ export default {
         kind: ''
       },
       ruleValidate4: {
-        cname: [
-          {
-            required: true,
-            message: '请填写您的名称！',
-            trigger: 'blur'
-          }
-        ],
-        name: [
-          {
-            required: true,
-            message: '请填写您的说明！',
-            trigger: 'blur'
-          }
-        ],
-        kind: [
-          {
-            required: true,
-            message: '请填写您的类型！',
-            trigger: 'blur'
-          }
-        ]
+        cname: [{
+          required: true,
+          message: '请填写您的名称！',
+          trigger: 'blur'
+        }],
+        name: [{
+          required: true,
+          message: '请填写您的说明！',
+          trigger: 'blur'
+        }],
+        kind: [{
+          required: true,
+          message: '请填写您的类型！',
+          trigger: 'blur'
+        }]
       },
       title2: '增加权限信息'
     }
@@ -468,8 +436,7 @@ export default {
               this.$Message.error(response.data.desc)
             }
           })
-        } else {
-        }
+        } else {}
       })
     },
     handleResetPassWords(name) {
@@ -536,8 +503,7 @@ export default {
               this.$Message.error(response.data.desc)
             }
           })
-        } else {
-        }
+        } else {}
       })
     },
     handleResetInfoAboutUsers(name) {
@@ -580,7 +546,7 @@ export default {
       })
     },
     handlePrower(name) {
-      console.log('name',name)
+      console.log('name', name)
       this.$refs[name].validate(valid => {
         if (valid) {
           let url
@@ -606,8 +572,7 @@ export default {
               this.$Message.error(response.data.desc)
             }
           })
-        } else {
-        }
+        } else {}
       })
     },
     handleResetPrower(name) {
