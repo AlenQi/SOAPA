@@ -185,6 +185,7 @@
 
 <script>
 import SourceUserResource from '@/resources/SourceUserResource'
+import axios from 'axios'
 import 'element-ui/lib/theme-default/index.css'
 
 export default {
@@ -579,6 +580,7 @@ export default {
       })
     },
     handlePrower(name) {
+      console.log('name',name)
       this.$refs[name].validate(valid => {
         if (valid) {
           let url
@@ -590,6 +592,7 @@ export default {
             methodT = 'put'
             url = this.url + '/selector/api/v1.0/selectors/' + this.formItem4.id
           }
+          console.log(url)
           axios({
             method: methodT,
             url: url,
