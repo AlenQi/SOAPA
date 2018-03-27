@@ -37,7 +37,8 @@ const app = {
       state.tagsList.push(...list)
     },
     updateMenulist(state) {
-      let accessCode = parseInt(Cookies.get('access'))
+      let accessCode = Cookies.get('privileges')
+      console.log('accessCode', accessCode)
       let menuList = []
       appRouter.forEach((item, index) => {
         // TODO: 保存accessCode 对比item.name

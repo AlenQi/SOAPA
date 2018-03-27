@@ -38,18 +38,17 @@ util.oneOf = function(ele, targetArr) {
 }
 
 util.showThisRoute = function(itAccess, currentAccess) {
-  if (typeof itAccess === 'object' && Array.isArray(itAccess)) {
-    return util.oneOf(currentAccess, itAccess)
-  } else {
-    return itAccess === currentAccess
-  }
+  return util.oneOf(itAccess, currentAccess)
+  // if (typeof itAccess === 'object' && Array.isArray(itAccess)) {
+  // } else {
+  //   return itAccess === currentAccess
+  // }
 }
 
 util.getRouterObjByName = function(routers, name) {
   if (!name || !routers || !routers.length) {
     return null
   }
-  // debugger;
   let routerObj = null
   for (let item of routers) {
     if (item.name === name) {

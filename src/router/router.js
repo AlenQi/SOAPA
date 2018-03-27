@@ -144,11 +144,13 @@ export const appRouter = [
     icon: 'soup-can-outline',
     name: 'property',
     title: '资产管理',
+    access: 'sb_asset',
     component: main,
     children: [
       {
         path: 'index',
         title: '资产管理',
+        access: 'sb_asset',
         name: 'property_index',
         component: () => import('@/views/home/home.vue')
       }
@@ -174,6 +176,7 @@ export const appRouter = [
     icon: 'person',
     name: 'preserve',
     title: '系统管理',
+    access: 'sb_user',
     component: main,
     children: [
       // {
@@ -213,6 +216,7 @@ export const appRouter = [
     icon: 'clipboard',
     name: 'lock-combination',
     title: '合规检测',
+    access: 'sb_inspect',
     component: main,
     children: [
       {
@@ -234,6 +238,7 @@ export const appRouter = [
     icon: 'clipboard',
     name: 'blogs',
     title: '日志管理',
+    access: 'sb_log',
     component: main,
     children: [
       {
@@ -249,6 +254,7 @@ export const appRouter = [
     icon: 'settings',
     name: 'rules-manage',
     title: '规则管理',
+    access: 'sb_rule',
     component: main,
     children: [
       {
@@ -272,6 +278,7 @@ export const appRouter = [
         title: '专家信息库',
         name: 'erxpert-information',
         icon: 'arrow-move',
+        access: 'sb_ops_expert',
         component: () =>
           import('@/views/operation-response/expert-information/expert.vue')
       },
@@ -280,6 +287,7 @@ export const appRouter = [
         title: '事件处理信息库',
         name: 'event-processing',
         icon: 'edit',
+        access: 'sb_ops_solution',
         component: () =>
           import('@/views/operation-response/event-processing/event.vue')
       },
@@ -288,6 +296,7 @@ export const appRouter = [
         title: 'Agent管理',
         name: 'agents-manage',
         icon: 'edit',
+        access: 'sb_ops_agent',
         component: () =>
           import('@/views/operation-response/agents-manage/agents.vue')
       }
