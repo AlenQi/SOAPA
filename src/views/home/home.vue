@@ -78,7 +78,6 @@
 <script>
 import { AssetsIP } from 'conf/url.conf'
 import SourceHomeResource from '@/resources/SourceHomeResource'
-import axios from 'axios'
 
 export default {
   name: 'home',
