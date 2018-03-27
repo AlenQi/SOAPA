@@ -1,6 +1,6 @@
-import Main from '@/views/Main.vue'
+import main from '@/views/main.vue'
 
-// 不作为Main组件的子页面展示的页面单独写，如下
+// 不作为main组件的子页面展示的页面单独写，如下
 export const loginRouter = {
   path: '/login',
   name: 'login',
@@ -44,12 +44,12 @@ export const locking = {
     import('@/views/main-components/lockscreen/components/locking-page.vue')
 }
 
-// 作为Main组件的子页面展示但是不在左侧菜单显示的路由写在otherRouter里
+// 作为main组件的子页面展示但是不在左侧菜单显示的路由写在otherRouter里
 export const otherRouter = {
   path: '/',
   name: 'otherRouter',
   redirect: '/home',
-  component: Main,
+  component: main,
   children: [
     {
       path: 'home',
@@ -137,14 +137,14 @@ export const otherRouter = {
   ]
 }
 
-// 作为Main组件的子页面展示并且在左侧菜单显示的路由写在appRouter里
+// 作为main组件的子页面展示并且在左侧菜单显示的路由写在appRouter里
 export const appRouter = [
   {
     path: '/property',
     icon: 'soup-can-outline',
     name: 'property',
     title: '资产管理',
-    component: Main,
+    component: main,
     children: [
       {
         path: 'index',
@@ -159,7 +159,7 @@ export const appRouter = [
   //   icon: 'key',
   //   name: 'rules',
   //   title: '安全规则',
-  //   component: Main,
+  //   component: main,
   //   children: [
   //     {
   //       path: 'index',
@@ -174,7 +174,7 @@ export const appRouter = [
     icon: 'person',
     name: 'preserve',
     title: '系统管理',
-    component: Main,
+    component: main,
     children: [
       // {
       //     path: '/menu-preserve',
@@ -213,7 +213,7 @@ export const appRouter = [
     icon: 'clipboard',
     name: 'lock-combination',
     title: '合规检测',
-    component: Main,
+    component: main,
     children: [
       {
         path: '/protectaionList',
@@ -234,7 +234,7 @@ export const appRouter = [
     icon: 'clipboard',
     name: 'blogs',
     title: '日志管理',
-    component: Main,
+    component: main,
     children: [
       {
         path: 'index',
@@ -249,7 +249,7 @@ export const appRouter = [
     icon: 'settings',
     name: 'rules-manage',
     title: '规则管理',
-    component: Main,
+    component: main,
     children: [
       {
         path: 'index',
@@ -265,7 +265,7 @@ export const appRouter = [
     icon: 'ios-grid-view',
     name: 'operation-response',
     title: '运维响应',
-    component: Main,
+    component: main,
     children: [
       {
         path: 'erxpert-information',
@@ -298,7 +298,7 @@ export const appRouter = [
   //     icon: 'social-buffer',
   //     name: 'component',
   //     title: '组件',
-  //     component: Main,
+  //     component: main,
   //     children: [
   //         {
   //             path: 'area-linkage',
@@ -314,7 +314,7 @@ export const appRouter = [
   //     icon: 'ios-analytics',
   //     name: 'charts',
   //     title: '图表',
-  //     component: Main,
+  //     component: main,
   //     children: [
   //         { path: 'pie', title: '饼状图', name: 'pie', icon: 'ios-pie', component: resolve => { require('@/views/access/access.vue') },
   //         { path: 'histogram', title: '柱状图', name: 'histogram', icon: 'stats-bars', component: resolve => { require('@/views/access/access.vue') }
@@ -326,7 +326,7 @@ export const appRouter = [
   //     icon: 'ios-grid-view',
   //     name: 'tables',
   //     title: '表格',
-  //     component: Main,
+  //     component: main,
   //     children: [
   //         { path: 'dragableTable', title: '可拖拽排序', name: 'dragable-table', icon: 'arrow-move', component: () => import('@/views/tables/dragable-table.vue') },
   //         { path: 'editableTable', title: '可编辑表格', name: 'editable-table', icon: 'edit', component: () => import('@/views/tables/editable-table.vue') },
@@ -340,7 +340,7 @@ export const appRouter = [
   //     icon: 'ios-infinite',
   //     name: 'advanced-router',
   //     title: '高级路由',
-  //     component: Main,
+  //     component: main,
   //     children: [
   //         { path: 'mutative-router', title: '动态路由', name: 'mutative-router', icon: 'link', component: () => import('@/views/advanced-router/mutative-router.vue') },
   //         { path: 'argument-page', title: '带参页面', name: 'argument-page', icon: 'android-send', component: () => import('@/views/advanced-router/argument-page.vue') }
