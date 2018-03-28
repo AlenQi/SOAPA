@@ -1,4 +1,4 @@
-import * as types from './mutation-type/userCodeTypes'
+import * as types from '../mutation-type/userCodeTypes'
 import { AssetsIP } from 'conf/url.conf'
 
 const state = {
