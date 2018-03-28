@@ -22,7 +22,8 @@
       </div>
       <div class="header-avator-con">
         <full-screen v-model="isFullScreen" @on-change="fullscreenChange"></full-screen>
-        <lock-screen></lock-screen>
+        <!-- <lock-screen></lock-screen> -->
+
         <message-tip v-model="mesCount"></message-tip>
 
         <div class="user-dropdown-menu-con">
@@ -33,8 +34,8 @@
                 <Icon type="arrow-down-b"></Icon>
               </a>
               <DropdownMenu slot="list">
-                <!-- <DropdownItem name="ownSpace">个人中心</DropdownItem> -->
-                <DropdownItem name="loginout" divided>退出登录</DropdownItem>
+                <DropdownItem name="password">修改密码</DropdownItem>
+                <DropdownItem name="loginout">退出登录</DropdownItem>
               </DropdownMenu>
             </Dropdown>
             <Avatar :src="avatorPath" style="background: #619fe7;margin-left: 10px;"></Avatar>
@@ -50,6 +51,23 @@
       </keep-alive>
     </div>
   </div>
+  <Modal v-model="visible" title="修改密码">
+    <i-form ref="passwordForm" :model="passwordForm" :rules="passwordValidate" :label-width="100">
+      <form-item label="用户名" prop="username">
+        <i-input :readonly="true" v-model="passwordForm.username"></i-input>
+      </form-item>
+      <form-item label="输入新密码" prop="passWord">
+        <i-input v-model="passwordForm.passwd"></i-input>
+      </form-item>
+      <form-item label="确认新密码" prop="passWords">
+        <i-input v-model="passwordForm.passwords"></i-input>
+      </form-item>
+    </i-form>
+    <div slot="footer">
+      <i-button type="primary" @click="handleSubmitPassword('passwordForm')">保存</i-button>
+      <i-button type="ghost" @click="visible = false" style="margin-left: 8px">取消</i-button>
+    </div>
+  </Modal>
 </div>
 </template>
 <script>
@@ -57,10 +75,11 @@ import shrinkableMenu from './main-components/shrinkable-menu/shrinkable-menu.vu
 import tagsPageOpened from './main-components/tags-page-opened.vue'
 import breadcrumbNav from './main-components/breadcrumb-nav.vue'
 import fullScreen from './main-components/fullscreen.vue'
-import lockScreen from './main-components/lockscreen/lockscreen.vue'
+// import lockScreen from './main-components/lockscreen/lockscreen.vue'
 import messageTip from './main-components/message-tip.vue'
 import Cookies from 'js-cookie'
 import util from '@/libs/util.js'
+import SourceUserResource from '@/resources/SourceUserResource'
 
 export default {
   components: {
@@ -68,11 +87,51 @@ export default {
     tagsPageOpened,
     breadcrumbNav,
     fullScreen,
-    lockScreen,
+    // lockScreen,
     messageTip
   },
   data() {
+    const validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入新密码'))
+      } else {
+        if (this.formCustom.passwdCheck !== '') {
+          // 对第二个密码框单独验证
+          this.$refs.formCustom.validateField('passwdCheck')
+        }
+        callback()
+      }
+    }
+    const validatePassCheck = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入新密码'))
+      } else if (value !== this.formCustom.passwd) {
+        callback(new Error('两次密码不一致!'))
+      } else {
+        callback()
+      }
+    }
     return {
+      passwordForm: {
+        username: Cookies.get('user'),
+        passwd: '',
+        passwords: ''
+      },
+      passwordValidate: {
+        passwd: [
+          {
+            validator: validatePass,
+            trigger: 'blur'
+          }
+        ],
+        passwords: [
+          {
+            validator: validatePassCheck,
+            trigger: 'blur'
+          }
+        ]
+      },
+      visible: false,
       shrink: false,
       userName: '',
       isFullScreen: false,
@@ -118,22 +177,32 @@ export default {
       this.checkTag(this.$route.name)
       this.$store.commit('setMessageCount', 3)
     },
+    handleSubmitPassword(name) {
+      this.$refs[name].validate(valid => {
+        if (valid) {
+          SourceUserResource.modifyPassword(this.passwordForm).then(response => {
+            if (response.data.status) {
+              this.visible = false
+              this.$Message.info('修改成功')
+            } else {
+              this.$Message.error(response.data.desc)
+            }
+          })
+        } else {
+        }
+      })
+    },
     toggleClick() {
       this.shrink = !this.shrink
     },
     handleClickUserDropdown(name) {
-      if (name === 'ownSpace') {
-        util.openNewPage(this, 'ownspace_index')
-        this.$router.push({
-          name: 'ownspace_index'
-        })
+      if (name === 'password') {
+        this.visible = true
       } else if (name === 'loginout') {
         // 退出登录
         this.$store.commit('logout', this)
         this.$store.commit('clearOpenedSubmenu')
         Cookies.remove('user')
-        Cookies.remove('password')
-        Cookies.remove('user_suofangsoapa')
         this.$router.push({
           name: 'login'
         })
@@ -147,12 +216,7 @@ export default {
       })
       if (!openpageHasTag) {
         //  解决关闭当前标签后再点击回退按钮会退到当前页时没有标签的问题
-        util.openNewPage(
-          this,
-          name,
-          this.$route.params || {},
-          this.$route.query || {}
-        )
+        util.openNewPage(this, name, this.$route.params || {}, this.$route.query || {})
       }
     },
     handleSubmenuChange(val) {
@@ -188,7 +252,7 @@ export default {
     this.init()
   },
   created() {
-    this.userName = Cookies.get('user_suofangsoapa')
+    this.userName = Cookies.get('user')
     // 显示打开的页面的列表
     this.$store.commit('setOpenedList')
   }

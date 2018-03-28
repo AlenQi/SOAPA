@@ -34,6 +34,12 @@
           重启部分
         </i-button>
       </Col>
+      </Col>
+      <Col offset="1" span="1">
+        <i-button type="primary" @click="applyAgentRule">
+          规则应用
+        </i-button>
+      </Col>
     </Row>
     <el-table @selection-change="handleSelectionChange" ref="multipleTable" class="table" :data="agentsList" border style="width: 100%">
       <el-table-column type="selection" width="55"></el-table-column>
@@ -148,6 +154,15 @@ export default {
     console.log('12', this.$route.query.rule_id)
   },
   methods: {
+    applyAgentRule() {
+      SourceOperationResource.applyAgentRule().then(response => {
+        if (response.data.status) {
+          this.$Message.info(response.data.desc)
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
     queryAgentKey(id) {
       this.agentKeyVisible = true
       SourceOperationResource.queryAgentKey(id).then(response => {

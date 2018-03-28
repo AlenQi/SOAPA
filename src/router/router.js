@@ -150,7 +150,6 @@ export const appRouter = [
       {
         path: 'index',
         title: '资产管理',
-        access: 'sb_asset',
         name: 'property_index',
         component: () => import('@/views/home/home.vue')
       }
@@ -295,10 +294,19 @@ export const appRouter = [
         path: 'agents-manage',
         title: 'Agent管理',
         name: 'agents-manage',
-        icon: 'edit',
+        icon: 'gear-a',
         access: 'sb_ops_agent',
         component: () =>
           import('@/views/operation-response/agents-manage/agents.vue')
+      },
+      {
+        path: 'system-conf',
+        title: '系统配置',
+        name: 'system-conf',
+        icon: 'ios-monitor',
+        access: 'sb_ops_conf',
+        component: () =>
+          import('@/views/operation-response/system-conf/conf.vue')
       }
     ]
   }

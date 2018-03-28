@@ -61,9 +61,23 @@ export default {
     }),
   delAgent: agent_id => SourceOperationResource.delete(`/ops/api/v1.0/agents/${agent_id}`),
   restartAllAgent: () => SourceOperationResource.put('/ops/api/v1.0/agents'),
-  restartPartAgent: params => SourceOperationResource.post('/ops/api/v1.0/agents?restart=yes', {
-    ...params
-  }),
+  restartPartAgent: params =>
+    SourceOperationResource.post('/ops/api/v1.0/agents?restart=yes', {
+      ...params
+    }),
   queryAgentSummary: id => SourceOperationResource.get('/ops/api/v1.0/agents/summary'),
-  queryAgentOS: () => SourceOperationResource.get('/ops/api/v1.0/agents/summary?os')
+  queryAgentOS: () => SourceOperationResource.get('/ops/api/v1.0/agents/summary?os'),
+  applyAgentRule: () => SourceOperationResource.put('/ops/api/v1.0/agents/rules/apply'),
+
+  // 系统配置
+  querySystemConfList: params => SourceOperationResource.get('/ops/api/v1.0/conf'),
+  addSystemConf: params =>
+    SourceOperationResource.post('/ops/api/v1.0/conf', {
+      ...params
+    }),
+  modifySystemConf: (params, id) =>
+    SourceOperationResource.put(`/ops/api/v1.0/conf/${id}`, {
+      ...params
+    }),
+  delSystemConf: id => SourceOperationResource.delete(`/ops/api/v1.0/conf/${id}`)
 }
