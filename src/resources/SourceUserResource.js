@@ -18,5 +18,21 @@ export default {
   delUser3: id => SourceUserResource.delete(`/selector/api/v1.0/selectors/${id}`),
   queryUsers: () => SourceUserResource.get('/user/api/v1.0/users'),
   queryUserGroup: () => SourceUserResource.get('/group/api/v1.0/groups'),
-  queryUserPower: () => SourceUserResource.get('/selector/api/v1.0/selectors')
+  queryUserPower: () => SourceUserResource.get('/selector/api/v1.0/selectors'),
+  addUserGroup: params =>
+    SourceUserResource.post('/group/api/v1.0/groups', {
+      ...params
+    }),
+  modifyUserGroup: (params, id) =>
+    SourceUserResource.put(`/group/api/v1.0/groups/${id}`, {
+      ...params
+    }),
+  addUserJurisdiction: params =>
+    SourceUserResource.post('/selector/api/v1.0/selectors', {
+      ...params
+    }),
+  modifyUserJurisdiction: (params, id) =>
+    SourceUserResource.put(`/selector/api/v1.0/selectors${id}`, {
+      ...params
+    })
 }

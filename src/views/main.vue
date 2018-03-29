@@ -2,7 +2,7 @@
 <div class="main" :class="{'main-hide-text': shrink}">
   <div class="sidebar-menu-con" :style="{width: shrink?'60px':'200px', overflow: shrink ? 'visible' : 'auto'}">
     <shrinkable-menu :shrink="shrink" @on-change="handleSubmenuChange" :theme="menuTheme" :before-push="beforePush" :open-names="openedSubmenuArr" :menu-list="menuList">
-      <div slot="top" class="logo-con">
+      <div slot="top" v-bind:class="{ 'logo-max': !shrink, 'logo-min': shrink}">
         <!-- <img v-show="!shrink" src="../images/logo.png" key="max-logo" /> -->
         <!-- <img v-show="shrink" src="../images/logo-min.png" key="min-logo" /> -->
       </div>

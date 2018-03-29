@@ -6,7 +6,7 @@
       <i-input type="text" v-model="type_name" style="width:100px;"></i-input>
       描述：
       <i-input type="text" v-model="describe" style="width:100px;"></i-input>
-      <i-button @click="addRulls">新增</i-button>
+      <i-button @click="addRules">新增</i-button>
     </i-col>
   </row>
   <el-table :data="dataRegulation" border style="width: 100%">
@@ -40,7 +40,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import SourceRuleManageResource from '@/resources/SourceRuleManageResource'
+
 export default {
   data() {
     return {
@@ -71,7 +72,7 @@ export default {
     }
   },
   created() {
-    this.queryAboutList()
+    this.queryRulesList()
   },
   computed: {
     url() {
@@ -80,13 +81,10 @@ export default {
   },
   methods: {
     delRule(id) {
-      axios({
-        method: 'delete',
-        url: this.url + '/log_an/api/v1.0/rule/types/' + id
-      }).then(response => {
+      SourceRuleManageResource.delRule(id).then(response => {
         if (response.data.status) {
           this.$Message.success(response.data.desc)
-          this.queryAboutList()
+          this.queryRulesList()
         } else {
           this.$Message.error(response.data.desc)
         }
@@ -94,10 +92,7 @@ export default {
     },
     show(id, name) {
       this.modalDetail = true
-      axios({
-        method: 'get',
-        url: this.url + '/log_an/api/v1.0/rule/rules/' + id
-      }).then(response => {
+      SourceRuleManageResource.queryRuleDetail(id).then(response => {
         if (response.data.status) {
           const res = response.data
           const rules = res.rules
@@ -120,31 +115,24 @@ export default {
     showVisible(deleteVisible) {
       deleteVisible = true
     },
-    addRulls() {
+    addRules() {
       const params = {
         type_name: this.type_name,
         describe: this.describe
       }
-      axios({
-        method: 'post',
-        url: this.url + '/log_an/api/v1.0/rule/types',
-        data: params
-      }).then(response => {
+      SourceRuleManageResource.addRules(params).then(response => {
         if (response.data.status) {
           this.$Message.success(response.data.desc)
           this.type_name = ''
           this.describe = ''
-          this.queryAboutList()
+          this.queryRulesList()
         } else {
           this.$Message.error(response.data.desc)
         }
       })
     },
-    queryAboutList() {
-      axios({
-        method: 'get',
-        url: this.url + '/log_an/api/v1.0/rule/types'
-      }).then(response => {
+    queryRulesList() {
+      SourceRuleManageResource.queryRuleList().then(response => {
         if (response.data.status) {
           const res = response.data
           const logs = res.rule_type_list

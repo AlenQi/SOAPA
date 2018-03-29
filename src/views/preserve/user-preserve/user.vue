@@ -185,7 +185,6 @@
 
 <script>
 import SourceUserResource from '@/resources/SourceUserResource'
-import axios from 'axios'
 import 'element-ui/lib/theme-default/index.css'
 
 export default {
@@ -337,11 +336,6 @@ export default {
       title2: '增加权限信息'
     }
   },
-  computed: {
-    url() {
-      return this.$store.state.userCode.url
-    }
-  },
   created() {
     this.queryUsers()
     this.queryAboutGroup()
@@ -374,7 +368,6 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          let url
           if (this.title === '增加用户信息') {
             SourceUserResource.addUser(this.formItem).then(response => {
               if (response.data.status) {
@@ -481,28 +474,27 @@ export default {
     handleInfoAboutUsers(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          let url
-          let methodT
           if (this.title1 === '增加用户组信息') {
-            methodT = 'post'
-            url = this.url + '/group/api/v1.0/groups'
+            SourceUserResource.addUserGroup(this.formItem3).then(response => {
+              if (response.data.status) {
+                this.modal3 = false
+                this.$Message.info('操作成功')
+                this.queryAboutGroup()
+              } else {
+                this.$Message.error(response.data.desc)
+              }
+            })
           } else {
-            methodT = 'put'
-            url = this.url + '/group/api/v1.0/groups/' + this.formItem3.id
+            SourceUserResource.modifyUserGroup(this.formItem3, this.formItem3.id).then(response => {
+              if (response.data.status) {
+                this.modal3 = false
+                this.$Message.info('操作成功')
+                this.queryAboutGroup()
+              } else {
+                this.$Message.error(response.data.desc)
+              }
+            })
           }
-          axios({
-            method: methodT,
-            url: url,
-            data: this.formItem3
-          }).then(response => {
-            if (response.data.status) {
-              this.modal3 = false
-              this.$Message.info('操作成功')
-              this.queryAboutGroup()
-            } else {
-              this.$Message.error(response.data.desc)
-            }
-          })
         } else {}
       })
     },
@@ -549,29 +541,27 @@ export default {
       console.log('name', name)
       this.$refs[name].validate(valid => {
         if (valid) {
-          let url
-          let methodT
           if (this.title2 === '增加权限信息') {
-            methodT = 'post'
-            url = this.url + '/selector/api/v1.0/selectors'
+            SourceUserResource.addUserJurisdiction(this.formItem4).then(response => {
+              if (response.data.status) {
+                this.modal4 = false
+                this.$Message.info('操作成功')
+                this.queryPower()
+              } else {
+                this.$Message.error(response.data.desc)
+              }
+            })
           } else {
-            methodT = 'put'
-            url = this.url + '/selector/api/v1.0/selectors/' + this.formItem4.id
+            SourceUserResource.modifyUserJurisdiction(this.formItem4 ,this.formItem4.id).then(response => {
+              if (response.data.status) {
+                this.modal4 = false
+                this.$Message.info('操作成功')
+                this.queryPower()
+              } else {
+                this.$Message.error(response.data.desc)
+              }
+            })
           }
-          console.log(url)
-          axios({
-            method: methodT,
-            url: url,
-            data: this.formItem4
-          }).then(response => {
-            if (response.data.status) {
-              this.modal4 = false
-              this.$Message.info('操作成功')
-              this.queryPower()
-            } else {
-              this.$Message.error(response.data.desc)
-            }
-          })
         } else {}
       })
     },

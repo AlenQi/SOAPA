@@ -5,18 +5,27 @@ axios.defaults.timeout = 180000
 
 const resources = {
   SourceLoginResource: axios.create({
+    withCredentials: true,
     baseURL: BASE_URL
   }),
   SourceBlogsResource: axios.create({
+    withCredentials: true,
     baseURL: BASE_URL
   }),
   SourceHomeResource: axios.create({
+    withCredentials: true,
     baseURL: BASE_URL
   }),
   SourceOperationResource: axios.create({
+    withCredentials: true,
     baseURL: BASE_URL
   }),
   SourceUserResource: axios.create({
+    withCredentials: true,
+    baseURL: BASE_URL
+  }),
+  SourceRuleManageResource: axios.create({
+    withCredentials: true,
     baseURL: BASE_URL
   })
 }
@@ -33,5 +42,6 @@ export const {
   SourceBlogsResource,
   SourceHomeResource,
   SourceOperationResource,
-  SourceUserResource
+  SourceUserResource,
+  SourceRuleManageResource
 } = resources
