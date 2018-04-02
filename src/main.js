@@ -17,8 +17,8 @@ Vue.use(iView)
 
 new Vue({
   el: '#app',
-  router: router,
-  store: store,
+  router,
+  store,
   render: h => h(App),
   data: {
     currentPageName: ''

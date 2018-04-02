@@ -30,6 +30,9 @@ util.inOf = function(arr, targetArr) {
 }
 
 util.oneOf = function(ele, targetArr) {
+  if (!targetArr) {
+    return
+  }
   if (targetArr.indexOf(ele) >= 0) {
     return true
   } else {

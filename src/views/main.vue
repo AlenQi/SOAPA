@@ -24,7 +24,7 @@
         <full-screen v-model="isFullScreen" @on-change="fullscreenChange"></full-screen>
         <!-- <lock-screen></lock-screen> -->
 
-        <message-tip v-model="mesCount"></message-tip>
+        <!-- <message-tip v-model="mesCount"></message-tip> -->
 
         <div class="user-dropdown-menu-con">
           <Row type="flex" justify="end" align="middle" class="user-dropdown-innercon">
