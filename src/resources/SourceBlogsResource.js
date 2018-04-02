@@ -12,5 +12,8 @@ export default {
       }
     }),
   queryBlogDetail: id => SourceBlogsResource.get(`/log_an/api/v1.0/log/logs/${id}`),
-  modifyBlogStatus: log_id => SourceBlogsResource.put(`/log_an/api/v1.0/log/logs/${log_id}`)
+  modifyBlogStatus: (log_id, params) =>
+    SourceBlogsResource.put(`/log_an/api/v1.0/log/logs/${log_id}`, {
+      ...params
+    })
 }

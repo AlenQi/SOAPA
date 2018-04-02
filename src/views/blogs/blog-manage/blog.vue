@@ -30,9 +30,9 @@
               <div class="level_name">处理情况：</div>
               <div class="level_name">
                 <radio-group v-model="searchData.dealing">
-                  <radio label="1">未处置</radio>
-                  <radio label="2">应急处置</radio>
-                  <radio label="3">安全处置</radio>
+                  <radio :label="1">未处置</radio>
+                  <radio :label="2">应急处置</radio>
+                  <radio :label="3">安全处置</radio>
                 </radio-group>
               </div>
             </div>
@@ -146,7 +146,7 @@ export default {
       searchData: {
         dstip: '',
         level: ['4', '5', '6'],
-        dealing: '',
+        dealing: 1,
         start_time: '',
         end_time: '',
         describe: '',
@@ -193,7 +193,6 @@ export default {
           width: 130,
           align: 'center',
           render: (h, params) => {
-            console.log('params', params)
             return h('div', [
               h(
                 'Select',
@@ -204,14 +203,19 @@ export default {
                     value: params.row.dealing
                   },
                   on: {
-                    'on-change': () => {
-                      SourceBlogsResource.modifyBlogStatus(params.row.log_id).then(response => {
-                        if (response.data.status) {
-                          this.$Message.info(response.data.desc)
-                        } else {
-                          this.$Message.error(response.data.desc)
+                    'on-change': dealing => {
+                      const dealingParams = {
+                        dealing
+                      }
+                      SourceBlogsResource.modifyBlogStatus(params.row.log_id, dealingParams).then(
+                        response => {
+                          if (response.data.status) {
+                            this.$Message.info(response.data.desc)
+                          } else {
+                            this.$Message.error(response.data.desc)
+                          }
                         }
-                      })
+                      )
                     }
                   }
                 },
@@ -330,15 +334,7 @@ export default {
           const res = response.data
           const logs = res.logs
           let logsList = []
-          let dealing
           logs.forEach((v, i) => {
-            if (v.dealing == 1) {
-              dealing = '未处置'
-            } else if (v.dealing == 2) {
-              dealing = '应急处置'
-            } else {
-              dealing = '安全处置'
-            }
             logsList.push({
               log_id: v.log_id,
               host: v.host,
@@ -346,7 +342,7 @@ export default {
               attack_time: v.attack_time,
               level: v.level,
               dstip: v.dstip,
-              dealing: dealing
+              dealing: v.dealing
             })
           })
           this.dataRegulation = logsList
@@ -392,15 +388,7 @@ export default {
           const res = response.data
           const logs = res.logs
           let logsList = []
-          let dealing
           logs.forEach((v, i) => {
-            if (v.dealing == 1) {
-              dealing = '未处置'
-            } else if (v.dealing == 2) {
-              dealing = '应急处置'
-            } else {
-              dealing = '安全处置'
-            }
             logsList.push({
               log_id: v.log_id,
               rule_id: v.rule_id,
@@ -408,7 +396,7 @@ export default {
               attack_time: v.attack_time,
               level: v.level,
               dstip: v.dstip,
-              dealing: dealing
+              dealing: v.dealing
             })
           })
           this.dataRegulation = logsList
