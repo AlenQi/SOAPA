@@ -165,7 +165,7 @@
           <el-table-column label="类型" width="" prop="kind"></el-table-column>
           <el-table-column label="操作" width="250">
             <template slot-scope="scope">
-              <el-button type="primary" size="small" @click="editPlan3(scope.$index, scope.row.id)">编辑</el-button>
+              <el-button type="primary" size="small" @click="editPlan3(scope.$index, scope.row)">编辑</el-button>
               <el-popover ref="popover2" placement="top" width="160" v-model="scope.row.deleteVisible">
                 <p>您确定删除当前信息么？</p>
                 <div style="text-align: right; margin: 0">
@@ -342,7 +342,6 @@ export default {
         name: '',
         kind: ''
       },
-      formItem4ID: '',
       ruleValidate4: {
         cname: [
           {
@@ -556,11 +555,10 @@ export default {
       }
       this.modal4 = true
     },
-    editPlan3(index, id) {
+    editPlan3(index, params) {
       this.title2 = '修改权限信息'
       this.formItem4 = params
       this.modal4 = true
-      this.formItem4ID = id
     },
     deleteUsers3(index, id) {
       const idParams = id
@@ -588,7 +586,7 @@ export default {
               }
             })
           } else {
-            SourceUserResource.modifyUserJurisdiction(this.formItem4, this.formItem4ID).then(
+            SourceUserResource.modifyUserJurisdiction(this.formItem4, this.formItem4.id).then(
               response => {
                 if (response.data.status) {
                   this.modal4 = false

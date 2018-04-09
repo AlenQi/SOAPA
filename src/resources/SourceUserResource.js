@@ -32,7 +32,7 @@ export default {
       ...params
     }),
   modifyUserJurisdiction: (params, id) =>
-    SourceUserResource.put(`/selector/api/v1.0/selectors${id}`, {
+    SourceUserResource.put(`/selector/api/v1.0/selectors/${id}`, {
       ...params
     })
 }
