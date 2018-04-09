@@ -12,52 +12,32 @@
 ## 当前版本：v1.0.0
 
 ## Install
+
 ```bush
 // install dependencies
 npm install
 ```
 ## Run
+
+### Config
+
+config --> url.conf.js
+
+``` javascript
+const AssetsIP = isProduction ? '' : 'http://xx.xx.xx.xx:8080'
+//配置地址
+```
 ### Development
+
 ```bush
 npm run dev
 ```
+
 ### Production(Build)
+
 ```bush
 npm run build
 ```
-
-## 功能
-
-- 登录/登出
-- 权限管理
-    - 列表过滤
-    - 权限切换
-- 多语言切换
-- 组件
-    - 城市级联
-- 表格
-    - 可拖拽排序
-    - 可编辑表格
-        - 行内编辑
-        - 单元格编辑
-    - 可搜索表格
-    - 表格导出数据
-        - 导出为Csv文件
-        - 导出为Xls文件
-    - 表格转图片
-- 错误页面
-    - 403页面
-    - 404页面
-    - 500页面
-- 高级路由
-    - 动态路由
-    - 带参页面
-- 收缩侧边栏
-- 面包屑导航
-- 全屏/退出全屏
-- 锁屏
-- 消息中心
-- 个人中心
 
 ## 文件结构
 ```shell
@@ -73,21 +53,7 @@ npm run build
     ├── styles  样式文件
     ├── template  模板文件
     ├── vendors  公共库文件
-    └── views
-        ├── access  权限管理
-        ├── advanced-router  高级路由
-        ├── error_page  错误页面
-        ├── home  首页
-        │   ├── components  首页组件
-        ├── international  多语言
-        ├── main_components  Main组件
-        │   ├── lockscreen  锁屏
-        │   ├── shrinkable-menu  可收缩菜单
-        ├── message  消息中心
-        ├── my_components  业务组件
-        │   ├── area-linkage  中国行政区级联选择器
-        ├── own-space  个人中心
-        └── tables  综合表格
+    └── views  具体视图及组件
 ```
 
 ## Links
