@@ -93,7 +93,6 @@ export default {
             if (response.data.status) {
               Cookies.set('user', this.form.userName)
               Cookies.set('privileges', response.data.privileges)
-              // Cookies.set('password', this.form.password)
               //  Cookies.set('auth_code', this.form.auth_code);
               this.$router.push({
                 name: 'home_index'

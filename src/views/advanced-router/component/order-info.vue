@@ -24,7 +24,7 @@
                     <p><Button @click="showInfo = true" type="primary">点击按钮弹出Modal</Button></p>
                 </Row>
                 <div class="margin-top-10">
-                    <p class="advanced-router-tip-p">iview官方示例<a href="https://www.iviewui.com/components/table">表格</a></p>
+                    <p class="advanced-router-tip-p">iview官方示例<a href="//www.iviewui.com/components/table">表格</a></p>
                     <Table :columns="columns10" :data="data9"></Table>
                 </div>
             </Card>

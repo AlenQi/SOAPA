@@ -74,7 +74,7 @@ class Interceptor {
   }
 }
 
-const BASE_URL = `http://${AssetsIP}`
+const BASE_URL = AssetsIP
 
 export { BASE_URL }
 export default Interceptor

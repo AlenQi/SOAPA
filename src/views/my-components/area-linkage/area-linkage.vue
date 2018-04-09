@@ -13,7 +13,7 @@
                         基础示例
                     </p>
                     <Row class="area-linkage-page-row1">
-                        <al-selector 
+                        <al-selector
                             v-model="resDefault"
                             level="3"
                             auto
@@ -29,7 +29,7 @@
 &lt;al-cascader v-model="res1" /&gt;
                         </pre>
                         <div>
-                            <p>更多配置可参考iview-area组件官方文档：<a href="https://github.com/iview/iview-area" target="_block">iview-area</a></p>
+                            <p>更多配置可参考iview-area组件官方文档：<a href="//github.com/iview/iview-area" target="_block">iview-area</a></p>
                         </div>
                     </Row>
                 </Card>
@@ -152,8 +152,8 @@
                     </p>
                     <Row class="area-linkage-page-row2">
                         <al-cascader
-                            v-model="res1" 
-                            size="large" 
+                            v-model="res1"
+                            size="large"
                             level="3"
                             placeholder="这是级联模式"
                             :render-format="label => label.join(' > ')"
@@ -167,7 +167,7 @@
                         可搜索
                     </p>
                     <Row class="area-linkage-page-row2">
-                        <al-selector 
+                        <al-selector
                             :value="res1"
                             searchable
                         />

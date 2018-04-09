@@ -665,7 +665,6 @@ export default {
   mounted() {
     if (localStorage.inspId > 0) {
       this.queryList()
-    } else {
     }
   },
   methods: {

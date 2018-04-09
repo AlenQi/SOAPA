@@ -84,7 +84,7 @@ export default {
   components: {},
   data() {
     return {
-      actionUrl: `http://${AssetsIP}/asset/api/v1.0/assets/file`,
+      actionUrl: `${AssetsIP}/asset/api/v1.0/assets/file`,
       // value: '',
       modal: false,
       title: '增加资产信息',
