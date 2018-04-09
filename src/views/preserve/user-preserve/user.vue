@@ -165,7 +165,7 @@
           <el-table-column label="类型" width="" prop="kind"></el-table-column>
           <el-table-column label="操作" width="250">
             <template slot-scope="scope">
-              <el-button type="primary" size="small" @click="editPlan3(scope.$index, scope.row)">编辑</el-button>
+              <el-button type="primary" size="small" @click="editPlan3(scope.$index, scope.row.id)">编辑</el-button>
               <el-popover ref="popover2" placement="top" width="160" v-model="scope.row.deleteVisible">
                 <p>您确定删除当前信息么？</p>
                 <div style="text-align: right; margin: 0">
@@ -232,46 +232,62 @@ export default {
         cname: ''
       },
       ruleValidate: {
-        cname: [{
-          required: true,
-          message: '请填写您的账号！',
-          trigger: 'blur'
-        }],
-        name: [{
-          required: true,
-          message: '请填写您的用户名！',
-          trigger: 'blur'
-        }],
-        password: [{
-          required: true,
-          message: '请填写您的密码！',
-          trigger: 'blur'
-        }],
-        confirmPassword: [{
-          required: true,
-          message: '请确认密码是否一致！',
-          trigger: 'blur'
-        }],
-        address: [{
-          required: 'ture',
-          message: '请填写您的地址！'
-        }],
-        phone: [{
-          required: 'true',
-          message: '请填写您的手机号！',
-          trigger: 'blur'
-        }],
-        email: [{
-          required: 'true',
-          message: '请填写您的邮箱！',
-          trigger: 'blur'
-        }],
-        use: [{
-          required: true,
-          type: 'date',
-          message: '请选择资产类型',
-          trigger: 'change'
-        }]
+        cname: [
+          {
+            required: true,
+            message: '请填写您的账号！',
+            trigger: 'blur'
+          }
+        ],
+        name: [
+          {
+            required: true,
+            message: '请填写您的用户名！',
+            trigger: 'blur'
+          }
+        ],
+        password: [
+          {
+            required: true,
+            message: '请填写您的密码！',
+            trigger: 'blur'
+          }
+        ],
+        confirmPassword: [
+          {
+            required: true,
+            message: '请确认密码是否一致！',
+            trigger: 'blur'
+          }
+        ],
+        address: [
+          {
+            required: 'ture',
+            message: '请填写您的地址！'
+          }
+        ],
+        phone: [
+          {
+            required: 'true',
+            message: '请填写您的手机号！',
+            trigger: 'blur'
+          }
+        ],
+        email: [
+          {
+            required: 'true',
+            message: '请填写您的邮箱！',
+            trigger: 'blur'
+          }
+        ],
+        use: [
+          {
+            required: true,
+            type: 'date',
+            message: '请选择资产类型',
+            trigger: 'change'
+          }
+        ]
       },
       formItem2: {
         username: '',
@@ -279,14 +295,18 @@ export default {
         passwords: ''
       },
       ruleValidate2: {
-        passwd: [{
-          validator: validatePass,
-          trigger: 'blur'
-        }],
-        passwords: [{
-          validator: validatePassCheck,
-          trigger: 'blur'
-        }]
+        passwd: [
+          {
+            validator: validatePass,
+            trigger: 'blur'
+          }
+        ],
+        passwords: [
+          {
+            validator: validatePassCheck,
+            trigger: 'blur'
+          }
+        ]
       },
       formItem3: {
         cname: '',
@@ -294,21 +314,27 @@ export default {
         selectors: ''
       },
       ruleValidate3: {
-        cname: [{
-          required: true,
-          message: '请填写您的名称！',
-          trigger: 'blur'
-        }],
-        name: [{
-          required: true,
-          message: '请填写您的说明！',
-          trigger: 'blur'
-        }],
-        selectors: [{
-          required: true,
-          message: '请填写您的权限！',
-          trigger: 'blur'
-        }]
+        cname: [
+          {
+            required: true,
+            message: '请填写您的名称！',
+            trigger: 'blur'
+          }
+        ],
+        name: [
+          {
+            required: true,
+            message: '请填写您的说明！',
+            trigger: 'blur'
+          }
+        ],
+        selectors: [
+          {
+            required: true,
+            message: '请填写您的权限！',
+            trigger: 'blur'
+          }
+        ]
       },
       title1: '增加用户组信息',
       formItem4: {
@@ -316,22 +342,29 @@ export default {
         name: '',
         kind: ''
       },
+      formItem4ID: '',
       ruleValidate4: {
-        cname: [{
-          required: true,
-          message: '请填写您的名称！',
-          trigger: 'blur'
-        }],
-        name: [{
-          required: true,
-          message: '请填写您的说明！',
-          trigger: 'blur'
-        }],
-        kind: [{
-          required: true,
-          message: '请填写您的类型！',
-          trigger: 'blur'
-        }]
+        cname: [
+          {
+            required: true,
+            message: '请填写您的名称！',
+            trigger: 'blur'
+          }
+        ],
+        name: [
+          {
+            required: true,
+            message: '请填写您的说明！',
+            trigger: 'blur'
+          }
+        ],
+        kind: [
+          {
+            required: true,
+            message: '请填写您的类型！',
+            trigger: 'blur'
+          }
+        ]
       },
       title2: '增加权限信息'
     }
@@ -429,7 +462,8 @@ export default {
               this.$Message.error(response.data.desc)
             }
           })
-        } else {}
+        } else {
+        }
       })
     },
     handleResetPassWords(name) {
@@ -495,7 +529,8 @@ export default {
               }
             })
           }
-        } else {}
+        } else {
+        }
       })
     },
     handleResetInfoAboutUsers(name) {
@@ -521,10 +556,11 @@ export default {
       }
       this.modal4 = true
     },
-    editPlan3(index, params) {
+    editPlan3(index, id) {
       this.title2 = '修改权限信息'
       this.formItem4 = params
       this.modal4 = true
+      this.formItem4ID = id
     },
     deleteUsers3(index, id) {
       const idParams = id
@@ -552,17 +588,20 @@ export default {
               }
             })
           } else {
-            SourceUserResource.modifyUserJurisdiction(this.formItem4 ,this.formItem4.id).then(response => {
-              if (response.data.status) {
-                this.modal4 = false
-                this.$Message.info('操作成功')
-                this.queryPower()
-              } else {
-                this.$Message.error(response.data.desc)
+            SourceUserResource.modifyUserJurisdiction(this.formItem4, this.formItem4ID).then(
+              response => {
+                if (response.data.status) {
+                  this.modal4 = false
+                  this.$Message.info('操作成功')
+                  this.queryPower()
+                } else {
+                  this.$Message.error(response.data.desc)
+                }
               }
-            })
+            )
           }
-        } else {}
+        } else {
+        }
       })
     },
     handleResetPrower(name) {
