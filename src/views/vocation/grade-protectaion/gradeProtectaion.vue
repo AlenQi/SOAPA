@@ -35,12 +35,14 @@
     <i-col span="20">
       <row>
         <i-col span="24" class="type-select">
-          <checkbox v-model="suchAsPaul.businessType[0]">生产作业</checkbox>
-          <checkbox v-model="suchAsPaul.businessType[1]">指挥调度</checkbox>
-          <checkbox v-model="suchAsPaul.businessType[2]">管理控制</checkbox>
-          <checkbox v-model="suchAsPaul.businessType[3]">内部办公</checkbox>
-          <checkbox v-model="suchAsPaul.businessType[4]">公共服务</checkbox>
-          <checkbox v-model="suchAsPaul.businessType[5]">其它</checkbox>
+          <RadioGroup v-model="suchAsPaul.businessType">
+            <Radio label="生产作业"></Radio>
+            <Radio label="指挥调度"></Radio>
+            <Radio label="管理控制"></Radio>
+            <Radio label="内部办公"></Radio>
+            <Radio label="公共服务"></Radio>
+            <Radio label="其它"></Radio>
+          </RadioGroup>
         </i-col>
         <i-col span="24">
           <i-input v-model="suchAsPaul.desc" type="textarea" :autosize="{minRows: 3,maxRows: 4}"></i-input>
@@ -63,18 +65,24 @@
     <i-col span="20">
       <row>
         <i-col span="24" class="type-select">
-          <checkbox v-model="suchAsPaul.serviceScope[0]">全国</checkbox>
-          <checkbox v-model="suchAsPaul.serviceScope[1]">全省（区、市）</checkbox>
-          <checkbox v-model="suchAsPaul.serviceScope[2]">跨省（区、市）</checkbox>
-          <checkbox v-model="suchAsPaul.serviceScope[3]">地（市、区）内</checkbox>
-          <checkbox v-model="suchAsPaul.serviceScope[4]">跨地（市、区）</checkbox>
-          <checkbox v-model="suchAsPaul.serviceScope[5]">其它</checkbox>
+          <RadioGroup v-model="suchAsPaul.serviceScope">
+            <Radio label="全国"></Radio>
+            <Radio label="全省（区、市）"></Radio>
+            <Radio label="跨省（区、市）"></Radio>
+            <Radio label="地（市、区）内"></Radio>
+            <Radio label="跨地（市、区）"></Radio>
+            <Radio label="其它"></Radio>
+          </RadioGroup>
         </i-col>
         <i-col span="24" class="serve-descripe">
-          <checkbox v-model="suchAsPaul.serviceSituation[0]">单位内部人员</checkbox>
-          <checkbox v-model="suchAsPaul.serviceSituation[1]">社会公众人员</checkbox>
-          <checkbox v-model="suchAsPaul.serviceSituation[2]">两者均包括</checkbox>
-          <checkbox v-model="suchAsPaul.serviceSituation[3]">其它</checkbox>
+          <RadioGroup v-model="suchAsPaul.serviceSituation">
+            <Radio label="单位内部人员"></Radio>
+            <Radio label="社会公众人员"></Radio>
+            <Radio label="两者均包括"></Radio>
+            <Radio label="地（市、区）内"></Radio>
+            <Radio label="跨地（市、区）"></Radio>
+            <Radio label="其它"></Radio>
+          </RadioGroup>
         </i-col>
       </row>
     </i-col>
@@ -94,15 +102,19 @@
     <i-col span="20">
       <row>
         <i-col span="24" class="type-select">
-          <checkbox v-model="suchAsPaul.coverageRange[0]">局域网</checkbox>
-          <checkbox v-model="suchAsPaul.coverageRange[1]">城域网</checkbox>
-          <checkbox v-model="suchAsPaul.coverageRange[2]">广域网</checkbox>
-          <checkbox v-model="suchAsPaul.coverageRange[3]">其它</checkbox>
+          <RadioGroup v-model="suchAsPaul.coverageRange">
+            <Radio label="局域网"></Radio>
+            <Radio label="城域网"></Radio>
+            <Radio label="广域网"></Radio>
+            <Radio label="其它"></Radio>
+          </RadioGroup>
         </i-col>
         <i-col span="24" class="serve-descripe">
-          <checkbox v-model="suchAsPaul.networkProperties[0]">业务专网</checkbox>
-          <checkbox v-model="suchAsPaul.networkProperties[1]">互联网</checkbox>
-          <checkbox v-model="suchAsPaul.networkProperties[2]">其它</checkbox>
+          <RadioGroup v-model="suchAsPaul.networkProperties">
+            <Radio label="业务专网"></Radio>
+            <Radio label="互联网"></Radio>
+            <Radio label="其它"></Radio>
+          </RadioGroup>
         </i-col>
       </row>
     </i-col>
@@ -110,10 +122,12 @@
   <row class="system">
     <i-col span="4" class="system-name br">06 系统互联情况</i-col>
     <i-col span="20" class="interconnection-descripe">
-      <checkbox v-model="suchAsPaul.systemInterconnection[0]">与其他行业系统连接</checkbox>
-      <checkbox v-model="suchAsPaul.systemInterconnection[1]">与本行业其他单位系统连接</checkbox>
-      <checkbox v-model="suchAsPaul.systemInterconnection[2]">与本单位其他系统连接</checkbox>
-      <checkbox v-model="suchAsPaul.systemInterconnection[3]">其它</checkbox>
+      <RadioGroup v-model="suchAsPaul.systemInterconnection">
+        <Radio label="与其他行业系统连接"></Radio>
+        <Radio label="与本行业其他单位系统连接"></Radio>
+        <Radio label="与本单位其他系统连接"></Radio>
+        <Radio label="其它"></Radio>
+      </RadioGroup>
     </i-col>
   </row>
   <row class="employ">
@@ -128,13 +142,13 @@
             <i-col span="14">
               <row>
                 <i-col span="24" class="employ-china"> 使用国产品率</i-col>
-                <i-col span="24">
+                <!-- <i-col span="24">
                   <row>
                     <i-col span="7" class="employ-china-num br">全部使用</i-col>
                     <i-col span="7" class="employ-china-num br">全部未使用</i-col>
                     <i-col span="10" class="employ-china-num">部分使用及使用率</i-col>
                   </row>
-                </i-col>
+                </i-col> -->
               </row>
             </i-col>
           </row>
@@ -147,20 +161,14 @@
               <i-input v-model="suchAsPaul.useCounts[0]" style="margin-top:-3px;"></i-input>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:4px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used[0]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused[0]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed[0]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent[0]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.usageRate[0]">
+                    <Radio label="全部使用"></Radio>
+                    <Radio label="全部未使用"></Radio>
+                    <Radio label="部分使用及使用率"></Radio>
+                    <span><i-input v-model="suchAsPaul.percent[0]" class="input-num"></i-input></span>%
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -174,20 +182,14 @@
               <i-input v-model="suchAsPaul.useCounts[1]" style="margin-top:-3px;"></i-input>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:4px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used[1]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused[1]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed[1]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent[1]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.usageRate[1]">
+                    <Radio label="全部使用"></Radio>
+                    <Radio label="全部未使用"></Radio>
+                    <Radio label="部分使用及使用率"></Radio>
+                    <span><i-input v-model="suchAsPaul.percent[1]" class="input-num"></i-input></span>%
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -201,20 +203,14 @@
               <i-input v-model="suchAsPaul.useCounts[2]" style="margin-top:-3px;"></i-input>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:4px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used[2]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused[2]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed[2]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent[2]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.usageRate[2]">
+                    <Radio label="全部使用"></Radio>
+                    <Radio label="全部未使用"></Radio>
+                    <Radio label="部分使用及使用率"></Radio>
+                    <span><i-input v-model="suchAsPaul.percent[2]" class="input-num"></i-input></span>%
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -228,20 +224,14 @@
               <i-input v-model="suchAsPaul.useCounts[3]" style="margin-top:-3px;"></i-input>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:4px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used[3]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused[3]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed[3]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent[3]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.usageRate[3]">
+                    <Radio label="全部使用"></Radio>
+                    <Radio label="全部未使用"></Radio>
+                    <Radio label="部分使用及使用率"></Radio>
+                    <span><i-input v-model="suchAsPaul.percent[3]" class="input-num"></i-input></span>%
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -255,20 +245,14 @@
               <i-input v-model="suchAsPaul.useCounts[4]" style="margin-top:-3px;"></i-input>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:4px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used[4]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused[4]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed[4]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent[4]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.usageRate[4]">
+                    <Radio label="全部使用"></Radio>
+                    <Radio label="全部未使用"></Radio>
+                    <Radio label="部分使用及使用率"></Radio>
+                    <span><i-input v-model="suchAsPaul.percent[4]" class="input-num"></i-input></span>%
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -282,20 +266,14 @@
               <i-input v-model="suchAsPaul.useCounts[5]" style="margin-top:-3px;"></i-input>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:4px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used[5]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused[5]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed[5]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent[5]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.usageRate[5]">
+                    <Radio label="全部使用"></Radio>
+                    <Radio label="全部未使用"></Radio>
+                    <Radio label="部分使用及使用率"></Radio>
+                    <span><i-input v-model="suchAsPaul.percent[5]" class="input-num"></i-input></span>%
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -315,13 +293,13 @@
             <i-col span="14">
               <row>
                 <i-col span="24" class="employ-china"> 服务责任方类型</i-col>
-                <i-col span="24">
+                <!-- <i-col span="24">
                   <row>
                     <i-col span="7" class="employ-china-num br">本行业（单位）</i-col>
                     <i-col span="7" class="employ-china-num br">国内其他服务商</i-col>
                     <i-col span="10" class="employ-china-num">国外服务商</i-col>
                   </row>
-                </i-col>
+                </i-col> -->
               </row>
             </i-col>
           </row>
@@ -331,24 +309,19 @@
             <i-col span="2" class="content-hr br">1</i-col>
             <i-col span="5" class="content-hr br">等级测评</i-col>
             <i-col span="3" class="content-hr br">
-              <checkbox v-model="suchAsPaul.social[0]">有</checkbox>
-              <checkbox v-model="suchAsPaul.social2[0]">无</checkbox>
+              <RadioGroup v-model="suchAsPaul.social[0]">
+                <Radio label="有"></Radio>
+                <Radio label="无"></Radio>
+              </RadioGroup>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:6px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used2[0]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused2[0]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed2[0]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent2[0]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.dutyType[0]">
+                    <Radio label="本行业（单位）"></Radio>
+                    <Radio label="国内其他服务商"></Radio>
+                    <Radio label="国外服务商"></Radio>
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -359,24 +332,19 @@
             <i-col span="2" class="content-hr br">2</i-col>
             <i-col span="5" class="content-hr br">风险评估</i-col>
             <i-col span="3" class="content-hr br">
-              <checkbox v-model="suchAsPaul.social[1]">有</checkbox>
-              <checkbox v-model="suchAsPaul.social2[1]">无</checkbox>
+              <RadioGroup v-model="suchAsPaul.social[1]">
+                <Radio label="有"></Radio>
+                <Radio label="无"></Radio>
+              </RadioGroup>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:6px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used2[1]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused2[1]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed2[1]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent2[1]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.dutyType[1]">
+                    <Radio label="本行业（单位）"></Radio>
+                    <Radio label="国内其他服务商"></Radio>
+                    <Radio label="国外服务商"></Radio>
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -387,24 +355,19 @@
             <i-col span="2" class="content-hr br">3</i-col>
             <i-col span="5" class="content-hr br">灾难恢复</i-col>
             <i-col span="3" class="content-hr br">
-              <checkbox v-model="suchAsPaul.social[2]">有</checkbox>
-              <checkbox v-model="suchAsPaul.social2[2]">无</checkbox>
+              <RadioGroup v-model="suchAsPaul.social[2]">
+                <Radio label="有"></Radio>
+                <Radio label="无"></Radio>
+              </RadioGroup>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:6px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used2[2]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused2[2]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed2[2]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent2[2]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.dutyType[2]">
+                    <Radio label="本行业（单位）"></Radio>
+                    <Radio label="国内其他服务商"></Radio>
+                    <Radio label="国外服务商"></Radio>
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -415,24 +378,19 @@
             <i-col span="2" class="content-hr br">4</i-col>
             <i-col span="5" class="content-hr br">应急响应</i-col>
             <i-col span="3" class="content-hr br">
-              <checkbox v-model="suchAsPaul.social[3]">有</checkbox>
-              <checkbox v-model="suchAsPaul.social2[3]">无</checkbox>
+              <RadioGroup v-model="suchAsPaul.social[3]">
+                <Radio label="有"></Radio>
+                <Radio label="无"></Radio>
+              </RadioGroup>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:6px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used2[3]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused2[3]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed2[3]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent2[3]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.dutyType[3]">
+                    <Radio label="本行业（单位）"></Radio>
+                    <Radio label="国内其他服务商"></Radio>
+                    <Radio label="国外服务商"></Radio>
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -443,24 +401,19 @@
             <i-col span="2" class="content-hr br">5</i-col>
             <i-col span="5" class="content-hr br">系统集成</i-col>
             <i-col span="3" class="content-hr br">
-              <checkbox v-model="suchAsPaul.social[4]">有</checkbox>
-              <checkbox v-model="suchAsPaul.social2[4]">无</checkbox>
+              <RadioGroup v-model="suchAsPaul.social[4]">
+                <Radio label="有"></Radio>
+                <Radio label="无"></Radio>
+              </RadioGroup>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:6px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used2[4]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused2[4]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed2[4]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent2[4]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.dutyType[4]">
+                    <Radio label="本行业（单位）"></Radio>
+                    <Radio label="国内其他服务商"></Radio>
+                    <Radio label="国外服务商"></Radio>
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -471,24 +424,19 @@
             <i-col span="2" class="content-hr br">6</i-col>
             <i-col span="5" class="content-hr br">安全咨询</i-col>
             <i-col span="3" class="content-hr br">
-              <checkbox v-model="suchAsPaul.social[5]">有</checkbox>
-              <checkbox v-model="suchAsPaul.social2[5]">无</checkbox>
+              <RadioGroup v-model="suchAsPaul.social[5]">
+                <Radio label="有"></Radio>
+                <Radio label="无"></Radio>
+              </RadioGroup>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:6px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used2[5]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused2[5]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed2[5]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent2[5]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.dutyType[5]">
+                    <Radio label="本行业（单位）"></Radio>
+                    <Radio label="国内其他服务商"></Radio>
+                    <Radio label="国外服务商"></Radio>
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -499,24 +447,19 @@
             <i-col span="2" class="content-hr br">7</i-col>
             <i-col span="5" class="content-hr br">安全培训</i-col>
             <i-col span="3" class="content-hr br">
-              <checkbox v-model="suchAsPaul.social[6]">有</checkbox>
-              <checkbox v-model="suchAsPaul.social2[6]">无</checkbox>
+              <RadioGroup v-model="suchAsPaul.social[6]">
+                <Radio label="有"></Radio>
+                <Radio label="无"></Radio>
+              </RadioGroup>
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:6px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used2[5]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused2[5]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed2[5]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent2[5]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.dutyType[6]">
+                    <Radio label="本行业（单位）"></Radio>
+                    <Radio label="国内其他服务商"></Radio>
+                    <Radio label="国外服务商"></Radio>
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -529,20 +472,13 @@
               其它
             </i-col>
             <i-col span="14">
-              <row>
+              <row style="padding:6px 30px;">
                 <i-col span="24">
-                  <row>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.used2[6]"></checkbox>
-                    </i-col>
-                    <i-col span="7" class="employ-china-num br">
-                      <checkbox v-model="suchAsPaul.unused2[6]"></checkbox>
-                    </i-col>
-                    <i-col span="10" class="employ-china-num">
-                      <checkbox v-model="suchAsPaul.partUsed2[6]"></checkbox>
-                      <span><i-input v-model="suchAsPaul.percent2[6]" class="input-num"></i-input></span>%
-                    </i-col>
-                  </row>
+                  <RadioGroup v-model="suchAsPaul.dutyType[7]">
+                    <Radio label="本行业（单位）"></Radio>
+                    <Radio label="国内其他服务商"></Radio>
+                    <Radio label="国外服务商"></Radio>
+                  </RadioGroup>
                 </i-col>
               </row>
             </i-col>
@@ -576,13 +512,13 @@
   <row class="superior-name system">
     <i-col span="4" class="system-name br">12 上级系统名称</i-col>
     <i-col span="20" class="system-name">
-      <i-input v-model="suchAsPaul.superiorValue"></i-input>
+      <i-input :disabled="Object.is(suchAsPaul.system, '否')" v-model="suchAsPaul.superiorValue"></i-input>
     </i-col>
   </row>
   <row class="superior-unit-name system">
     <i-col span="4" class="system-name br">13 上级系统所属单位名称</i-col>
     <i-col span="20" class="system-name">
-      <i-input v-model="suchAsPaul.unitName"></i-input>
+      <i-input :disabled="Object.is(suchAsPaul.system, '否')" v-model="suchAsPaul.unitName"></i-input>
     </i-col>
   </row>
   <row class="system-button">
@@ -600,56 +536,23 @@ export default {
       suchAsPaul: {
         name: '', //系统名称
         num: '', //系统编号
-        businessType: [false, false, false, false, false, false, false, false], //业务类型
+        businessType: '', //业务类型
         desc: '', //业务描述
-        serviceScope: [false, false, false, false, false, false, false, false], //服务范围
-        serviceSituation: [
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false
-        ], //服务情况
-        coverageRange: [false, false, false, false, false, false, false, false], //覆盖范围
-        networkProperties: [
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false
-        ], //网络性质
-        systemInterconnection: [
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false,
-          false
-        ], //系统互联情况
+        serviceScope: '', //服务范围
+        serviceSituation: '', //服务情况
+        coverageRange: '', //覆盖范围
+        networkProperties: '', //网络性质
+        systemInterconnection: '', //系统互联情况
         useCounts: [0, 0, 0, 0, 0, 0, 0], //使用数量
-        partUsed: [false, false, false, false, false, false, false, false], //部分使用
-        used: [false, false, false, false, false, false, false, false], //全部使用
-        unused: [false, false, false, false, false, false, false, false], //未使用
+        usageRate: ['', '', '', '', '', ''],
+        dutyType: ['', '', '', '', '', '', '', ''],
         percent: [], //使用率
-        partUsed2: [false, false, false, false, false, false, false, false], //部分使用
-        used2: [false, false, false, false, false, false, false, false], //全部使用
-        unused2: [false, false, false, false, false, false, false, false], //未使用
-        percent2: [], //使用率
         gradeValue: '', //等级测评单位名称
         date: '', //日期
         system: '', //区分系统
         superiorValue: '', //上级系统名称
         unitName: '', // 上级系统所属单位名称
-        social: [false, false, false, false, false, false, false, false],
-        social2: [false, false, false, false, false, false, false, false]
+        social: ['', '', '', '', '', '', '']
       }
     }
   },

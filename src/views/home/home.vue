@@ -54,9 +54,6 @@
           <radio label="Syelog"></radio>
         </radio-group>
       </form-item>
-      <form-item label="告警信息" prop="alarm_count">
-        <i-input v-model="formValidate.alarm_count" placeholder="告警信息"></i-input>
-      </form-item>
       <form-item label="备注" prop="describe">
         <i-input v-model="formValidate.describe" placeholder="其他信息"></i-input>
       </form-item>
@@ -327,13 +324,6 @@ export default {
             required: true,
             message: '请选择',
             trigger: 'change'
-          }
-        ],
-        alarm_count: [
-          {
-            required: true,
-            message: '请填写告警信息',
-            trigger: 'blur'
           }
         ],
         describe: [

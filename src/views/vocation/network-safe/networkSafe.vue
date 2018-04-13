@@ -5,7 +5,7 @@
     <div class="service-table">
       <row class="destroy">
         <i-col span="8" class="destroy-name">
-          业务信息安全被破坏时所侵害的客体
+          业务信息安全保护等级自评表
         </i-col>
         <i-col span="16">
           <row>
@@ -24,59 +24,43 @@
         <i-col span="8" class="equity-name br">
           公民、法人和其他组织的合法权益
         </i-col>
-        <i-col span="16">
-          <row class="destroy-level">
-            <i-col span="8" class="br">
-              <checkbox v-model="business_assess.citizen_normal"></checkbox>
-            </i-col>
-            <i-col span="8" class="br">
-              <checkbox v-model="business_assess.citizen_serious"></checkbox>
-            </i-col>
-            <i-col span="8">
-              <checkbox v-model="business_assess.citizen_special"></checkbox>
-            </i-col>
-          </row>
+        <i-col span="16" class="equity-item">
+          <RadioGroup v-model="business_assess_show.citizen">
+            <Radio class="radio-item" label="一般损害"></Radio>
+            <Radio class="radio-item" label="严重损害"></Radio>
+            <Radio class="radio-item" label="特别严重损害"></Radio>
+          </RadioGroup>
         </i-col>
       </row>
       <row class="equity">
         <i-col span="8" class="equity-name br">
           社会秩序、公共利益
         </i-col>
-        <i-col span="16">
-          <row class="destroy-level">
-            <i-col span="8" class="br">
-              <checkbox v-model="business_assess.social_normal"></checkbox>
-            </i-col>
-            <i-col span="8" class="br">
-              <checkbox v-model="business_assess.social_serious"></checkbox>
-            </i-col>
-            <i-col span="8">
-              <checkbox v-model="business_assess.social_special"></checkbox>
-            </i-col>
-          </row>
+        <i-col span="16" class="equity-item">
+          <RadioGroup v-model="business_assess_show.social">
+            <Radio class="radio-item" label="一般损害"></Radio>
+            <Radio class="radio-item" label="严重损害"></Radio>
+            <Radio class="radio-item" label="特别严重损害"></Radio>
+          </RadioGroup>
         </i-col>
       </row>
       <row class="equity">
         <i-col span="8" class="equity-name br">
           国家安全
         </i-col>
-        <i-col span="16">
-          <row class="destroy-level">
-            <i-col span="8" class="br">
-              <checkbox v-model="business_assess.country_normal"></checkbox>
-            </i-col>
-            <i-col span="8" class="br">
-              <checkbox v-model="business_assess.country_serious"></checkbox>
-            </i-col>
-            <i-col span="8">
-              <checkbox v-model="business_assess.country_specail"></checkbox>
-            </i-col>
-          </row>
+        <i-col span="16" class="equity-item">
+          <RadioGroup v-model="business_assess_show.country">
+            <Radio class="radio-item" label="一般损害"></Radio>
+            <Radio class="radio-item" label="严重损害"></Radio>
+            <Radio class="radio-item" label="特别严重损害"></Radio>
+          </RadioGroup>
         </i-col>
       </row>
+    </div>
+    <div class="service-table">
       <row class="destroy">
         <i-col span="8" class="destroy-name">
-          系统服务安全被破坏时所侵害的客体
+          系统服务安全保护等级自评表
         </i-col>
         <i-col span="16">
           <row>
@@ -95,54 +79,36 @@
         <i-col span="8" class="equity-name br">
           公民、法人和其他组织的合法权益
         </i-col>
-        <i-col span="16">
-          <row class="destroy-level">
-            <i-col span="8" class="br">
-              <checkbox v-model="system_assess.citizen_normal"></checkbox>
-            </i-col>
-            <i-col span="8" class="br">
-              <checkbox v-model="system_assess.citizen_serious"></checkbox>
-            </i-col>
-            <i-col span="8">
-              <checkbox v-model="system_assess.citizen_special"></checkbox>
-            </i-col>
-          </row>
+        <i-col span="16" class="equity-item">
+          <RadioGroup v-model="system_assess_show.citizen">
+            <Radio class="radio-item" label="一般损害"></Radio>
+            <Radio class="radio-item" label="严重损害"></Radio>
+            <Radio class="radio-item" label="特别严重损害"></Radio>
+          </RadioGroup>
         </i-col>
       </row>
       <row class="equity">
         <i-col span="8" class="equity-name br">
           社会秩序、公共利益
         </i-col>
-        <i-col span="16">
-          <row class="destroy-level">
-            <i-col span="8" class="br">
-              <checkbox v-model="system_assess.social_normal"></checkbox>
-            </i-col>
-            <i-col span="8" class="br">
-              <checkbox v-model="system_assess.social_serious"></checkbox>
-            </i-col>
-            <i-col span="8">
-              <checkbox v-model="system_assess.social_special"></checkbox>
-            </i-col>
-          </row>
+        <i-col span="16" class="equity-item">
+          <RadioGroup v-model="system_assess_show.social">
+            <Radio class="radio-item" label="一般损害"></Radio>
+            <Radio class="radio-item" label="严重损害"></Radio>
+            <Radio class="radio-item" label="特别严重损害"></Radio>
+          </RadioGroup>
         </i-col>
       </row>
       <row class="equity">
         <i-col span="8" class="equity-name br">
           国家安全
         </i-col>
-        <i-col span="16">
-          <row class="destroy-level">
-            <i-col span="8" class="br">
-              <checkbox v-model="system_assess.country_normal"></checkbox>
-            </i-col>
-            <i-col span="8" class="br">
-              <checkbox v-model="system_assess.country_serious"></checkbox>
-            </i-col>
-            <i-col span="8">
-              <checkbox v-model="system_assess.country_specail"></checkbox>
-            </i-col>
-          </row>
+        <i-col span="16" class="equity-item">
+          <RadioGroup v-model="system_assess_show.country">
+            <Radio class="radio-item" label="一般损害"></Radio>
+            <Radio class="radio-item" label="严重损害"></Radio>
+            <Radio class="radio-item" label="特别严重损害"></Radio>
+          </RadioGroup>
         </i-col>
       </row>
       <row class="system-button">
@@ -157,6 +123,16 @@ import axios from 'axios'
 export default {
   data() {
     return {
+      business_assess_show: {
+        citizen: '一般损害',
+        social: '一般损害',
+        country: '一般损害'
+      },
+      system_assess_show: {
+        citizen: '一般损害',
+        social: '一般损害',
+        country: '一般损害'
+      },
       business_assess: {
         citizen_normal: false,
         citizen_serious: false,
@@ -164,7 +140,7 @@ export default {
         social_normal: false,
         social_serious: false,
         social_special: false,
-        country_normal: false,
+        country_normal: true,
         country_serious: false,
         country_specail: false
       },
@@ -194,24 +170,128 @@ export default {
   },
   methods: {
     queryList() {
-      const url =
-        this.url + '/insp/api/v1.0/systems/assess/' + localStorage.inspId
+      const url = this.url + '/insp/api/v1.0/systems/assess/' + localStorage.inspId
       axios({
         method: 'get',
         url: url
       }).then(response => {
         if (response.data.status) {
           const res = response.data
-          this.business_assess = res.business_assess
-          this.system_assess = res.system_assess
+          if (res.business_assess.citizen_normal) {
+            this.business_assess_show.citizen = '一般损害'
+          }
+          if (res.business_assess.citizen_serious) {
+            this.business_assess_show.citizen = '严重损害'
+          }
+          if (res.business_assess.citizen_special) {
+            this.business_assess_show.citizen = '特别严重损害'
+          }
+          if (res.business_assess.social_normal) {
+            this.business_assess_show.social = '一般损害'
+          }
+          if (res.business_assess.social_serious) {
+            this.business_assess_show.social = '严重损害'
+          }
+          if (res.business_assess.social_special) {
+            this.business_assess_show.social = '特别严重损害'
+          }
+          if (res.business_assess.country_normal) {
+            this.business_assess_show.country = '一般损害'
+          }
+          if (res.business_assess.country_serious) {
+            this.business_assess_show.country = '严重损害'
+          }
+          if (res.business_assess.country_special) {
+            this.business_assess_show.country = '特别严重损害'
+          }
+          if (res.system_assess.citizen_normal) {
+            this.system_assess_show.citizen = '一般损害'
+          }
+          if (res.system_assess.citizen_serious) {
+            this.system_assess_show.citizen = '严重损害'
+          }
+          if (res.system_assess.citizen_special) {
+            this.system_assess_show.citizen = '特别严重损害'
+          }
+          if (res.system_assess.social_normal) {
+            this.system_assess_show.social = '一般损害'
+          }
+          if (res.system_assess.social_serious) {
+            this.system_assess_show.social = '严重损害'
+          }
+          if (res.system_assess.social_special) {
+            this.system_assess_show.social = '特别严重损害'
+          }
+          if (res.system_assess.country_normal) {
+            this.system_assess_show.country = '一般损害'
+          }
+          if (res.system_assess.country_serious) {
+            this.system_assess_show.country = '严重损害'
+          }
+          if (res.system_assess.country_special) {
+            this.system_assess_show.country = '特别严重损害'
+          }
         } else {
           this.$Message.error(response.data.desc)
         }
       })
     },
     submitAssess() {
-      const url =
-        this.url + '/insp/api/v1.0/systems/assess/' + localStorage.inspId
+      if (this.business_assess_show.citizen === '一般损害') {
+        this.business_assess.citizen_normal = true
+      }
+      if (this.business_assess_show.citizen === '严重损害') {
+        this.business_assess.citizen_serious = true
+      }
+      if (this.business_assess_show.citizen === '特别严重损害') {
+        this.business_assess.citizen_special = true
+      }
+      if (this.business_assess_show.social === '一般损害') {
+        this.business_assess.social_normal = true
+      }
+      if (this.business_assess_show.social === '严重损害') {
+        this.business_assess.social_serious = true
+      }
+      if (this.business_assess_show.social === '特别严重损害') {
+        this.business_assess.social_special = true
+      }
+      if (this.business_assess_show.country === '一般损害') {
+        this.business_assess.country_normal = true
+      }
+      if (this.business_assess_show.country === '严重损害') {
+        this.business_assess.country_serious = true
+      }
+      if (this.business_assess_show.country === '特别严重损害') {
+        this.business_assess.country_special = true
+      }
+      if (this.system_assess_show.citizen === '一般损害') {
+        this.system_assess.citizen_normal = true
+      }
+      if (this.system_assess_show.citizen === '严重损害') {
+        this.system_assess.citizen_serious = true
+      }
+      if (this.system_assess_show.citizen === '特别严重损害') {
+        this.system_assess.citizen_special = true
+      }
+      if (this.system_assess_show.social === '一般损害') {
+        this.system_assess.social_normal = true
+      }
+      if (this.system_assess_show.social === '严重损害') {
+        this.system_assess.social_serious = true
+      }
+      if (this.system_assess_show.social === '特别严重损害') {
+        this.system_assess.social_special = true
+      }
+      if (this.system_assess_show.country === '一般损害') {
+        this.system_assess.country_normal = true
+      }
+      if (this.system_assess_show.country === '严重损害') {
+        this.system_assess.country_serious = true
+      }
+      if (this.system_assess_show.country === '特别严重损害') {
+        this.system_assess.country_special = true
+      }
+      const url = this.url + '/insp/api/v1.0/systems/assess/' + localStorage.inspId
       axios({
         method: 'post',
         url: url,

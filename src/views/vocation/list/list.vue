@@ -16,20 +16,29 @@
           <a v-else>暂无下载文件</a>
         </template>
       </el-table-column>
-      <el-table-column label="操作">
+      <el-table-column align="left" label="操作">
         <template slot-scope="scope" class="clearfix">
-          <el-button type="primary" class="editor_btn" size="small" @click="handleEdit(scope.$index, scope.row.id)">编辑</el-button>
-          <el-popover ref="popover5" class="editor_btn" placement="top" width="160" v-model="scope.row.deleteVisible">
-            <p>您确定删除当前信息么？</p>
-            <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="scope.row.deleteVisible = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="deleteList(scope.$index, scope.row.id)">确定</el-button>
-            </div>
-          </el-popover>
-          <el-button type="primary" class="editor_btn" size="small" v-popover:popover5 @click="showVisible(scope.row.deleteVisible)">删除</el-button>
-          <el-button type="primary" class="editor_btn" size="small" @click="handleLevel(scope.row.security_level, scope.row.id)">等级自评详情</el-button>
-          <el-button type="primary" class="editor_btn" size="small" @click="handleTec(scope.row.security_level, scope.row.id)" v-if="scope.row.security_level_name && scope.row.security_level_name !== ''">技术自评详情</el-button>
-          <el-button type="primary" class="editor_btn" size="small" @click="handleManage(scope.row.security_level, scope.row.id)" v-if="scope.row.security_level_name && scope.row.security_level_name !== ''">管理自评详情</el-button>
+          <p>
+            <el-button type="primary" class="editor_btn" size="small" @click="handleEdit(scope.$index, scope.row.id)">编辑</el-button>
+          <p>
+            <el-popover ref="popover5" class="editor_btn" placement="top" width="160" v-model="scope.row.deleteVisible">
+              <p>您确定删除当前信息么？</p>
+              <div style="text-align: right; margin: 0">
+                <el-button size="mini" type="text" @click="scope.row.deleteVisible = false">取消</el-button>
+                <el-button type="primary" size="mini" @click="deleteList(scope.$index, scope.row.id)">确定</el-button>
+              </div>
+            </el-popover>
+            <el-button type="primary" class="editor_btn" size="small" v-popover:popover5 @click="showVisible(scope.row.deleteVisible)">删除</el-button>
+          </p>
+          <p>
+            <el-button type="primary" class="editor_btn" size="small" @click="handleLevel(scope.row.security_level, scope.row.id)">等级自评详情</el-button>
+          </p>
+          <p>
+            <el-button type="primary" class="editor_btn" size="small" @click="handleTec(scope.row.security_level, scope.row.id)" v-if="scope.row.security_level_name && scope.row.security_level_name !== ''">技术自评详情</el-button>
+          </p>
+          <p>
+            <el-button type="primary" class="editor_btn" size="small" @click="handleManage(scope.row.security_level, scope.row.id)" v-if="scope.row.security_level_name && scope.row.security_level_name !== ''">管理自评详情</el-button>
+          </p>
           <!-- <el-dropdown  @command="handleLevel(scope.row.security_level, scope.row.id)">
             <el-button size="small" type="primary">
                 自评<i class="el-icon-caret-bottom el-icon--right"></i>
