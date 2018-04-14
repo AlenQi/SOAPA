@@ -448,7 +448,7 @@
                                 <i-col span="24" class="physics-tr text-left">
                                     应对网络设备的管理员登录地址进行限制
                                 </i-col>
-                                <i-col span="24" class="visit-tr text-left">
+                                <i-col span="24" class="physics-tr text-left">
                                     网络设备用户的标识应唯一
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">

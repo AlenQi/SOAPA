@@ -125,7 +125,7 @@
                         </i-col>
                         <i-col span="24" class="network-visit-last">
                             <row>
-                                <i-col span="24" class="physics-tr text-left">应对登录网络设备的用户进行身份鉴别</i-col>
+                                <i-col span="24" class="visit-tr text-left">网络设备用户的标识应唯一</i-col>
                                 <i-col span="24" class="visit-tr text-left">应具有登录失败处理功能，可采取结束会话、限制非法登录次数和当网络登录连接超时自动退出等措施</i-col>
                                 <i-col span="24" class="visit-tr-last text-left">当对网络设备进行远程管理时，应采取必要措施防止鉴别信息在网络传输过程中被窃听</i-col>
                             </row>

@@ -13,7 +13,7 @@
                 </div>
               </div>
               <div class="threat_level clearfix">
-                <div class="level_name">描述：</div>
+                <div class="level_name">方案简介：</div>
                 <div class="level_name">
                   <i-input v-model="searchEvent.describe" style="width: 300px"></i-input>
                 </div>
@@ -21,7 +21,7 @@
               <div class="threat_level clearfix">
                 <div class="level_name">处理方案信息：</div>
                 <div class="level_name">
-                  <i-input v-model="searchEvent.solution_info" style="width: 300px"></i-input>
+                  <i-input type="textarea" v-model="searchEvent.solution_info" style="width: 300px"></i-input>
                 </div>
               </div>
             </div>
@@ -39,6 +39,7 @@
     </row>
     <el-table class="table" :data="eventList" border style="width: 100%">
       <el-table-column label="ID" width="100" prop="id"></el-table-column>
+      <el-table-column label="方案简介" prop="describe"></el-table-column>
       <el-table-column label="处理方案信息" prop="solution_info"></el-table-column>
       <el-table-column label="处理方案文件">
         <template slot-scope="scope">
@@ -47,8 +48,13 @@
           </p>
         </template>
       </el-table-column>
-      <el-table-column label="规则ID" prop="rule.rule_id"></el-table-column>
-      <el-table-column label="规则描述" prop="rule.describe"></el-table-column>
+      <el-table-column label="规则ID">
+        <template slot-scope="scope">
+          <Tooltip v-if="scope.row.rule" :content="scope.row.rule.describe" placement="top">
+            {{ scope.row.rule.rule_id }}
+          </Tooltip>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="250">
         <template slot-scope="scope">
           <el-button type="primary" size="small" @click="editEvent(scope.$index, scope.row)">修改</el-button>
@@ -65,14 +71,20 @@
     </el-table>
     <Modal v-model="visible" title="创建处理方案">
       <i-form ref="addEventInfo" :model="addEventInfo" :label-width="100">
-        <form-item label="规则ID" prop="name">
-          <i-input v-model="addEventInfo.rule_id"></i-input>
+        <form-item label="规则类型">
+          <template>
+            <Select v-model="addEventInfo.rule_id">
+              <OptionGroup v-for="rules in rulesData" :key="rules.id" :value="rules.id" :label="`${rules.id}/${rules.describe}`">
+                <Option v-for="item in rules.rules" :value="item.rule_id" :key="item.rule_id">{{ item.rule_id }}/{{ item.describe }}</Option>
+              </OptionGroup>
+            </Select>
+          </template>
         </form-item>
-        <form-item label="描述" prop="phone">
+        <form-item label="方案简介" prop="phone">
           <i-input v-model="addEventInfo.describe"></i-input>
         </form-item>
         <form-item label="处理方案信息" prop="resume">
-          <i-input v-model="addEventInfo.solution_info"></i-input>
+          <i-input type="textarea" v-model="addEventInfo.solution_info"></i-input>
         </form-item>
       </i-form>
       <div slot="footer">
@@ -89,6 +101,7 @@ import SourceOperationResource from '@/resources/SourceOperationResource'
 export default {
   data() {
     return {
+      rulesData: [],
       modifyId: '',
       eventList: [],
       visible: false,
@@ -106,6 +119,7 @@ export default {
     }
   },
   mounted() {
+    this.queryRuleList()
     if (this.$route.query.rule_id) {
       this.queryLoginExpertList(this.$route.query.rule_id)
     } else {
@@ -113,6 +127,16 @@ export default {
     }
   },
   methods: {
+    queryRuleList() {
+      SourceOperationResource.queryRuleList().then(response => {
+        if (response.data.status) {
+          const res = response.data
+          this.rulesData = res.log_rule_types
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
     queryEventList(params) {
       SourceOperationResource.queryEventList(params).then(response => {
         if (response.data.status) {
