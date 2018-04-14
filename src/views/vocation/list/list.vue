@@ -15,8 +15,8 @@
       <!-- 业务描述 -->
       <el-table-column label="业务描述" width="" prop="describe"></el-table-column>
       <el-table-column label="自评等级" width="" prop="security_level_name"></el-table-column>
-      <el-table-column label="系统服务等级" width="" prop="system_level"></el-table-column>
-      <el-table-column label="业务信息等级" width="" prop="business_level"></el-table-column>
+      <el-table-column label="系统服务等级" width="" prop="system_level_name"></el-table-column>
+      <el-table-column label="业务信息等级" width="" prop="business_level_name"></el-table-column>
       <el-table-column label="下载路径" width="">
         <template slot-scope="scope">
           <a v-if="scope.row.system_word" href="scope.row.system_word">下载</a>

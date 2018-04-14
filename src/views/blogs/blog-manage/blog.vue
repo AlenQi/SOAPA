@@ -114,7 +114,10 @@
     </div>
     <div class="modal_content clearfix">
       <label style="width:60px;">解决方案：</label>
-      <i-input v-model="details.solution" disabled type="textarea" :rows="4"></i-input>
+      <i-input v-model="details.solution.solution_info" disabled type="textarea" :rows="4"></i-input>
+      <p v-for="file in details.solution.solution_files" :key="file.id">
+        {{ file.name }}/{{ file.url }}
+      </p>
     </div>
     <div slot="footer">
     </div>
@@ -295,7 +298,7 @@ export default {
       ],
       dataRegulation: [],
       details: {
-        solution: '',
+        solution: {},
         full_log: '',
         srcip: '',
         id: null,

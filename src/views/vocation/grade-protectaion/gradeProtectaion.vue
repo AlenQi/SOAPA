@@ -13,7 +13,7 @@
               02 系统编号
             </i-col>
             <i-col span="12" class="system-name">
-              <i-input v-model="suchAsPaul.num" placeholder="请输入系统编号" style=""></i-input>
+              <i-input :disabled="idEdit" v-model="suchAsPaul.num" placeholder="请输入系统编号" style=""></i-input>
             </i-col>
           </row>
         </i-col>
@@ -533,6 +533,7 @@ import axios from 'axios'
 export default {
   data() {
     return {
+      idEdit: false,
       suchAsPaul: {
         name: '', //系统名称
         num: '', //系统编号
@@ -567,7 +568,10 @@ export default {
   created() {},
   mounted() {
     if (localStorage.inspId > 0) {
+      this.idEdit = true
       this.queryList()
+    } else {
+      this.idEdit = false
     }
   },
   methods: {
