@@ -633,7 +633,7 @@ export default {
         }
       }).then(response => {
         if (response.data.status) {
-          this.$Message.info('添加成功')
+          this.$Message.info(response.data.desc)
           window.location.href = '/#/protectaionList'
         } else {
           this.$Message.error(response.data.desc)

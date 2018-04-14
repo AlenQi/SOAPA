@@ -589,7 +589,11 @@ export default {
       })
     },
     handelSubmit() {
-      const url = this.url + '/insp/api/v1.0/systems'
+      const url =
+        localStorage.inspId > 0
+          ? `${this.url}/insp/api/v1.0/systems/${localStorage.inspId}`
+          : `${this.url}/insp/api/v1.0/systems`
+      const method = localStorage.inspId > 0 ? 'put' : 'post'
       const params = {
         system_name: this.suchAsPaul.name,
         system_no: this.suchAsPaul.num,
@@ -598,12 +602,12 @@ export default {
         file: ''
       }
       axios({
-        method: 'post',
+        method: method,
         url: url,
         data: params
       }).then(response => {
         if (response.data.status) {
-          this.$Message.info('创建成功')
+          this.$Message.info(response.data.desc)
           window.location.href = '/#/protectaionList'
         } else {
           this.$Message.error(response.data.desc)

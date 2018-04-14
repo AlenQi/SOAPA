@@ -3,7 +3,7 @@
 </style>
 <template>
     <div class="self-assessment">
-        <div class="service-header"> 
+        <div class="service-header">
             <span>{{system_name}}</span>
             系统的业务信息安全保护等级为<span>{{business_level}}</span>级，系统服务安全保护等级为
             <span>{{system_level}}</span>级，安全保护等级为
@@ -105,7 +105,7 @@
                                     机房应设置火灾自动消防系统，能够自动检测火情、自动报警，并自动灭火
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
-                                    机房及相关的工作房间和辅助房应采用具有耐火等级的建筑材料	
+                                    机房及相关的工作房间和辅助房应采用具有耐火等级的建筑材料
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
                                     机房应采取区域隔离防火措施，将重要设备与其他设备隔离开
@@ -322,7 +322,7 @@
                                 <i-col span="24" class="network-structure">入侵防范</i-col>
                                 <i-col span="24" class="physics-tr-steal">恶意代码防范</i-col>
                                 <i-col span="24" class="network-safe-last">网络设备防护</i-col>
-                                
+
                             </row>
                         </i-col>
                     </row>
@@ -335,7 +335,7 @@
                                     应保证主要网络设备的业务处理能力具备冗余空间，满足业务高峰期需要
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
-                                    应保证网络各个部分的带宽满足业务高峰期需要 
+                                    应保证网络各个部分的带宽满足业务高峰期需要
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
                                     应在业务终端与业务服务器之间进行路由控制建立安全的访问路径
@@ -347,7 +347,7 @@
                                     应根据各部门的工作职能、重要性和所涉及信息的重要程度等因素，划分不同的子网或网段，并按照方便管理和控制的原则为各子网、网段分配地址段
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
-                                    应避免将重要网段部署在网络边界处且直接连接外部信息系统，重要网段与其他网段之间采取可靠的技术隔离手段 
+                                    应避免将重要网段部署在网络边界处且直接连接外部信息系统，重要网段与其他网段之间采取可靠的技术隔离手段
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
                                     应按照对业务服务的重要次序来指定带宽分配优先级别，保证在网络发生拥堵的时候优先保护重要主机
@@ -1381,7 +1381,7 @@ export default {
             this.queryList()
         } else {
         }
-    }, 
+    },
   methods: {
       queryList() {
         const url = this.url + '/insp/api/v1.0/tech/assess/' + localStorage.inspId
@@ -1411,7 +1411,7 @@ export default {
         })
         .then(response => {
             if(response.data.status) {
-                this.$Message.info('添加成功')
+                this.$Message.info(response.data.desc)
                 window.location.href = '/#/protectaionList'
             } else {
                 this.$Message.error(response.data.desc)

@@ -3,7 +3,7 @@
 </style>
 <template>
     <div class="self-assessment">
-        <div class="service-header"> 
+        <div class="service-header">
             <span>{{system_name}}</span>
             系统的业务信息安全保护等级为<span>{{business_level}}</span>级，系统服务安全保护等级为
             <span>{{system_level}}</span>级，安全保护等级为
@@ -212,7 +212,7 @@
                             <row>
                                 <i-col span="24" class="visit-tr text-left">
                                     应加强各类管理人员之间、组织内部机构之间以及信息安全职能部门内部的合作与沟通，定期或不定期召开协调会议，共同协作处理信息安全问题
-                                </i-col> 
+                                </i-col>
                                 <i-col span="24" class="physics-tr text-left">
                                     应加强与兄弟单位、公安机关、电信公司的合作与沟通
                                 </i-col>
@@ -280,7 +280,7 @@
                          <i-col span="24">
                             <row>
                                 <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_4_dcca99ed1b358a46b7400da590394f87"></checkbox> 
+                                    <checkbox v-model="management.manage_4_dcca99ed1b358a46b7400da590394f87"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr">
                                     <checkbox v-model="management.manage_4_fb725c2ca87dd9b56b09081c42cb9e60"></checkbox>
@@ -289,14 +289,14 @@
                                     <checkbox v-model="management.manage_4_278f3f6593391ec67bcee8d089b8c150"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_4_65eb85a42b370990d6897109e471f843"></checkbox> 
+                                    <checkbox v-model="management.manage_4_65eb85a42b370990d6897109e471f843"></checkbox>
                                 </i-col>
                             </row>
                         </i-col>
                         <i-col span="24">
                             <row>
                                 <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_4_b4011036049c7d4fb25b99c174fdfc59"></checkbox> 
+                                    <checkbox v-model="management.manage_4_b4011036049c7d4fb25b99c174fdfc59"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="physics-tr">
                                     <checkbox v-model="management.manage_4_5632ce02ad46d277a2df8eae1d24635f"></checkbox>
@@ -305,7 +305,7 @@
                                     <checkbox v-model="management.manage_4_ffff835fe83366332dfdde5afc4b84df"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_4_cc999f9227c2b8e0a11b2d6829291088"></checkbox> 
+                                    <checkbox v-model="management.manage_4_cc999f9227c2b8e0a11b2d6829291088"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr">
                                     <checkbox v-model="management.manage_4_99778777b99cd0eb74d863765df5025e"></checkbox>
@@ -315,13 +315,13 @@
                         <i-col span="24">
                             <row>
                                 <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_4_9c12977d0ee8bc7bc2907fe3ae86c1ce"></checkbox> 
+                                    <checkbox v-model="management.manage_4_9c12977d0ee8bc7bc2907fe3ae86c1ce"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr">
                                     <checkbox v-model="management.manage_4_487e496ccbbf6c1ca5ee589ec67b8a2f"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_4_ae21f04ed8a69c59ea7b34b01b71d4b8"></checkbox> 
+                                    <checkbox v-model="management.manage_4_ae21f04ed8a69c59ea7b34b01b71d4b8"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr-last">
                                     <checkbox v-model="management.manage_4_fa47342b49c0f17671e3640a2ee2f5c1"></checkbox>
@@ -712,7 +712,7 @@
                                 </i-col>
                             </row>
                         </i-col>
-                    </row> 
+                    </row>
                 </i-col>
                 <i-col span="3">
                     <row >
@@ -901,7 +901,7 @@
                                 </i-col>
                             </row>
                         </i-col>
-                    </row>  
+                    </row>
                 </i-col>
             </row>
             <row>
@@ -977,11 +977,11 @@
                                     应确保介质存放在安全的环境中，对各类介质进行控制和保护，并实行存储环境专人管理
                                 </i-col>
                                  <i-col span="24" class="visit-tr text-left">
-                                    应对介质在物理传输过程中的人员选择、打包、交付等情况进行控制，对介质归档和查询等进行登记记录，并根据存档介质的目录清单定期盘点 
+                                    应对介质在物理传输过程中的人员选择、打包、交付等情况进行控制，对介质归档和查询等进行登记记录，并根据存档介质的目录清单定期盘点
                                 </i-col>
                                 <i-col span="24" class="spite-tr text-left">
                                     应对存储介质的使用过程、送出维修以及销毁等进行严格的管理，
-                                    对带出工作环境的存储介质进行内容加密和监控管理，对送出维修或销毁的介质应首先清除介质中的敏感数据，对保密性较高的存储介质未经批准不得自行销毁 
+                                    对带出工作环境的存储介质进行内容加密和监控管理，对送出维修或销毁的介质应首先清除介质中的敏感数据，对保密性较高的存储介质未经批准不得自行销毁
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
                                     应根据数据备份的需要对某些介质实行异地存储，存储地的环境要求和管理方法应与本地相同
@@ -1152,7 +1152,7 @@
                                     应报告所发现的安全弱点和可疑事件，但任何情况下用户均不应尝试验证弱点
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
-                                    应制定安全事件报告和处置管理制度，明确安全事件类型，规定安全事件的现场处理、事件报告和后期恢复的管理职责 
+                                    应制定安全事件报告和处置管理制度，明确安全事件类型，规定安全事件的现场处理、事件报告和后期恢复的管理职责
                                 </i-col>
                                  <i-col span="24" class="visit-tr text-left">
                                      应根据国家相关管理部门对计算机安全事件等级划分方法和安全事件对本系统产生的影响，对本系统计算机安全事件进行等级划分
@@ -1172,7 +1172,7 @@
                                 <i-col span="24" class="visit-tr text-left">
                                     应严格控制参与涉及国家秘密事件处理和恢复的人员，重要操作要求至少两名工作人员在场并登记备案
                                 </i-col>
-                                
+
                             </row>
                         </i-col>
                         <i-col span="24">
@@ -1248,7 +1248,7 @@
                                     <checkbox v-model="management.manage_4_f6dfa8d9685a26c0ce81348d2d380a1a"></checkbox>
                                 </i-col>
                                  <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_4_dff0c79df0904929718acaf090a74bdf"></checkbox> 
+                                    <checkbox v-model="management.manage_4_dff0c79df0904929718acaf090a74bdf"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="spite-tr">
                                     <checkbox v-model="management.manage_4_e93d61b20525888e48a176c41c3f538b"></checkbox>
@@ -1418,7 +1418,7 @@
                                     <checkbox v-model="management.manage_4_5fff530e4e66488a3954d0e78de763d0"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_4_3456ba8782c9cf701e44fb5bd1430c18"></checkbox> 
+                                    <checkbox v-model="management.manage_4_3456ba8782c9cf701e44fb5bd1430c18"></checkbox>
                                 </i-col>
                                  <i-col span="24" class="visit-tr">
                                      <checkbox v-model="management.manage_4_1a92576ece35e4ff790e03e7dd647238"></checkbox>
@@ -1546,7 +1546,7 @@ export default{
               manage_4_e07847847dc9633438c176d82f36c6e5:false,
               manage_4_0516050074fa345f10017f2816a732d2:false,
               manage_4_29321414df8be6688ab025127fda9289:false,
-              manage_4_dde46ebbd8c24c0f1d1f233ffe240069:false, 
+              manage_4_dde46ebbd8c24c0f1d1f233ffe240069:false,
               manage_4_4489de51b0b204faf4b88b978549ea2b:false,
               manage_4_a5ea40bde1d5bd6b43ce3e3bb807d538:false,
               manage_4_b52f5f9287e9e0579a61440528186569:false,
@@ -1693,7 +1693,7 @@ export default{
             })
             .then(response => {
                 if(response.data.status) {
-                    this.$Message.info('添加成功')
+                    this.$Message.info(response.data.desc)
                     window.location.href = '/#/protectaionList'
                 } else {
                     this.$Message.error(response.data.desc)

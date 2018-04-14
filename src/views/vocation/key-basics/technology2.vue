@@ -3,7 +3,7 @@
 </style>
 <template>
     <div class="self-assessment">
-        <div class="service-header"> 
+        <div class="service-header">
             <span>{{system_name}}</span>
             系统的业务信息安全保护等级为<span>{{business_level}}</span>级，系统服务安全保护等级为
             <span>{{system_level}}</span>级，安全保护等级为
@@ -193,7 +193,7 @@
                                 <i-col span="24" class="visit-tr">边界完整性检查</i-col>
                                 <i-col span="24" class="visit-tr">入侵防范</i-col>
                                 <i-col span="24" class="safety-program-last">网络设备防护</i-col>
-                                
+
                             </row>
                         </i-col>
                     </row>
@@ -206,7 +206,7 @@
                                     应保证关键网络设备的业务处理能力具备冗余空间，满足业务高峰期需要
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
-                                    应保证接入网络和核心网络的带宽满足业务高峰期需要 
+                                    应保证接入网络和核心网络的带宽满足业务高峰期需要
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
                                     应绘制与当前运行情况相符的网络拓扑结构图
@@ -494,7 +494,7 @@
                             </row>
                         </i-col>
                         <i-col span="24" class="visit-tr">
-                            <i-col span="24"> 
+                            <i-col span="24">
                                 <checkbox v-model="technology.tech_2_12803640cfd61acd1ecb018d66a483df"></checkbox>
                             </i-col>
                         </i-col>
@@ -904,7 +904,7 @@ export default {
         })
         .then(response => {
             if(response.data.status) {
-                this.$Message.info('添加成功')
+                this.$Message.info(response.data.desc)
                 window.location.href = '/#/protectaionList'
             } else {
                 this.$Message.error(response.data.desc)

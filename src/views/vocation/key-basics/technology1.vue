@@ -3,7 +3,7 @@
 </style>
 <template>
     <div class="self-assessment">
-        <div class="service-header"> 
+        <div class="service-header">
             <span>{{system_name}}</span>
             系统的业务信息安全保护等级为<span>{{business_level}}</span>级，系统服务安全保护等级为
             <span>{{system_level}}</span>级，安全保护等级为
@@ -229,12 +229,12 @@
                             </row>
                         </i-col>
                         <i-col span="24" class="precaution-tr">
-                            <i-col span="24"> 
+                            <i-col span="24">
                                 <checkbox v-model="technology.tech_1_0a19d0c6a8dc1dae56b78719df6cb336"></checkbox>
                             </i-col>
                         </i-col>
                         <i-col span="24" class="precaution-tr-last">
-                            <i-col span="24"> 
+                            <i-col span="24">
                                 <checkbox v-model="technology.tech_1_431bc013ea26803d294612419ae7dd2d"></checkbox>
                             </i-col>
                         </i-col>
@@ -437,7 +437,7 @@ export default {
         })
         .then(response => {
             if(response.data.status) {
-                this.$Message.info('添加成功')
+                this.$Message.info(response.data.desc)
                 window.location.href = '/#/protectaionList'
             } else {
                 this.$Message.error(response.data.desc)

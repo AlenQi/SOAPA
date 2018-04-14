@@ -3,7 +3,7 @@
 </style>
 <template>
     <div class="self-assessment">
-        <div class="service-header"> 
+        <div class="service-header">
             <span>{{system_name}}</span>
             系统的业务信息安全保护等级为<span>{{business_level}}</span>级，系统服务安全保护等级为
             <span>{{system_level}}</span>级，安全保护等级为
@@ -67,13 +67,13 @@
                         <i-col span="24" class="network-visit">
                             <row>
                                 <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_2_1784702f03a7a2deb07cc38a4e6a7676"></checkbox> 
+                                    <checkbox v-model="management.manage_2_1784702f03a7a2deb07cc38a4e6a7676"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="physics-tr">
-                                    <checkbox v-model="management.manage_2_df1603f3d33ef73d15f0bb83eb80d3cd"></checkbox> 
+                                    <checkbox v-model="management.manage_2_df1603f3d33ef73d15f0bb83eb80d3cd"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr-last">
-                                    <checkbox v-model="management.manage_2_11501e98f8cd56d243e091120fd9f6eb"></checkbox> 
+                                    <checkbox v-model="management.manage_2_11501e98f8cd56d243e091120fd9f6eb"></checkbox>
                                 </i-col>
                             </row>
                         </i-col>
@@ -136,7 +136,7 @@
                         <i-col span="24" class="network-structure text-left">
                             <row>
                                 <i-col span="24" class="visit-tr text-left">
-                                    应根据各个部门和岗位的职责明确授权审批部门及批准人，对系统投入运行、网络系统接入和重要资源的访问等关键活动进行审批 
+                                    应根据各个部门和岗位的职责明确授权审批部门及批准人，对系统投入运行、网络系统接入和重要资源的访问等关键活动进行审批
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
                                     应针对关键活动建立审批流程，并由批准人签字确认
@@ -146,7 +146,7 @@
                         <i-col span="24" class="network-structure text-left">
                             <row>
                                 <i-col span="24" class="visit-tr text-left">
-                                    应加强各类管理人员之间、组织内部机构之间以及信息安全职能部门内部的合作与沟通 
+                                    应加强各类管理人员之间、组织内部机构之间以及信息安全职能部门内部的合作与沟通
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
                                     应加强与兄弟单位、公安机关、电信公司的合作与沟通
@@ -183,7 +183,7 @@
                         <i-col span="24" class="network-structure">
                             <row>
                                 <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_2_401cb301075be62e8c99c1b9ff18047b"></checkbox> 
+                                    <checkbox v-model="management.manage_2_401cb301075be62e8c99c1b9ff18047b"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr">
                                     <checkbox v-model="management.manage_2_c1dc10fb1f793f5c1c4d0ae72668eb31"></checkbox>
@@ -193,7 +193,7 @@
                         <i-col span="24" class="network-structure">
                             <row>
                                 <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_2_f0768c25af1e13d5af63f82b678171cc"></checkbox> 
+                                    <checkbox v-model="management.manage_2_f0768c25af1e13d5af63f82b678171cc"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr">
                                     <checkbox v-model="management.manage_2_21a1c824ac39a7b9d01d2180342e58e1"></checkbox>
@@ -450,13 +450,13 @@
                                 <i-col span="24" class="visit-tr text-left">
                                     应与选定的安全服务商签订与安全相关的协议，明确约定相关责任
                                 </i-col>
-                                
+
                                 <i-col span="24" class="visit-tr-last text-left">
                                     应确保选定的安全服务商提供技术支持和服务承诺，必要的与其签订服务合同
                                 </i-col>
                             </row>
                         </i-col>
-                    </row> 
+                    </row>
                 </i-col>
                 <i-col span="3">
                     <row>
@@ -580,7 +580,7 @@
                                 </i-col>
                             </row>
                         </i-col>
-                    </row> 
+                    </row>
                 </i-col>
             </row>
             <row>
@@ -759,7 +759,7 @@
                                     应报告所发现的安全弱点和可疑事件，但任何情况下用户均不应尝试验证弱点
                                 </i-col>
                                 <i-col span="24" class="visit-tr text-left">
-                                    应制定安全事件报告和处置管理制度，明确安全事件类型，规定安全事件的现场处理、事件报告和后期恢复的管理职责 
+                                    应制定安全事件报告和处置管理制度，明确安全事件类型，规定安全事件的现场处理、事件报告和后期恢复的管理职责
                                 </i-col>
                                  <i-col span="24" class="visit-tr text-left">
                                      应根据国家相关管理部门对计算机安全事件等级划分方法和安全事件对本系统产生的影响，对本系统计算机安全事件进行等级划分
@@ -934,7 +934,7 @@
                                     <checkbox v-model="management.manage_2_5fff530e4e66488a3954d0e78de763d0"></checkbox>
                                 </i-col>
                                 <i-col span="24" class="visit-tr">
-                                    <checkbox v-model="management.manage_2_eed84aedfb5f487ff568e3f2f3cfa3b0"></checkbox> 
+                                    <checkbox v-model="management.manage_2_eed84aedfb5f487ff568e3f2f3cfa3b0"></checkbox>
                                 </i-col>
                                  <i-col span="24" class="visit-tr">
                                      <checkbox v-model="management.manage_2_1a92576ece35e4ff790e03e7dd647238"></checkbox>
@@ -1113,7 +1113,7 @@ export default{
             })
             .then(response => {
                 if(response.data.status) {
-                    this.$Message.info('添加成功')
+                    this.$Message.info(response.data.desc)
                     window.location.href = '/#/protectaionList'
                 } else {
                     this.$Message.error(response.data.desc)
