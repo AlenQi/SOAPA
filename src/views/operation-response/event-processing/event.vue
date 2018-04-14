@@ -44,7 +44,7 @@
       <el-table-column label="处理方案文件">
         <template slot-scope="scope">
           <p v-for="file in scope.row.solution_files" :key="file.id">
-            <a :href="file.file_url">{{ file.file_name }}</a>
+            <a target="_blank" :href="file.file_url">{{ file.file_name }}</a>
           </p>
         </template>
       </el-table-column>
