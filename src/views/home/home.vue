@@ -5,6 +5,11 @@
     <Upload :action="actionUrl">
       <Button><Icon type="share" class="icon"></Icon>Excel导入</Button>
     </Upload>
+    <div class="search">
+      <Input v-model="searchMsg">
+      <Button slot="append" icon="ios-search" @click="queryInitList"></Button>
+      </Input>
+    </div>
   </div>
   <Modal v-model="modal" :title="title">
     <i-form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="120">
@@ -69,11 +74,18 @@
       <Page :total="total" :page-size="pageSize" :current="1" @on-change="changePage"></Page>
     </div>
   </div>
+  <Modal v-model="emergencyInfoShow" title="告警信息" @on-ok="emergencyInfoShow = false">
+    <p>Content of dialog</p>
+    <p>Content of dialog</p>
+    <p>Content of dialog</p>
+  </Modal>
 </div>
 </template>
 
 <script>
-import { AssetsIP } from 'conf/url.conf'
+import {
+  AssetsIP
+} from 'conf/url.conf'
 import SourceHomeResource from '@/resources/SourceHomeResource'
 
 export default {
@@ -81,12 +93,13 @@ export default {
   components: {},
   data() {
     return {
+      emergencyInfoShow: false,
+      searchMsg: '',
       actionUrl: `${AssetsIP}/asset/api/v1.0/assets/file`,
       // value: '',
       modal: false,
       title: '增加资产信息',
-      tableHeader: [
-        {
+      tableHeader: [{
           title: '资产编号',
           key: 'serial_no',
           width: 100,
@@ -152,7 +165,29 @@ export default {
         {
           title: '告警信息',
           key: 'alarm_count',
-          width: 100
+          width: 100,
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h(
+                'el-button', {
+                  props: {
+                    size: 'small',
+                    type: 'primary'
+                  },
+                  style: {
+                    marginRight: '5px'
+                  },
+                  on: {
+                    click: () => {
+                      this.queryEmergencyInfo(params)
+                    }
+                  }
+                },
+                params.row.alarm_count
+              )
+            ])
+          }
         },
         {
           title: '备注',
@@ -168,8 +203,7 @@ export default {
           render: (h, params) => {
             return h('div', [
               h(
-                'el-button',
-                {
+                'el-button', {
                   props: {
                     size: 'small',
                     type: 'primary'
@@ -186,8 +220,7 @@ export default {
                 '修改'
               ),
               h(
-                'Poptip',
-                {
+                'Poptip', {
                   props: {
                     confirm: true,
                     title: '您确定要删除这条数据吗?',
@@ -200,11 +233,9 @@ export default {
                       vm.deletelist(params)
                     }
                   }
-                },
-                [
+                }, [
                   h(
-                    'el-button',
-                    {
+                    'el-button', {
                       style: {
                         marginRight: '5px'
                       },
@@ -240,99 +271,73 @@ export default {
         describe: ''
       },
       ruleValidate: {
-        serial_no: [
-          {
-            required: true,
-            message: '请输入8位数的资产编号',
-            trigger: 'blur'
-          }
-        ],
-        name: [
-          {
-            required: true,
-            message: '请输入资产名称',
-            trigger: 'blur'
-          }
-        ],
-        location: [
-          {
-            required: true,
-            message: '请输入资产放置地点',
-            trigger: 'blur'
-          }
-        ],
-        owner: [
-          {
-            required: true,
-            message: '请输入资产负责人',
-            trigger: 'blur'
-          }
-        ],
-        owner_contact: [
-          {
-            required: true,
-            message: '请输入资产负责人的联系方式',
-            trigger: 'blur'
-          }
-        ],
-        asset_type_name: [
-          {
-            required: true,
-            // type: 'date',
-            message: '请选择资产类型',
-            trigger: 'change'
-          }
-        ],
-        app_type: [
-          {
-            required: true,
-            message: '请选择输入应用系统类型',
-            trigger: 'change'
-          }
-        ],
-        ip: [
-          {
-            required: true,
-            // type: 'date',
-            message: '请输入IP地址',
-            trigger: 'blur'
-          }
-        ],
-        port: [
-          {
-            required: true,
-            message: '请输入资产对外开放端口',
-            trigger: 'blur'
-          }
-        ],
-        network: [
-          {
-            required: true,
-            message: '请填写资产所在网络名称',
-            trigger: 'blur'
-          }
-        ],
-        Marker: [
-          {
-            required: true,
-            message: '请填写资产生产厂商',
-            trigger: 'blur'
-          }
-        ],
-        asset_agent_type_name: [
-          {
-            required: true,
-            message: '请选择',
-            trigger: 'change'
-          }
-        ],
-        describe: [
-          {
-            required: true,
-            message: '备注',
-            trigger: 'blur'
-          }
-        ]
+        serial_no: [{
+          required: true,
+          message: '请输入8位数的资产编号',
+          trigger: 'blur'
+        }],
+        name: [{
+          required: true,
+          message: '请输入资产名称',
+          trigger: 'blur'
+        }],
+        location: [{
+          required: true,
+          message: '请输入资产放置地点',
+          trigger: 'blur'
+        }],
+        owner: [{
+          required: true,
+          message: '请输入资产负责人',
+          trigger: 'blur'
+        }],
+        owner_contact: [{
+          required: true,
+          message: '请输入资产负责人的联系方式',
+          trigger: 'blur'
+        }],
+        asset_type_name: [{
+          required: true,
+          // type: 'date',
+          message: '请选择资产类型',
+          trigger: 'change'
+        }],
+        app_type: [{
+          required: true,
+          message: '请选择输入应用系统类型',
+          trigger: 'change'
+        }],
+        ip: [{
+          required: true,
+          // type: 'date',
+          message: '请输入IP地址',
+          trigger: 'blur'
+        }],
+        port: [{
+          required: true,
+          message: '请输入资产对外开放端口',
+          trigger: 'blur'
+        }],
+        network: [{
+          required: true,
+          message: '请填写资产所在网络名称',
+          trigger: 'blur'
+        }],
+        Marker: [{
+          required: true,
+          message: '请填写资产生产厂商',
+          trigger: 'blur'
+        }],
+        asset_agent_type_name: [{
+          required: true,
+          message: '请选择',
+          trigger: 'change'
+        }],
+        describe: [{
+          required: true,
+          message: '备注',
+          trigger: 'blur'
+        }]
       },
       total: 0,
       pageSize: 10,
@@ -348,11 +353,14 @@ export default {
     this.queryInitList()
   },
   methods: {
+    queryEmergencyInfo() {
+      this.emergencyInfoShow = true
+    },
     queryInitList() {
       const params = {
         page: this.pageNum,
         per_page: this.pageSize,
-        search_msg: ''
+        search_msg: this.searchMsg
       }
       SourceHomeResource.queryAssetList(params).then(response => {
         if (response.data.status) {
@@ -370,7 +378,7 @@ export default {
     },
     deletelist(params) {
       const urlParams = params.row.id
-      console.log('urlParams', urlParams);
+      console.log('urlParams', urlParams)
       SourceHomeResource.delAssetInfo(urlParams).then(response => {
         if (response.data.status) {
           this.$Message.success('删除成功!')
@@ -429,7 +437,7 @@ export default {
 @import '../../styles/common.less';
 
 .add-btn {
-  margin-right: 5px;
-  float: left;
+    margin-right: 5px;
+    float: left;
 }
 </style>

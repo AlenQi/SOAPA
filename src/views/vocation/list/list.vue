@@ -2,6 +2,11 @@
 <div class="home-main">
   <div>
     <Button @click="addProperty"><Icon type="plus-round" class="icon"></Icon>添加</Button>
+    <div class="search">
+      <Input v-model="searchMsg">
+        <Button slot="append" icon="ios-search" @click="queryAboutList"></Button>
+      </Input>
+    </div>
   </div>
   <div style="margin-top:10px">
     <el-table :data="inspect_systems" border style="width: 100%">
@@ -74,7 +79,8 @@ export default {
       total: 0,
       pageNum: 1,
       currentPage1: 1,
-      inspect_systems: []
+      inspect_systems: [],
+      searchMsg: ''
     }
   },
   computed: {
@@ -98,7 +104,7 @@ export default {
       const params = {
         page: this.pageNum,
         per_page: this.pageSize,
-        search_msg: ''
+        search_msg: this.searchMsg
       }
       axios({
         method: 'get',
