@@ -8,6 +8,12 @@ export default {
         ...params
       }
     }),
+  queryRuleList: params =>
+    SourceOperationResource.get('/log_an/api/v1.0/ops/rule/types', {
+      params: {
+        ...params
+      }
+    }),
   queryExpertList: params =>
     SourceOperationResource.get('/ops/api/v1.0/experts', {
       params: {

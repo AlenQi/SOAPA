@@ -102,6 +102,11 @@
       </row>
     </div>
   </div>
+  <Modal class="level" v-model="levelMeasurementShow" title="等级评测" @on-ok="levelMeasurementShow = false">
+    <p>业务信息安全保护等级为{{ level.business_level }}级</p>
+    <p>系统服务安全保护等级为{{ level.system_level }}级</p>
+    <p>安全保护等级为{{ level.security_level }}级</p>
+  </Modal>
 </div>
 </template>
 <script>
@@ -109,6 +114,12 @@ import axios from 'axios'
 export default {
   data() {
     return {
+      level: {
+        business_level: 0,
+        system_level: 0,
+        security_level: 0
+      },
+      levelMeasurementShow: false,
       business_assess_show: {
         citizen: '一般损害',
         social: '一般损害',
@@ -288,8 +299,9 @@ export default {
         }
       }).then(response => {
         if (response.data.status) {
-          this.$Message.info('保存成功')
-          window.location.href = '/#/protectaionList'
+          this.levelMeasurementShow = true
+          this.level = response.data.level
+          // window.location.href = '/#/protectaionList'
         } else {
           this.$Message.error(response.data.desc)
         }

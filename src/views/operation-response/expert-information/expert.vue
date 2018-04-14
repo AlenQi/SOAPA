@@ -63,6 +63,13 @@
           </span>
         </template>
       </el-table-column>
+      <el-table-column label="擅长安全领域" width="180">
+        <template slot-scope="scope">
+          <span v-for="rule in scope.row.rules" :key="rule.id">
+            {{ rule.rule_name }}/
+          </span>
+        </template>
+      </el-table-column>
       <el-table-column label="联系电话" width="180" prop="phone"></el-table-column>
       <el-table-column label="联系邮箱" prop="phone"></el-table-column>
       <el-table-column label="操作" width="250">
@@ -90,9 +97,18 @@
         <form-item label="擅长安全领域">
           <template>
             <Select v-model="expertInfo.expert_field_ids" multiple>
-                <OptionGroup v-for="fields in fieldData" :key="fields.id" :value="fields.id" :label="fields.type_name">
-                  <Option v-for="item in fields.fields" :value="item.id" :key="item.id">{{ item.field_name }}</Option>
-                </OptionGroup>
+              <OptionGroup v-for="fields in fieldData" :key="fields.id" :value="fields.id" :label="fields.type_name">
+                <Option v-for="item in fields.fields" :value="item.id" :key="item.id">{{ item.field_name }}</Option>
+              </OptionGroup>
+            </Select>
+          </template>
+        </form-item>
+        <form-item label="规则类型">
+          <template>
+            <Select v-model="expertInfo.expert_rule_ids" multiple>
+              <OptionGroup v-for="rules in rulesData" :key="rules.id" :value="rules.id" :label="rules.describe">
+                <Option v-for="item in rules.rules" :value="item.rule_id" :key="item.rule_id">{{ item.describe }}</Option>
+              </OptionGroup>
             </Select>
           </template>
         </form-item>
@@ -129,6 +145,7 @@ export default {
         email: ''
       },
       fieldData: [],
+      rulesData: [],
       flag: true,
       searchExpert: {
         name: '',
@@ -141,6 +158,7 @@ export default {
   },
   created() {
     this.querySecurityField()
+    this.queryRuleList()
   },
   mounted() {
     if (this.$route.query.rule_id) {
@@ -151,6 +169,16 @@ export default {
     console.log('12',this.$route.query.rule_id)
   },
   methods: {
+    queryRuleList() {
+      SourceOperationResource.queryRuleList().then(response => {
+        if (response.data.status) {
+          const res = response.data
+          this.rulesData = res.log_rule_types
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
     querySecurityField() {
       SourceOperationResource.querySecurityField().then(response => {
         if (response.data.status) {
@@ -196,6 +224,10 @@ export default {
       this.expertInfo.name = row.name
       this.expertInfo.resume = row.resume
       this.expertInfo.expert_field_ids = []
+      row.fields.forEach(item => {
+        this.expertInfo.expert_field_ids.push(item.id)
+      })
+      this.expertInfo.expert_rule_ids = []
       row.fields.forEach(item => {
         this.expertInfo.expert_field_ids.push(item.id)
       })
