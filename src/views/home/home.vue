@@ -74,32 +74,61 @@
       <Page :total="total" :page-size="pageSize" :current="1" @on-change="changePage"></Page>
     </div>
   </div>
-  <Modal v-model="emergencyInfoShow" title="告警信息" @on-ok="emergencyInfoShow = false">
-    <p>Content of dialog</p>
-    <p>Content of dialog</p>
-    <p>Content of dialog</p>
+  <Modal width="800" v-model="emergencyInfoShow" title="告警信息关联日志" @on-ok="emergencyInfoShow = false">
+    <i-table class="table_blog" border :columns="regulations" :data="dataRegulation"></i-table>
   </Modal>
 </div>
 </template>
 
 <script>
-import {
-  AssetsIP
-} from 'conf/url.conf'
+import { AssetsIP } from 'conf/url.conf'
 import SourceHomeResource from '@/resources/SourceHomeResource'
+import SourceBlogsResource from '@/resources/SourceBlogsResource'
 
 export default {
   name: 'home',
   components: {},
   data() {
     return {
+      dataRegulation: [],
+      regulations: [
+        {
+          title: 'ID',
+          key: 'log_id'
+        },
+        {
+          title: '时间',
+          key: 'attack_time'
+        },
+        {
+          title: '名称',
+          key: 'describe'
+        },
+        {
+          title: '等级',
+          key: 'level'
+        },
+        {
+          title: 'IP/主机名',
+          key: 'dstip'
+        },
+        {
+          title: '应用系统',
+          key: 'host'
+        },
+        {
+          title: '处理情况',
+          key: 'dealing'
+        }
+      ],
       emergencyInfoShow: false,
       searchMsg: '',
       actionUrl: `${AssetsIP}/asset/api/v1.0/assets/file`,
       // value: '',
       modal: false,
       title: '增加资产信息',
-      tableHeader: [{
+      tableHeader: [
+        {
           title: '资产编号',
           key: 'serial_no',
           width: 100,
@@ -170,7 +199,8 @@ export default {
           render: (h, params) => {
             return h('div', [
               h(
-                'el-button', {
+                'el-button',
+                {
                   props: {
                     size: 'small',
                     type: 'primary'
@@ -180,7 +210,7 @@ export default {
                   },
                   on: {
                     click: () => {
-                      this.queryEmergencyInfo(params)
+                      this.queryEmergencyInfo(params.row)
                     }
                   }
                 },
@@ -203,7 +233,8 @@ export default {
           render: (h, params) => {
             return h('div', [
               h(
-                'el-button', {
+                'el-button',
+                {
                   props: {
                     size: 'small',
                     type: 'primary'
@@ -220,7 +251,8 @@ export default {
                 '修改'
               ),
               h(
-                'Poptip', {
+                'Poptip',
+                {
                   props: {
                     confirm: true,
                     title: '您确定要删除这条数据吗?',
@@ -233,9 +265,11 @@ export default {
                       vm.deletelist(params)
                     }
                   }
-                }, [
+                },
+                [
                   h(
-                    'el-button', {
+                    'el-button',
+                    {
                       style: {
                         marginRight: '5px'
                       },
@@ -271,73 +305,99 @@ export default {
         describe: ''
       },
       ruleValidate: {
-        serial_no: [{
-          required: true,
-          message: '请输入8位数的资产编号',
-          trigger: 'blur'
-        }],
-        name: [{
-          required: true,
-          message: '请输入资产名称',
-          trigger: 'blur'
-        }],
-        location: [{
-          required: true,
-          message: '请输入资产放置地点',
-          trigger: 'blur'
-        }],
-        owner: [{
-          required: true,
-          message: '请输入资产负责人',
-          trigger: 'blur'
-        }],
-        owner_contact: [{
-          required: true,
-          message: '请输入资产负责人的联系方式',
-          trigger: 'blur'
-        }],
-        asset_type_name: [{
-          required: true,
-          // type: 'date',
-          message: '请选择资产类型',
-          trigger: 'change'
-        }],
-        app_type: [{
-          required: true,
-          message: '请选择输入应用系统类型',
-          trigger: 'change'
-        }],
-        ip: [{
-          required: true,
-          // type: 'date',
-          message: '请输入IP地址',
-          trigger: 'blur'
-        }],
-        port: [{
-          required: true,
-          message: '请输入资产对外开放端口',
-          trigger: 'blur'
-        }],
-        network: [{
-          required: true,
-          message: '请填写资产所在网络名称',
-          trigger: 'blur'
-        }],
-        Marker: [{
-          required: true,
-          message: '请填写资产生产厂商',
-          trigger: 'blur'
-        }],
-        asset_agent_type_name: [{
-          required: true,
-          message: '请选择',
-          trigger: 'change'
-        }],
-        describe: [{
-          required: true,
-          message: '备注',
-          trigger: 'blur'
-        }]
+        serial_no: [
+          {
+            required: true,
+            message: '请输入8位数的资产编号',
+            trigger: 'blur'
+          }
+        ],
+        name: [
+          {
+            required: true,
+            message: '请输入资产名称',
+            trigger: 'blur'
+          }
+        ],
+        location: [
+          {
+            required: true,
+            message: '请输入资产放置地点',
+            trigger: 'blur'
+          }
+        ],
+        owner: [
+          {
+            required: true,
+            message: '请输入资产负责人',
+            trigger: 'blur'
+          }
+        ],
+        owner_contact: [
+          {
+            required: true,
+            message: '请输入资产负责人的联系方式',
+            trigger: 'blur'
+          }
+        ],
+        asset_type_name: [
+          {
+            required: true,
+            // type: 'date',
+            message: '请选择资产类型',
+            trigger: 'change'
+          }
+        ],
+        app_type: [
+          {
+            required: true,
+            message: '请选择输入应用系统类型',
+            trigger: 'change'
+          }
+        ],
+        ip: [
+          {
+            required: true,
+            // type: 'date',
+            message: '请输入IP地址',
+            trigger: 'blur'
+          }
+        ],
+        port: [
+          {
+            required: true,
+            message: '请输入资产对外开放端口',
+            trigger: 'blur'
+          }
+        ],
+        network: [
+          {
+            required: true,
+            message: '请填写资产所在网络名称',
+            trigger: 'blur'
+          }
+        ],
+        Marker: [
+          {
+            required: true,
+            message: '请填写资产生产厂商',
+            trigger: 'blur'
+          }
+        ],
+        asset_agent_type_name: [
+          {
+            required: true,
+            message: '请选择',
+            trigger: 'change'
+          }
+        ],
+        describe: [
+          {
+            required: true,
+            message: '备注',
+            trigger: 'blur'
+          }
+        ]
       },
       total: 0,
       pageSize: 10,
@@ -353,8 +413,34 @@ export default {
     this.queryInitList()
   },
   methods: {
-    queryEmergencyInfo() {
+    queryEmergencyInfo(row) {
       this.emergencyInfoShow = true
+      const params = {
+        data: {
+          dstip: row.ip,
+          dstport: row.port
+        }
+      }
+      SourceBlogsResource.searchBlogInfo(params, '?page=1&per_page=100').then(response => {
+        if (response.data.status) {
+          const logs = response.data.logs
+          let logsList = []
+          logs.forEach((v, i) => {
+            logsList.push({
+              log_id: v.log_id,
+              host: v.host,
+              describe: v.describe,
+              attack_time: v.attack_time,
+              level: v.level,
+              dstip: v.dstip,
+              dealing: v.dealing
+            })
+          })
+          this.dataRegulation = logsList
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
     },
     queryInitList() {
       const params = {
@@ -437,7 +523,7 @@ export default {
 @import '../../styles/common.less';
 
 .add-btn {
-    margin-right: 5px;
-    float: left;
+  margin-right: 5px;
+  float: left;
 }
 </style>

@@ -391,6 +391,7 @@ export default {
           logs.forEach((v, i) => {
             logsList.push({
               log_id: v.log_id,
+              host: v.host,
               rule_id: v.rule_id,
               describe: v.describe,
               attack_time: v.attack_time,

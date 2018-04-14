@@ -10,13 +10,6 @@
         <i-col span="16">
           <row>
             <i-col span="24" class="destroy-level-name">对相应客体的侵害程度</i-col>
-            <i-col span="24" class="destroy-level">
-              <row>
-                <i-col span="8" class="br">一般损害</i-col>
-                <i-col span="8" class="br">严重损害</i-col>
-                <i-col span="8">特别严重损害</i-col>
-              </row>
-            </i-col>
           </row>
         </i-col>
       </row>
@@ -65,13 +58,6 @@
         <i-col span="16">
           <row>
             <i-col span="24" class="destroy-level-name">对相应客体的侵害程度</i-col>
-            <i-col span="24" class="destroy-level">
-              <row>
-                <i-col span="8" class="br">一般损害</i-col>
-                <i-col span="8" class="br">严重损害</i-col>
-                <i-col span="8">特别严重损害</i-col>
-              </row>
-            </i-col>
           </row>
         </i-col>
       </row>
