@@ -494,9 +494,9 @@
     </i-col>
   </row>
   <row class="operation-when system">
-    <i-col span="4" class="system-name br">10 何时投入运行</i-col>
+    <i-col span="4" class="system-name br">10 何时投入运行 </i-col>
     <i-col span="20" class="system-name-test">
-      <date-picker format="yyyy年MM月dd日" type="date" placeholder="请选择日期" style="width: 200px" @on-change="changeDate"></date-picker>
+      <date-picker format="yyyy年MM月dd日" type="date" placeholder="请选择日期" style="width: 200px" :value="suchAsPaul.date" @on-change="changeDate"></date-picker>
     </i-col>
   </row>
   <row class="subsystem-if system">

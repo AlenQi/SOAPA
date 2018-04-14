@@ -63,10 +63,12 @@
           </span>
         </template>
       </el-table-column>
-      <el-table-column label="擅长安全领域" width="180">
+      <el-table-column label="对应规则" width="180">
         <template slot-scope="scope">
-          <span v-for="rule in scope.row.rules" :key="rule.id">
-            {{ rule.rule_name }}/
+          <span v-for="rule in scope.row.rules" :key="rule.rule_id">
+            <Tooltip :content="rule.describe" placement="top">
+              {{ rule.rule_id }}/
+            </Tooltip>
           </span>
         </template>
       </el-table-column>
@@ -106,8 +108,8 @@
         <form-item label="规则类型">
           <template>
             <Select v-model="expertInfo.expert_rule_ids" multiple>
-              <OptionGroup v-for="rules in rulesData" :key="rules.id" :value="rules.id" :label="rules.describe">
-                <Option v-for="item in rules.rules" :value="item.rule_id" :key="item.rule_id">{{ item.describe }}</Option>
+              <OptionGroup v-for="rules in rulesData" :key="rules.id" :value="rules.id" :label="`${rules.id}/${rules.describe}`">
+                <Option v-for="item in rules.rules" :value="item.rule_id" :key="item.rule_id">{{ item.rule_id }}/{{ item.describe }}</Option>
               </OptionGroup>
             </Select>
           </template>
@@ -166,7 +168,6 @@ export default {
     } else {
       this.queryExpertList()
     }
-    console.log('12',this.$route.query.rule_id)
   },
   methods: {
     queryRuleList() {
@@ -228,8 +229,8 @@ export default {
         this.expertInfo.expert_field_ids.push(item.id)
       })
       this.expertInfo.expert_rule_ids = []
-      row.fields.forEach(item => {
-        this.expertInfo.expert_field_ids.push(item.id)
+      row.rules.forEach(item => {
+        this.expertInfo.expert_rule_ids.push(item.rule_id)
       })
       this.expertInfo.phone = row.phone
       this.expertInfo.email = row.email
@@ -288,6 +289,6 @@ export default {
 <style lang="less" scoped="scoped">
 @import '../../../styles/search.less';
 .table {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 </style>
