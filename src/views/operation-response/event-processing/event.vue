@@ -55,17 +55,22 @@
           </Tooltip>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="250">
+      <el-table-column align="center" label="操作" width="150">
         <template slot-scope="scope">
-          <el-button type="primary" size="small" @click="editEvent(scope.$index, scope.row)">修改</el-button>
-          <el-popover ref="expertPopover" placement="top" width="160" v-model="scope.row.deleteVisible">
-            <p>您确定删除当前处理方案么？</p>
-            <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="scope.row.deleteVisible = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="deleteEvent(scope.$index, scope.row.id)">确定</el-button>
-            </div>
-          </el-popover>
-          <el-button type="primary" size="small" v-popover:expertPopover>删除</el-button>
+          <div class="margin-top-5">
+            <el-button type="primary" size="small" @click="editEvent(scope.$index, scope.row)">修改</el-button>
+            <el-popover ref="expertPopover" placement="top" width="160" v-model="scope.row.deleteVisible">
+              <p>您确定删除当前处理方案么？</p>
+              <div style="text-align: right; margin: 0">
+                <el-button size="mini" type="text" @click="scope.row.deleteVisible = false">取消</el-button>
+                <el-button type="primary" size="mini" @click="deleteEvent(scope.$index, scope.row.id)">确定</el-button>
+              </div>
+            </el-popover>
+            <el-button type="primary" size="small" v-popover:expertPopover>删除</el-button>
+          </div>
+          <Upload class="upload" multiple :action="uploadUrl + scope.row.id">
+            <Button type="ghost" icon="ios-cloud-upload-outline">上传文件</Button>
+          </Upload>
         </template>
       </el-table-column>
     </el-table>
@@ -124,6 +129,11 @@ export default {
       this.queryLoginExpertList(this.$route.query.rule_id)
     } else {
       this.queryEventList()
+    }
+  },
+  computed: {
+    uploadUrl() {
+      return `${this.$store.state.userCode.url}/ops/api/v1.0/solution/files/`
     }
   },
   methods: {
@@ -214,9 +224,13 @@ export default {
 }
 </script>
 
-<style lang="less" scoped="scoped">
+<style lang="less" scoped>
 @import '../../../styles/search.less';
 .table {
-  margin-top: 10px;
+    margin-top: 10px;
+}
+
+.upload {
+  margin-top: 5px;
 }
 </style>

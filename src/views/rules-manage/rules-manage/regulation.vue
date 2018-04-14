@@ -1,19 +1,26 @@
 <template>
 <div>
-  <row class="search">
+  <row>
     <i-col span="24">
-      类型：
-      <i-input type="text" v-model="type_name" style="width:100px;"></i-input>
-      描述：
-      <i-input type="text" v-model="describe" style="width:100px;"></i-input>
-      <i-button @click="addRules">新增</i-button>
+      <div class="">
+        类型：
+        <i-input type="text" v-model="type_name" style="width:220px;"></i-input>
+        备注：
+        <i-input type="text" v-model="describe" style="width:220px;"></i-input>
+        <i-button @click="addRules">新增</i-button>
+      </div>
+      <div class="search">
+        <Input v-model="searchMsg">
+        <Button slot="append" icon="ios-search" @click="queryRulesList"></Button>
+        </Input>
+      </div>
     </i-col>
   </row>
   <el-table :data="dataRegulation" border style="width: 100%">
     <el-table-column label="ID" prop="id"></el-table-column>
     <el-table-column label="类型" width="" prop="type_name"></el-table-column>
-    <!-- 业务描述 -->
-    <el-table-column label="描述" width="" prop="describe"></el-table-column>
+    <!-- 业务备注 -->
+    <el-table-column label="备注" width="" prop="describe"></el-table-column>
     <el-table-column label="操作">
       <template slot-scope="scope" class="clearfix">
         <Upload class="upload-demo down_btn" :action="rule_file_info" list-type="text">
@@ -32,6 +39,9 @@
       </template>
     </el-table-column>
   </el-table>
+  <div style="margin: 10px;overflow: hidden;float: right;">
+    <Page :total="total" :page-size="pageSize" :current="1" @on-change="changePage"></Page>
+  </div>
   <modal v-model="modalDetail" title="详情">
     <i-table border :columns="modalDetails " :data="modalData"></i-table>
     <div slot="footer"></div>
@@ -45,6 +55,7 @@ import SourceRuleManageResource from '@/resources/SourceRuleManageResource'
 export default {
   data() {
     return {
+      searchMsg: '',
       type_name: '',
       describe: '',
       modalDetail: false,
@@ -63,12 +74,15 @@ export default {
           key: 'level'
         },
         {
-          title: '描述',
+          title: '备注',
           key: 'describe'
         }
       ],
       modalData: [],
-      rule_file_info: ''
+      rule_file_info: '',
+      total: 0,
+      pageSize: 10,
+      pageNum: 1
     }
   },
   created() {
@@ -80,6 +94,10 @@ export default {
     }
   },
   methods: {
+    changePage(num) {
+      this.pageNum = num
+      this.queryRulesList()
+    },
     delRule(id) {
       SourceRuleManageResource.delRule(id).then(response => {
         if (response.data.status) {
@@ -132,10 +150,16 @@ export default {
       })
     },
     queryRulesList() {
-      SourceRuleManageResource.queryRuleList().then(response => {
+      const params = {
+        page: this.pageNum,
+        per_page: this.pageSize,
+        search_msg: this.searchMsg
+      }
+      SourceRuleManageResource.queryRuleList(params).then(response => {
         if (response.data.status) {
           const res = response.data
           const logs = res.rule_type_list
+          this.total = res.total
           this.dataRegulation = logs
         } else {
           this.$Message.error(response.data.desc)
@@ -150,6 +174,7 @@ export default {
 @import 'regulation.less';
 
 .search {
-  margin-bottom: 10px;
+  margin: 10px 0;
+  width: 300px;
 }
 </style>

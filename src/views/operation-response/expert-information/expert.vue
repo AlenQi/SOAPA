@@ -73,7 +73,7 @@
         </template>
       </el-table-column>
       <el-table-column label="联系电话" width="180" prop="phone"></el-table-column>
-      <el-table-column label="联系邮箱" prop="phone"></el-table-column>
+      <el-table-column label="联系邮箱" prop="email"></el-table-column>
       <el-table-column label="操作" width="250">
         <template slot-scope="scope">
           <el-button type="primary" size="small" @click="editExpert(scope.$index, scope.row)">修改</el-button>
