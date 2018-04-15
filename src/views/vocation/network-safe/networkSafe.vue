@@ -127,14 +127,14 @@ export default {
       },
       levelMeasurementShow: false,
       business_assess_show: {
-        citizen: '一般损害',
-        social: '一般损害',
-        country: '一般损害'
+        citizen: '无',
+        social: '无',
+        country: '无'
       },
       system_assess_show: {
-        citizen: '一般损害',
-        social: '一般损害',
-        country: '一般损害'
+        citizen: '无',
+        social: '无',
+        country: '无'
       },
       business_assess: {
         citizen_normal: false,
@@ -172,6 +172,30 @@ export default {
     }
   },
   methods: {
+    formatValueToFalse() {
+      this.business_assess = {
+        citizen_normal: false,
+        citizen_serious: false,
+        citizen_special: false,
+        social_normal: false,
+        social_serious: false,
+        social_special: false,
+        country_normal: false,
+        country_serious: false,
+        country_specail: false
+      }
+      this.system_assess = {
+        citizen_normal: false,
+        citizen_serious: false,
+        citizen_special: false,
+        social_normal: false,
+        social_serious: false,
+        social_special: false,
+        country_normal: false,
+        country_serious: false,
+        country_specail: false
+      }
+    },
     queryList() {
       const url = this.url + '/insp/api/v1.0/systems/assess/' + localStorage.inspId
       axios({
@@ -240,6 +264,18 @@ export default {
       })
     },
     submitAssess() {
+      if (
+        (this.business_assess_show.citizen === '无' &&
+          this.business_assess_show.social === '无' &&
+          this.business_assess_show.country === '无') ||
+        (this.system_assess_show.citizen === '无' &&
+          this.system_assess_show.social === '无' &&
+          this.system_assess_show.country === '无')
+      ) {
+        this.$Message.info('每张表至少有一项不为‘无’')
+        return
+      }
+      this.formatValueToFalse()
       if (this.business_assess_show.citizen === '一般损害') {
         this.business_assess.citizen_normal = true
       }
@@ -307,7 +343,6 @@ export default {
         if (response.data.status) {
           this.levelMeasurementShow = true
           this.level = response.data.level
-          // window.location.href = '/#/protectaionList'
         } else {
           this.$Message.error(response.data.desc)
         }
