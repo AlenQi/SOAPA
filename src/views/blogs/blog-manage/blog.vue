@@ -122,15 +122,42 @@
     <div slot="footer">
     </div>
   </modal>
+  <Modal width="1200" v-model="expertVisible" title="对应专家信息">
+    <el-table class="table" :data="expertList" border style="width: 100%">
+      <el-table-column label="专家姓名" width="150" prop="name"></el-table-column>
+      <el-table-column label="专家简介" prop="resume"></el-table-column>
+      <el-table-column label="擅长安全领域" width="180">
+        <template slot-scope="scope">
+          <span v-for="field in scope.row.fields" :key="field.id">
+            {{ field.field_name }}/
+          </span>
+        </template>
+      </el-table-column>
+      <el-table-column label="对应规则" width="180">
+        <template slot-scope="scope">
+          <span v-for="rule in scope.row.rules" :key="rule.rule_id">
+            <Tooltip :content="rule.describe" placement="top">
+              {{ rule.rule_id }}/
+            </Tooltip>
+          </span>
+        </template>
+      </el-table-column>
+      <el-table-column label="联系电话" width="180" prop="phone"></el-table-column>
+      <el-table-column label="联系邮箱" prop="email"></el-table-column>
+    </el-table>
+  </Modal>
 </div>
 </template>
 
 <script>
 import SourceBlogsResource from '@/resources/SourceBlogsResource'
+import SourceOperationResource from '@/resources/SourceOperationResource'
 
 export default {
   data() {
     return {
+      expertList: [],
+      expertVisible: false,
       status: [
         {
           value: 1,
@@ -255,11 +282,12 @@ export default {
                   },
                   on: {
                     click: () => {
-                      let query = { rule_id: params.row.rule_id }
-                      this.$router.push({
-                        name: 'erxpert-information',
-                        query: query
-                      })
+                      // let query = { rule_id: params.row.rule_id }
+                      // this.$router.push({
+                      //   name: 'erxpert-information',
+                      //   query: query
+                      // })
+                      this.queryLoginExpertList(3108)
                     }
                   }
                 },
@@ -317,6 +345,17 @@ export default {
     }
   },
   methods: {
+    queryLoginExpertList(id) {
+      this.expertVisible = true
+      SourceOperationResource.queryLoginExpertList(id).then(response => {
+        if (response.data.status) {
+          const res = response.data
+          this.expertList = res.log_experts
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
     getStartTime(date) {
       this.searchData.start_time = date
     },
