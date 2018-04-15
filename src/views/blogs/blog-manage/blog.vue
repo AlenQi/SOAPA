@@ -115,8 +115,12 @@
     <div class="modal_content clearfix">
       <label style="width:60px;">解决方案：</label>
       <i-input v-model="details.solution.solution_info" disabled type="textarea" :rows="4"></i-input>
-      <p v-for="file in details.solution.solution_files" :key="file.id">
-        {{ file.name }}/{{ file.url }}
+    </div>
+    <div class="modal_content clearfix">
+      <label>处理方案文件：</label>
+      <p v-for="(file, index) in details.solution.solution_files" :key="index">
+        文件{{ index + 1 }}: {{ file.file_name }}
+        下载地址: <a :href="file.file_url" target="_blank">{{ file.file_url }}</a>
       </p>
     </div>
     <div slot="footer">
@@ -287,7 +291,7 @@ export default {
                       //   name: 'erxpert-information',
                       //   query: query
                       // })
-                      this.queryLoginExpertList(3108)
+                      this.queryLoginExpertList(params.row.rule_id)
                     }
                   }
                 },
