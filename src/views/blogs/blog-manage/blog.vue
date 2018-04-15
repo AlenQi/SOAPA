@@ -119,8 +119,7 @@
     <div class="modal_content clearfix">
       <label>处理方案文件：</label>
       <p v-for="(file, index) in details.solution.solution_files" :key="index">
-        文件{{ index + 1 }}: {{ file.file_name }}
-        下载地址: <a :href="file.file_url" target="_blank">{{ file.file_url }}</a>
+        <a :href="file.file_url" target="_blank">{{ file.file_name }}</a>
       </p>
     </div>
     <div slot="footer">
@@ -351,6 +350,7 @@ export default {
   methods: {
     queryLoginExpertList(id) {
       this.expertVisible = true
+      this.expertList = []
       SourceOperationResource.queryLoginExpertList(id).then(response => {
         if (response.data.status) {
           const res = response.data

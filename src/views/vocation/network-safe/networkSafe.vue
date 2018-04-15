@@ -19,6 +19,7 @@
         </i-col>
         <i-col span="16" class="equity-item">
           <RadioGroup v-model="business_assess_show.citizen">
+            <Radio class="radio-item" label="无"></Radio>
             <Radio class="radio-item" label="一般损害"></Radio>
             <Radio class="radio-item" label="严重损害"></Radio>
             <Radio class="radio-item" label="特别严重损害"></Radio>
@@ -31,6 +32,7 @@
         </i-col>
         <i-col span="16" class="equity-item">
           <RadioGroup v-model="business_assess_show.social">
+            <Radio class="radio-item" label="无"></Radio>
             <Radio class="radio-item" label="一般损害"></Radio>
             <Radio class="radio-item" label="严重损害"></Radio>
             <Radio class="radio-item" label="特别严重损害"></Radio>
@@ -43,6 +45,7 @@
         </i-col>
         <i-col span="16" class="equity-item">
           <RadioGroup v-model="business_assess_show.country">
+            <Radio class="radio-item" label="无"></Radio>
             <Radio class="radio-item" label="一般损害"></Radio>
             <Radio class="radio-item" label="严重损害"></Radio>
             <Radio class="radio-item" label="特别严重损害"></Radio>
@@ -67,6 +70,7 @@
         </i-col>
         <i-col span="16" class="equity-item">
           <RadioGroup v-model="system_assess_show.citizen">
+            <Radio class="radio-item" label="无"></Radio>
             <Radio class="radio-item" label="一般损害"></Radio>
             <Radio class="radio-item" label="严重损害"></Radio>
             <Radio class="radio-item" label="特别严重损害"></Radio>
@@ -79,6 +83,7 @@
         </i-col>
         <i-col span="16" class="equity-item">
           <RadioGroup v-model="system_assess_show.social">
+            <Radio class="radio-item" label="无"></Radio>
             <Radio class="radio-item" label="一般损害"></Radio>
             <Radio class="radio-item" label="严重损害"></Radio>
             <Radio class="radio-item" label="特别严重损害"></Radio>
@@ -91,6 +96,7 @@
         </i-col>
         <i-col span="16" class="equity-item">
           <RadioGroup v-model="system_assess_show.country">
+            <Radio class="radio-item" label="无"></Radio>
             <Radio class="radio-item" label="一般损害"></Radio>
             <Radio class="radio-item" label="严重损害"></Radio>
             <Radio class="radio-item" label="特别严重损害"></Radio>
