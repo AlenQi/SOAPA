@@ -40,8 +40,7 @@ export const page500 = {
 export const locking = {
   path: '/locking',
   name: 'locking',
-  component: () =>
-    import('@/views/main-components/lockscreen/components/locking-page.vue')
+  component: () => import('@/views/main-components/lockscreen/components/locking-page.vue')
 }
 
 // 作为main组件的子页面展示但是不在左侧菜单显示的路由写在otherRouter里
@@ -77,8 +76,7 @@ export const otherRouter = {
       path: '/gradeProtectaion',
       title: '等保系统创建',
       name: 'gradeProtectaion',
-      component: () =>
-        import('@/views/vocation/grade-protectaion/gradeProtectaion.vue')
+      component: () => import('@/views/vocation/grade-protectaion/gradeProtectaion.vue')
     },
     {
       path: '/networkSafe',
@@ -171,10 +169,106 @@ export const appRouter = [
   //   ]
   // },
   {
+    path: '/vocation',
+    icon: 'clipboard',
+    name: 'lock-combination',
+    title: '基线检测',
+    access: 'sb_inspect',
+    component: main,
+    children: [
+      {
+        path: '/protectaionList',
+        title: '等保系统列表',
+        name: 'protectaionList',
+        access: 'sb_inspect',
+        component: () => import('@/views/vocation/list/list.vue')
+      }
+      // {
+      //   path: '/mainframe',
+      //   title: 'windows主机安全',
+      //   name: 'mainframe',
+      //   component: () => import('@/views/vocation/windows-mainframe/mainframe.vue')
+      // }
+    ]
+  },
+  {
+    path: '/blogs',
+    icon: 'clipboard',
+    name: 'blogs',
+    title: '威胁感知',
+    access: 'sb_log',
+    component: main,
+    children: [
+      {
+        path: 'index',
+        title: '威胁感知',
+        name: 'blog-manage',
+        component: () => import('@/views/blogs/blog-manage/blog.vue')
+      }
+    ]
+  },
+  {
+    path: '/rules-manage',
+    icon: 'settings',
+    name: 'rules-manage',
+    title: '规则管理',
+    access: 'sb_rule',
+    component: main,
+    children: [
+      {
+        path: 'index',
+        title: '规则管理',
+        name: 'regulation',
+        component: () => import('@/views/rules-manage/rules-manage/regulation.vue')
+      }
+    ]
+  },
+  {
+    path: '/operation-response',
+    icon: 'ios-grid-view',
+    name: 'operation-response',
+    title: '运维响应',
+    component: main,
+    children: [
+      {
+        path: 'erxpert-information',
+        title: '专家信息库',
+        name: 'erxpert-information',
+        icon: 'arrow-move',
+        access: 'sb_ops_expert',
+        component: () => import('@/views/operation-response/expert-information/expert.vue')
+      },
+      {
+        path: 'event-processing',
+        title: '事件处理信息库',
+        name: 'event-processing',
+        icon: 'edit',
+        access: 'sb_ops_solution',
+        component: () => import('@/views/operation-response/event-processing/event.vue')
+      },
+      {
+        path: 'agents-manage',
+        title: 'Agent管理',
+        name: 'agents-manage',
+        icon: 'gear-a',
+        access: 'sb_ops_agent',
+        component: () => import('@/views/operation-response/agents-manage/agents.vue')
+      },
+      {
+        path: 'system-conf',
+        title: '系统配置',
+        name: 'system-conf',
+        icon: 'ios-monitor',
+        access: 'sb_ops_conf',
+        component: () => import('@/views/operation-response/system-conf/conf.vue')
+      }
+    ]
+  },
+  {
     path: '/preserve',
     icon: 'person',
     name: 'preserve',
-    title: '系统管理',
+    title: '账户设置',
     access: 'sb_user',
     component: main,
     children: [
@@ -186,7 +280,7 @@ export const appRouter = [
       // },
       {
         path: '/user-perserve',
-        title: '用户权限',
+        title: '账户设置',
         name: 'user-preserve',
         component: () => import('@/views/preserve/user-preserve/user.vue')
       }
@@ -208,106 +302,6 @@ export const appRouter = [
       //     name: 'news-preserve',
       //     component: () => import('@/views/preserve/news-preserve/news.vue')
       // },
-    ]
-  },
-  {
-    path: '/vocation',
-    icon: 'clipboard',
-    name: 'lock-combination',
-    title: '合规检测',
-    access: 'sb_inspect',
-    component: main,
-    children: [
-      {
-        path: '/protectaionList',
-        title: '等保系统列表',
-        name: 'protectaionList',
-        component: () => import('@/views/vocation/list/list.vue')
-      }
-      // {
-      //     path: '/mainframe',
-      //     title: 'windows主机安全',
-      //     name: 'mainframe',
-      //     component: () => import('@/views/vocation/windows-mainframe/mainframe.vue')
-      // },
-    ]
-  },
-  {
-    path: '/blogs',
-    icon: 'clipboard',
-    name: 'blogs',
-    title: '日志管理',
-    access: 'sb_log',
-    component: main,
-    children: [
-      {
-        path: 'index',
-        title: '日志管理',
-        name: 'blog-manage',
-        component: () => import('@/views/blogs/blog-manage/blog.vue')
-      }
-    ]
-  },
-  {
-    path: '/rules-manage',
-    icon: 'settings',
-    name: 'rules-manage',
-    title: '规则管理',
-    access: 'sb_rule',
-    component: main,
-    children: [
-      {
-        path: 'index',
-        title: '规则管理',
-        name: 'regulation',
-        component: () =>
-          import('@/views/rules-manage/rules-manage/regulation.vue')
-      }
-    ]
-  },
-  {
-    path: '/operation-response',
-    icon: 'ios-grid-view',
-    name: 'operation-response',
-    title: '运维响应',
-    component: main,
-    children: [
-      {
-        path: 'erxpert-information',
-        title: '专家信息库',
-        name: 'erxpert-information',
-        icon: 'arrow-move',
-        access: 'sb_ops_expert',
-        component: () =>
-          import('@/views/operation-response/expert-information/expert.vue')
-      },
-      {
-        path: 'event-processing',
-        title: '事件处理信息库',
-        name: 'event-processing',
-        icon: 'edit',
-        access: 'sb_ops_solution',
-        component: () =>
-          import('@/views/operation-response/event-processing/event.vue')
-      },
-      {
-        path: 'agents-manage',
-        title: 'Agent管理',
-        name: 'agents-manage',
-        icon: 'gear-a',
-        access: 'sb_ops_agent',
-        component: () =>
-          import('@/views/operation-response/agents-manage/agents.vue')
-      },
-      {
-        path: 'system-conf',
-        title: '系统配置',
-        name: 'system-conf',
-        icon: 'ios-monitor',
-        access: 'sb_ops_conf',
-        component: () =>
-          import('@/views/operation-response/system-conf/conf.vue')
-      }
     ]
   }
   // {
@@ -366,12 +360,4 @@ export const appRouter = [
 ]
 
 // 所有上面定义的路由都要写在下面的routers里
-export const routers = [
-  loginRouter,
-  otherRouter,
-  locking,
-  ...appRouter,
-  page500,
-  page403,
-  page404
-]
+export const routers = [loginRouter, otherRouter, locking, ...appRouter, page500, page403, page404]
