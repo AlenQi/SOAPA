@@ -1,6 +1,6 @@
 <template>
 <div>
-  <i-button type="primary" @click="tableExport">下载</i-button>
+  <el-button v-loading="loading" class="btn-downpdf" type="primary" @click="tableExport">点击下载</el-button>
 
   <div id="renderPdf" class="self-assessment">
     <div>
@@ -158,6 +158,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       inspect_systems: [],
       level: 0,
       business_assess_show: {
@@ -200,11 +201,16 @@ export default {
     }
   },
   mounted() {
+    // const height = document.getElementById('test').scrollHeight
+    document.getElementById('single-page-con').style.height = '20000px'
     this.level = window.location.hash.split('=')[1]
     if (localStorage.inspId > 0) {
       this.queryList()
       this.queryLevelList()
     }
+  },
+  destroyed() {
+    document.getElementById('single-page-con').style.height = 'auto'
   },
   methods: {
     queryList() {
@@ -227,10 +233,11 @@ export default {
       })
     },
     tableExport(type) {
+      this.loading = true
+      this.$Message.info('正在生成PDF，请稍等。')
       html2canvas(document.getElementById('renderPdf'), {
-        height: 10000,
+        height: document.getElementById('renderPdf').offsetHeight,
         onrendered: function(canvas) {
-          document.getElementById('renderPdf').appendChild(canvas)
           var contentWidth = canvas.width
           var contentHeight = canvas.height
           var pageHeight = contentWidth / 592.28 * 841.89
@@ -255,6 +262,9 @@ export default {
           pdf.save('content.pdf')
         }
       })
+      setTimeout(() => {
+        this.loading = false
+      }, 10000)
     },
     formatValueToFalse() {
       this.business_assess = {
@@ -287,6 +297,7 @@ export default {
         url: url
       }).then(response => {
         if (response.data.status) {
+          this.loading = false
           const res = response.data
           if (res.business_assess.citizen_normal) {
             this.business_assess_show.citizen = '一般损害'
@@ -356,5 +367,8 @@ export default {
 @import 'keyBasics.less';
 * {
   overflow: visible;
+}
+.btn-downpdf {
+  margin-bottom: 20px;
 }
 </style>
