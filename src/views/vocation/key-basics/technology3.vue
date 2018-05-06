@@ -1,5 +1,5 @@
 <style lang="less">
-    @import 'keyBasics.less';
+@import 'keyBasics.less';
 </style>
 <template>
     <div class="self-assessment">
@@ -1220,204 +1220,204 @@
                 </i-col>
             </row>
         </div>
-        <div style="width: 100%;text-align: center;margin-top: 5px;">
+        <div v-if="!preview" style="width: 100%;text-align: center;margin-top: 5px;">
             <i-button type="primary" @click="submitAssess">提交</i-button>
         </div>
     </div>
 </template>
 <script>
 import axios from 'axios'
+
 export default {
-  data(){
-      return {
-          system_name: '',
-          business_level: '',
-          system_level: '',
-          security_level: '',
-          technology: {
-              tech_3_e5b57a55f70856c81a40c7b525cdded6:false,
-              tech_3_7dcd3ba2d92770cdba20d75df2bcbf5d:false,
-              tech_3_f651627d9cb8668b788f706d6b12261a:false,
-              tech_3_c0a693e717ad8db2f6ed592b0b9e40ff:false,
-              tech_3_5aa9876f4ea24e2a24b7d96f8e21f072:false,
-              tech_3_6d35ae7d9d07ce7faa68304494020ed8:false,
-              tech_3_b84d9b4c81d8329fe18be2b2f598e0e2:false,
-              tech_3_58b5521a03185d6599ea2993039e2ec2:false,
-              tech_3_b4bbfa71b377eb9cf0f71f42bf3df76b:false,
-              tech_3_51c7164a29ed74e48bdb3f6f037a8d43:false,
-              tech_3_505d1423446b0a2b88f3183dd3f84eeb:false,
-              tech_3_5f66286097ae0d7c1ae4517215a886ce:false,
-              tech_3_1e6ea84aff15e04530304c6c9a73d1b4:false,
-              tech_3_83fa74a1e7ed1f0db00c4700c6d59f3b:false,
-              tech_3_073853a7b1da359a4d43bd216e92861e:false,
-              tech_3_afcf135789ccd6a479706cdf2436d88b:false,
-              tech_3_1b51dc2d4ed3bbe71728c25d7f6d0f76:false,
-              tech_3_54fa492902e364a6f551c0e093ec7729:false,
-              tech_3_646a0c8b530e86fb0c537f6699235b0e:false,
-              tech_3_0882d21670d70557ef9c232e821ace4d:false,
-              tech_3_1c307f5f1915d547a7b71e985f91eb4c:false,
-              tech_3_efdb1ad253ca31c0970165319f6ee9f9:false,
-              tech_3_53eac9565188c5879453c491cbf92dde:false,
-              tech_3_8fc1d78fdcae8ff64757cdb234efd7ec:false,
-              tech_3_48f8e4aa7e35edba07c55aeaf4d229de:false,
-              tech_3_1caf718db55f75ddcede3e2783077008:false,
-              tech_3_b0ec67f86e688f88c33f17a5e0d87d60:false,
-              tech_3_41486591ac6545414b5c0403534cf98f:false,
-              tech_3_3dc981337dfcd8d4e20ec64d0026e5c4:false,
-              tech_3_729ada3391b3a61fef5f648a1fd3f91a:false,
-              tech_3_c5f4ac43417d67783b848281790712ad:false,
-              tech_3_19ce3ae25b3dadd910066c429bf2328e:false,
-              tech_3_0ab286f04a7c277bc572f46fdda61624:false,
-              tech_3_7ed7de822f3dbdfc439c0469086122e0:false,
-              tech_3_0b2e94a14886b2e2f246bc5557169e3f:false,
-              tech_3_1ad553f870d68087b2ca3f9ef2e5a7a8:false,
-              tech_3_e60d7bcd759c591e4b5daba040277cfe:false,
-              tech_3_0b0c45967439096c13eb3984ab080f08:false,
-              tech_3_ed0480999b5ab062393cf85ec653284c:false,
-              tech_3_7fc3befd6909ddb524b0bac0f79bd4a9:false,
-              tech_3_8d43756c40c7ef8506263e7d20e54138:false,
-              tech_3_9d4b2f83ed9091b91c13243de2862456:false,
-              tech_3_024559e738a2d273ffa0ce6418db1c4c:false,
-              tech_3_0cfe7f0258357519ef9101c41688f963:false,
-              tech_3_67c6dad22ece5fc258ba0ba263ac7348:false,
-              tech_3_22e40b9ed32d006b86f53730ba6ad0d4:false,
-              tech_3_6caa72249c287bb10ccf8fd1087f2761:false,
-              tech_3_e35b0a6add802f4d9ec781e0f1da1d04:false,
-              tech_3_c84029b29eeba53ac683f6827ec640a7:false,
-              tech_3_21ad3934a3978d92474f59d91e67e61d:false,
-              tech_3_779c3a9c539d63b10240ddfe5ae8afc8:false,
-              tech_3_02e22ef93ed2027c13cdcd2a4e56022f:false,
-              tech_3_9f08aa10be9f2752fb43e6fba87635c7:false,
-              tech_3_016b9d319fb231c13b4f6a04ec154ce9:false,
-              tech_3_23f84683475e6c3ffcd665e894d0471f:false,
-              tech_3_c2182b9a4318c0bcd5a8140b07b6daa8:false,
-              tech_3_87224ed46306cda7135226d668efaeef:false,
-              tech_3_8a29e81f6682e2ff4544fd845e5c5fc5:false,
-              tech_3_b7bacb714c295f8d5606acbbbe66d7b3:false,
-              tech_3_f51546c505fd011d35a7d971cd8ecc6a:false,
-              tech_3_59c8d49719b143604d2dcc7bf06ed03d:false,
-              tech_3_cbdf9f79e94b61844a7e8bb4e2036b7f:false,
-              tech_3_e0700418373bb6279d1bdc642c4c08c0:false,
-              tech_3_4cd45c449016cfeb62bca6909f9c3740:false,
-              tech_3_37243a4c0ffddca5e701abd4298addf5:false,
-              tech_3_3e830a8c146ed4e461ddc612f6878773:false,
-              tech_3_e8d0fee3e2a46b582ea400f0534f6112:false,
-              tech_3_48a9d9411b1fab9914530560f9bfe868:false,
-              tech_3_20a74ac007edf7779b84d446b5ef4910:false,
-              tech_3_b23df1a4fdde5ac9a1ffad076f3f12ae:false,
-              tech_3_49209471b0d321007c6801816fdbab09:false,
-              tech_3_a0cdb8142b5b65ef5ec79e62d0d5b171:false,
-              tech_3_b70559a65a607ae9c110a9b426889560:false,
-              tech_3_6a4e40e359ea8f75c8288d71184b8cd7:false,
-              tech_3_87b10f1d1f4e94477a0284d387d90508:false,
-              tech_3_375bef6f9b1824870d10fa126b7c0463:false,
-              tech_3_17aba70d2736236857f49ea87dd0a91a:false,
-              tech_3_b08e59e7db169b6496353f3e064240f3:false,
-              tech_3_708f8771cea17673b251daa09e2becf8:false,
-              tech_3_3b0d33942072c3e6af565c3640e0e006:false,
-              tech_3_6083ac262c3b067bd24877d0281665ad:false,
-              tech_3_b571845403091994600dace74ea09325:false,
-              tech_3_0c5b2ce703c07d3ff75e59d2fbb61d6e:false,
-              tech_3_c2aed29667653c002310699a7dc912fa:false,
-              tech_3_45d1b51805d9235fcda0e1adb04b219a:false,
-              tech_3_12803640cfd61acd1ecb018d66a483df:false,
-              tech_3_b5eab036092551401cf6c3424f2875cc:false,
-              tech_3_7d584df39c2e11ab18d0fa94748b2a07:false,
-              tech_3_aaca964b489e8696008ee34b405e0611:false,
-              tech_3_cd9ccba5a562f730096ab4c7f006bc42:false,
-              tech_3_22fb62899529e6c0e587967cd32880f2:false,
-              tech_3_e34235044f31e0f9c801c8cdde2f6f06:false,
-              tech_3_4b35880c8e4544a91d46eaaeb60bc829:false,
-              tech_3_52ae33837406384779b51a5ff53e9dc5:false,
-              tech_3_4fa58a449ac8013a231be49d012207af:false,
-              tech_3_8ec8bb169e944239d32283e88568c84d:false,
-              tech_3_3182b80f97e8de16dd21f8a944da8dda:false,
-              tech_3_ed5fe3e68332d195927b63971f82e704:false,
-              tech_3_73c851730a6a8616e3cd1764b8533a6a:false,
-              tech_3_708b59a0d66ba369efb784c476b923e4:false,
-              tech_3_849dde28910d5940e092fba7e3b648a6:false,
-              tech_3_f17e0e9a292268136dbaebef86badb7a:false,
-              tech_3_cbdbece0902e891474ff20a4cf883165:false,
-              tech_3_cedc6acb555c521964b6fbea5949eaec:false,
-              tech_3_bfe5068dcda314f156078eef4fc007cf:false,
-              tech_3_a0c114b247b805d08f81bbeb8b8583a4:false,
-              tech_3_1b92d86416361c3b7786555ba8f3a3f3:false,
-              tech_3_9b0962f78513067e7f5ebee29f0f8819:false,
-              tech_3_4e9c89595fdfbec8eea0d35d9b9e1587:false,
-              tech_3_6a3ec74413d83f71569b801b5ffe1b73:false,
-              tech_3_120eab8ffbbdae6612935a330225fcd5:false,
-              tech_3_a7fe621869806ab654b59a1060f45387:false,
-              tech_3_746972ed654b139b11bb4233edd7d001:false,
-              tech_3_88de033f0b976e7736b28a8247ed43e3:false,
-              tech_3_03e6c66a502fced69f6349253d99ea9b:false,
-              tech_3_668c380ad56aa1fdadcbb57592efe90e:false,
-              tech_3_47fdc19c5cbb9cfcc53168ffa0889c9b:false,
-              tech_3_58eb95a1746bf374cbf7d724ddfb354a:false,
-              tech_3_b57d2a5f7ac9692376d057cd81d37258:false,
-              tech_3_9adf853b0124231350edbc63b206040f:false,
-              tech_3_d77d4e07ecfd02dca214aba2720f9b09:false,
-              tech_3_b0b199471b6794e49263437c498ab3d8:false,
-              tech_3_b757918196e2dd4ef7e24ea012d953f7:false,
-              tech_3_25ddcd8443f3c0bc0bd62073636117ff:false,
-              tech_3_9e792858130c71d38f5d2b773dc5b647:false,
-              tech_3_fdc03384a0fbdfef66af15d7b28993a7:false,
-              tech_3_b9f137837cd7b8340d141a33d9081226:false,
-              tech_3_0b26ac6ea674596909269808eb7f8f75:false,
-              tech_3_cb327008b5fe201af9e484f9e3f270a6:false,
-              tech_3_551421c68b5a3448f7af164aa4d6a792:false,
-              tech_3_627503cf0dd303b232cad9896fb4ce28:false,
-              tech_3_6eb7d7a4cae409663cd75ff3b3192ef2:false,
-              tech_3_9a2ec752be402944c016d6ba9848912e:false
-          }
+  props: ['preview'],
+  data() {
+    return {
+      system_name: '',
+      business_level: '',
+      system_level: '',
+      security_level: '',
+      technology: {
+        tech_3_e5b57a55f70856c81a40c7b525cdded6: false,
+        tech_3_7dcd3ba2d92770cdba20d75df2bcbf5d: false,
+        tech_3_f651627d9cb8668b788f706d6b12261a: false,
+        tech_3_c0a693e717ad8db2f6ed592b0b9e40ff: false,
+        tech_3_5aa9876f4ea24e2a24b7d96f8e21f072: false,
+        tech_3_6d35ae7d9d07ce7faa68304494020ed8: false,
+        tech_3_b84d9b4c81d8329fe18be2b2f598e0e2: false,
+        tech_3_58b5521a03185d6599ea2993039e2ec2: false,
+        tech_3_b4bbfa71b377eb9cf0f71f42bf3df76b: false,
+        tech_3_51c7164a29ed74e48bdb3f6f037a8d43: false,
+        tech_3_505d1423446b0a2b88f3183dd3f84eeb: false,
+        tech_3_5f66286097ae0d7c1ae4517215a886ce: false,
+        tech_3_1e6ea84aff15e04530304c6c9a73d1b4: false,
+        tech_3_83fa74a1e7ed1f0db00c4700c6d59f3b: false,
+        tech_3_073853a7b1da359a4d43bd216e92861e: false,
+        tech_3_afcf135789ccd6a479706cdf2436d88b: false,
+        tech_3_1b51dc2d4ed3bbe71728c25d7f6d0f76: false,
+        tech_3_54fa492902e364a6f551c0e093ec7729: false,
+        tech_3_646a0c8b530e86fb0c537f6699235b0e: false,
+        tech_3_0882d21670d70557ef9c232e821ace4d: false,
+        tech_3_1c307f5f1915d547a7b71e985f91eb4c: false,
+        tech_3_efdb1ad253ca31c0970165319f6ee9f9: false,
+        tech_3_53eac9565188c5879453c491cbf92dde: false,
+        tech_3_8fc1d78fdcae8ff64757cdb234efd7ec: false,
+        tech_3_48f8e4aa7e35edba07c55aeaf4d229de: false,
+        tech_3_1caf718db55f75ddcede3e2783077008: false,
+        tech_3_b0ec67f86e688f88c33f17a5e0d87d60: false,
+        tech_3_41486591ac6545414b5c0403534cf98f: false,
+        tech_3_3dc981337dfcd8d4e20ec64d0026e5c4: false,
+        tech_3_729ada3391b3a61fef5f648a1fd3f91a: false,
+        tech_3_c5f4ac43417d67783b848281790712ad: false,
+        tech_3_19ce3ae25b3dadd910066c429bf2328e: false,
+        tech_3_0ab286f04a7c277bc572f46fdda61624: false,
+        tech_3_7ed7de822f3dbdfc439c0469086122e0: false,
+        tech_3_0b2e94a14886b2e2f246bc5557169e3f: false,
+        tech_3_1ad553f870d68087b2ca3f9ef2e5a7a8: false,
+        tech_3_e60d7bcd759c591e4b5daba040277cfe: false,
+        tech_3_0b0c45967439096c13eb3984ab080f08: false,
+        tech_3_ed0480999b5ab062393cf85ec653284c: false,
+        tech_3_7fc3befd6909ddb524b0bac0f79bd4a9: false,
+        tech_3_8d43756c40c7ef8506263e7d20e54138: false,
+        tech_3_9d4b2f83ed9091b91c13243de2862456: false,
+        tech_3_024559e738a2d273ffa0ce6418db1c4c: false,
+        tech_3_0cfe7f0258357519ef9101c41688f963: false,
+        tech_3_67c6dad22ece5fc258ba0ba263ac7348: false,
+        tech_3_22e40b9ed32d006b86f53730ba6ad0d4: false,
+        tech_3_6caa72249c287bb10ccf8fd1087f2761: false,
+        tech_3_e35b0a6add802f4d9ec781e0f1da1d04: false,
+        tech_3_c84029b29eeba53ac683f6827ec640a7: false,
+        tech_3_21ad3934a3978d92474f59d91e67e61d: false,
+        tech_3_779c3a9c539d63b10240ddfe5ae8afc8: false,
+        tech_3_02e22ef93ed2027c13cdcd2a4e56022f: false,
+        tech_3_9f08aa10be9f2752fb43e6fba87635c7: false,
+        tech_3_016b9d319fb231c13b4f6a04ec154ce9: false,
+        tech_3_23f84683475e6c3ffcd665e894d0471f: false,
+        tech_3_c2182b9a4318c0bcd5a8140b07b6daa8: false,
+        tech_3_87224ed46306cda7135226d668efaeef: false,
+        tech_3_8a29e81f6682e2ff4544fd845e5c5fc5: false,
+        tech_3_b7bacb714c295f8d5606acbbbe66d7b3: false,
+        tech_3_f51546c505fd011d35a7d971cd8ecc6a: false,
+        tech_3_59c8d49719b143604d2dcc7bf06ed03d: false,
+        tech_3_cbdf9f79e94b61844a7e8bb4e2036b7f: false,
+        tech_3_e0700418373bb6279d1bdc642c4c08c0: false,
+        tech_3_4cd45c449016cfeb62bca6909f9c3740: false,
+        tech_3_37243a4c0ffddca5e701abd4298addf5: false,
+        tech_3_3e830a8c146ed4e461ddc612f6878773: false,
+        tech_3_e8d0fee3e2a46b582ea400f0534f6112: false,
+        tech_3_48a9d9411b1fab9914530560f9bfe868: false,
+        tech_3_20a74ac007edf7779b84d446b5ef4910: false,
+        tech_3_b23df1a4fdde5ac9a1ffad076f3f12ae: false,
+        tech_3_49209471b0d321007c6801816fdbab09: false,
+        tech_3_a0cdb8142b5b65ef5ec79e62d0d5b171: false,
+        tech_3_b70559a65a607ae9c110a9b426889560: false,
+        tech_3_6a4e40e359ea8f75c8288d71184b8cd7: false,
+        tech_3_87b10f1d1f4e94477a0284d387d90508: false,
+        tech_3_375bef6f9b1824870d10fa126b7c0463: false,
+        tech_3_17aba70d2736236857f49ea87dd0a91a: false,
+        tech_3_b08e59e7db169b6496353f3e064240f3: false,
+        tech_3_708f8771cea17673b251daa09e2becf8: false,
+        tech_3_3b0d33942072c3e6af565c3640e0e006: false,
+        tech_3_6083ac262c3b067bd24877d0281665ad: false,
+        tech_3_b571845403091994600dace74ea09325: false,
+        tech_3_0c5b2ce703c07d3ff75e59d2fbb61d6e: false,
+        tech_3_c2aed29667653c002310699a7dc912fa: false,
+        tech_3_45d1b51805d9235fcda0e1adb04b219a: false,
+        tech_3_12803640cfd61acd1ecb018d66a483df: false,
+        tech_3_b5eab036092551401cf6c3424f2875cc: false,
+        tech_3_7d584df39c2e11ab18d0fa94748b2a07: false,
+        tech_3_aaca964b489e8696008ee34b405e0611: false,
+        tech_3_cd9ccba5a562f730096ab4c7f006bc42: false,
+        tech_3_22fb62899529e6c0e587967cd32880f2: false,
+        tech_3_e34235044f31e0f9c801c8cdde2f6f06: false,
+        tech_3_4b35880c8e4544a91d46eaaeb60bc829: false,
+        tech_3_52ae33837406384779b51a5ff53e9dc5: false,
+        tech_3_4fa58a449ac8013a231be49d012207af: false,
+        tech_3_8ec8bb169e944239d32283e88568c84d: false,
+        tech_3_3182b80f97e8de16dd21f8a944da8dda: false,
+        tech_3_ed5fe3e68332d195927b63971f82e704: false,
+        tech_3_73c851730a6a8616e3cd1764b8533a6a: false,
+        tech_3_708b59a0d66ba369efb784c476b923e4: false,
+        tech_3_849dde28910d5940e092fba7e3b648a6: false,
+        tech_3_f17e0e9a292268136dbaebef86badb7a: false,
+        tech_3_cbdbece0902e891474ff20a4cf883165: false,
+        tech_3_cedc6acb555c521964b6fbea5949eaec: false,
+        tech_3_bfe5068dcda314f156078eef4fc007cf: false,
+        tech_3_a0c114b247b805d08f81bbeb8b8583a4: false,
+        tech_3_1b92d86416361c3b7786555ba8f3a3f3: false,
+        tech_3_9b0962f78513067e7f5ebee29f0f8819: false,
+        tech_3_4e9c89595fdfbec8eea0d35d9b9e1587: false,
+        tech_3_6a3ec74413d83f71569b801b5ffe1b73: false,
+        tech_3_120eab8ffbbdae6612935a330225fcd5: false,
+        tech_3_a7fe621869806ab654b59a1060f45387: false,
+        tech_3_746972ed654b139b11bb4233edd7d001: false,
+        tech_3_88de033f0b976e7736b28a8247ed43e3: false,
+        tech_3_03e6c66a502fced69f6349253d99ea9b: false,
+        tech_3_668c380ad56aa1fdadcbb57592efe90e: false,
+        tech_3_47fdc19c5cbb9cfcc53168ffa0889c9b: false,
+        tech_3_58eb95a1746bf374cbf7d724ddfb354a: false,
+        tech_3_b57d2a5f7ac9692376d057cd81d37258: false,
+        tech_3_9adf853b0124231350edbc63b206040f: false,
+        tech_3_d77d4e07ecfd02dca214aba2720f9b09: false,
+        tech_3_b0b199471b6794e49263437c498ab3d8: false,
+        tech_3_b757918196e2dd4ef7e24ea012d953f7: false,
+        tech_3_25ddcd8443f3c0bc0bd62073636117ff: false,
+        tech_3_9e792858130c71d38f5d2b773dc5b647: false,
+        tech_3_fdc03384a0fbdfef66af15d7b28993a7: false,
+        tech_3_b9f137837cd7b8340d141a33d9081226: false,
+        tech_3_0b26ac6ea674596909269808eb7f8f75: false,
+        tech_3_cb327008b5fe201af9e484f9e3f270a6: false,
+        tech_3_551421c68b5a3448f7af164aa4d6a792: false,
+        tech_3_627503cf0dd303b232cad9896fb4ce28: false,
+        tech_3_6eb7d7a4cae409663cd75ff3b3192ef2: false,
+        tech_3_9a2ec752be402944c016d6ba9848912e: false
       }
-  },
-  computed: {
-    url () {
-        return this.$store.state.userCode.url
     }
   },
-  mounted () {
-        if(localStorage.inspId > 0) {
-            this.queryList()
-        } else {
-        }
-    },
+  computed: {
+    url() {
+      return this.$store.state.userCode.url
+    }
+  },
+  mounted() {
+    if (localStorage.inspId > 0) {
+      this.queryList()
+    } else {
+    }
+  },
   methods: {
-      queryList() {
-        const url = this.url + '/insp/api/v1.0/tech/assess/' + localStorage.inspId
-        axios({
-            method:'get',
-            url: url
-        })
-        .then(response => {
-            if(response.data.status) {
-                const res = response.data
-                this.technology = res.tech_assess
-                this.system_name = res.system_name,
-                this.business_level = res.business_level,
-                this.system_level = res.system_level
-                this.security_level = res.security_level
-            } else {
-                this.$Message.error(response.data.desc)
-            }
-        })
-      },
-      submitAssess() {
-        const url = this.url + '/insp/api/v1.0/tech/assess/' + localStorage.inspId
-        axios({
-            method:'post',
-            url: url,
-            data: { tech_assess: this.technology }
-        })
-        .then(response => {
-            if(response.data.status) {
-                this.$Message.info(response.data.desc)
-                window.location.href = '/#/protectaionList'
-            } else {
-                this.$Message.error(response.data.desc)
-            }
-        })
-      }
+    queryList() {
+      const url = this.url + '/insp/api/v1.0/tech/assess/' + localStorage.inspId
+      axios({
+        method: 'get',
+        url: url
+      }).then(response => {
+        if (response.data.status) {
+          const res = response.data
+          this.technology = res.tech_assess
+          ;(this.system_name = res.system_name),
+            (this.business_level = res.business_level),
+            (this.system_level = res.system_level)
+          this.security_level = res.security_level
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
+    submitAssess() {
+      const url = this.url + '/insp/api/v1.0/tech/assess/' + localStorage.inspId
+      axios({
+        method: 'post',
+        url: url,
+        data: { tech_assess: this.technology }
+      }).then(response => {
+        if (response.data.status) {
+          this.$Message.info(response.data.desc)
+          window.location.href = '/#/protectaionList'
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    }
   }
 }
 </script>

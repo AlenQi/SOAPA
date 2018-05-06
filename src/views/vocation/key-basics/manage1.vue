@@ -522,7 +522,7 @@
       </i-col>
     </row>
   </div>
-  <div style="width: 100%;text-align: center;margin-top: 5px;">
+  <div v-if="!preview" style="width: 100%;text-align: center;margin-top: 5px;">
     <i-button type="primary" @click="submitAssess">提交</i-button>
   </div>
 </div>
@@ -530,6 +530,7 @@
 <script>
 import axios from 'axios'
 export default {
+  props: ['preview'],
   data() {
     return {
       system_name: '',
@@ -600,22 +601,22 @@ export default {
   mounted() {
     if (localStorage.inspId > 0) {
       this.queryList()
-    } else {}
+    } else {
+    }
   },
   methods: {
     queryList() {
-      const url =
-        this.url + '/insp/api/v1.0/manage/assess/' + localStorage.inspId
+      const url = this.url + '/insp/api/v1.0/manage/assess/' + localStorage.inspId
       axios({
         method: 'get',
         url: url
       }).then(response => {
         if (response.data.status) {
           const res = response.data
-          this.management = res.manage_assess;
-          (this.system_name = res.system_name),
-          (this.business_level = res.business_level),
-          (this.system_level = res.system_level)
+          this.management = res.manage_assess
+          ;(this.system_name = res.system_name),
+            (this.business_level = res.business_level),
+            (this.system_level = res.system_level)
           this.security_level = res.security_level
         } else {
           this.$Message.error(response.data.desc)
@@ -623,8 +624,7 @@ export default {
       })
     },
     submitAssess() {
-      const url =
-        this.url + '/insp/api/v1.0/manage/assess/' + localStorage.inspId
+      const url = this.url + '/insp/api/v1.0/manage/assess/' + localStorage.inspId
       axios({
         method: 'post',
         url: url,
