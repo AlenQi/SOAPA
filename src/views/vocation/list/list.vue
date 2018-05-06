@@ -19,8 +19,8 @@
       <el-table-column label="业务信息等级" width="" prop="business_level_name"></el-table-column>
       <el-table-column label="下载路径" width="">
         <template slot-scope="scope">
-          <a v-if="scope.row.system_word" href="scope.row.system_word">下载</a>
-          <a v-else>暂无下载文件</a>
+          <!-- <a v-if="scope.row.system_word" href="scope.row.system_word">下载</a> -->
+          <el-button type="primary" class="editor_btn" size="small" @click="handleDownPdf(scope.row.security_level, scope.row.id)">下载预览</el-button>
         </template>
       </el-table-column>
       <el-table-column align="left" label="操作">
@@ -72,6 +72,7 @@
 import 'element-ui/lib/theme-default/index.css'
 import { mapActions } from 'vuex'
 import axios from 'axios'
+
 export default {
   name: 'home',
   components: {},
@@ -182,6 +183,16 @@ export default {
         level = 1
       }
       window.location.href = '/#/manage' + level
+    },
+    handleDownPdf(level, id) {
+      localStorage.inspId = id
+      if (level == 5) {
+        level = 4
+      }
+      if (level < 1) {
+        level = 1
+      }
+      window.location.href = '/#/downPdf?level=' + level
     }
   }
 }

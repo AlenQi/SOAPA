@@ -1,5 +1,5 @@
 <style lang="less">
-    @import 'keyBasics.less';
+@import 'keyBasics.less';
 </style>
 <template>
     <div class="self-assessment">
@@ -1374,226 +1374,225 @@
                 </i-col>
             </row>
         </div>
-        <div style="width: 100%;text-align: center;margin-top: 5px;">
+        <div v-if="!preview" style="width: 100%;text-align: center;margin-top: 5px;">
             <i-button type="primary" @click="submitAssess">提交</i-button>
         </div>
     </div>
 </template>
 <script>
 import axios from 'axios'
-export default{
-     data () {
-      return  {
-          system_name: '',
-          business_level: '',
-          system_level: '',
-          security_level: '',
-          management: {
-              manage_3_1784702f03a7a2deb07cc38a4e6a7676:false,
-              manage_3_1b2fa800469f72920e553be8f0f0050a:false,
-              manage_3_52ec361c63e26a864749fb265fad4988:false,
-              manage_3_f3e71772c13bc31ddc51abdda96e88be:false,
-              manage_3_0284a53b1891d3ecbbbf5e2355c88aab:false,
-              manage_3_2e0da90099efab7fe7989659d5b70903:false,
-              manage_3_75b5af1d8a6026cb3bd5a21ff0497cfa:false,
-              manage_3_a3bbd7277f73d693e2b5c4d55b234590:false,
-              manage_3_0c7a27e7151c71506068714a16a1396a:false,
-              manage_3_9ea83032a64975bec561075d1b2ef156:false,
-              manage_3_0ab905737e33f544d9afa1ef1e88497b:false,
-              manage_3_430e75afb6e21afb74d07ac670891c0e:false,
-              manage_3_0acaae47ebcd6bec3f2e79b7d0957ff5:false,
-              manage_3_38d031c966024f3595b2bf8f9585b8ae:false,
-              manage_3_4755a88b0f54d0e29bc41c473021f100:false,
-              manage_3_90a1b26319d44f4e9597ff2f1fe80afa:false,
-              manage_3_56922f04db70967bcc4b72af91c9744e:false,
-              manage_3_a03ca7fc5a14b85f3f3f928a8d95c341:false,
-              manage_3_dcca99ed1b358a46b7400da590394f87:false,
-              manage_3_fb725c2ca87dd9b56b09081c42cb9e60:false,
-              manage_3_278f3f6593391ec67bcee8d089b8c150:false,
-              manage_3_65eb85a42b370990d6897109e471f843:false,
-              manage_3_b4011036049c7d4fb25b99c174fdfc59:false,
-              manage_3_5632ce02ad46d277a2df8eae1d24635f:false,
-              manage_3_ffff835fe83366332dfdde5afc4b84df:false,
-              manage_3_cc999f9227c2b8e0a11b2d6829291088:false,
-              manage_3_99778777b99cd0eb74d863765df5025e:false,
-              manage_3_9c12977d0ee8bc7bc2907fe3ae86c1ce:false,
-              manage_3_487e496ccbbf6c1ca5ee589ec67b8a2f:false,
-              manage_3_ae21f04ed8a69c59ea7b34b01b71d4b8:false,
-              manage_3_fa47342b49c0f17671e3640a2ee2f5c1:false,
-              manage_3_e9d1eae819bd91d183cc90b2d34c4852:false,
-              manage_3_c3831721cf393a34e36a8d2095a20a34:false,
-              manage_3_bcc9a00112c9315164f179e190d7204d:false,
-              manage_3_294113df964c4fc6e0211071f973de04:false,
-              manage_3_1064ff1650f5f0ea68d34a6b4a77c44e:false,
-              manage_3_be14cfe0e2fc00e3ae156c923b5050e1:false,
-              manage_3_857f5958942444fdeb35771ab224bd42:false,
-              manage_3_573556ac1861d2c80afee3792df1b908:false,
-              manage_3_066182ac96b0849d9880c24e3de6a36a:false,
-              manage_3_177fe7fe11cffab5b0c767492e7b453e:false,
-              manage_3_874597474ec6e42287c373525d53fcbd:false,
-              manage_3_2e170ca61b2c314d970ef9e10e6ec138:false,
-              manage_3_99bb3d870245bb85dffc7264c753d8ec:false,
-              manage_3_82439849d89f32d9af15797fb0a648d5:false,
-              manage_3_53787b2e00ab03bc3e5c95bbebf57e35:false,
-              manage_3_4c7e79be1f9dc3635f77864148d2f95e:false,
-              manage_3_3e7810971bd64c16c3d7e1cc1e60f531:false,
-              manage_3_75863819c2c6a33959e7117cecedf582:false,
-              manage_3_bc827454956c16867166ab8331d67118:false,
-              manage_3_54637e5fc9c3dd067c7f6289f5247010:false,
-              manage_3_66a1f16743a91b24fe6844b17872a430:false,
-              manage_3_b9892ddb8a0b9654d4ff8406993faa96:false,
-              manage_3_c18cf11fc3ebb6fd9d95b2e420144b92:false,
-              manage_3_c14108c1fcbacaa193fbb485a829b017:false,
-              manage_3_242cf7b5c644c245b6290caecd11c3cd:false,
-              manage_3_e32678ef5c68343293c8a9bb11a71860:false,
-              manage_3_e07847847dc9633438c176d82f36c6e5:false,
-              manage_3_0516050074fa345f10017f2816a732d2:false,
-              manage_3_29321414df8be6688ab025127fda9289:false,
-              manage_3_4489de51b0b204faf4b88b978549ea2b:false,
-              manage_3_a5ea40bde1d5bd6b43ce3e3bb807d538:false,
-              manage_3_b52f5f9287e9e0579a61440528186569:false,
-              manage_3_5aa761326a701eb01719b8e633277493:false,
-              manage_3_07941e72cf8767ad23314a0a783b73b6:false,
-              manage_3_2dbb880d5a9f9a98599a90b58dc63e35:false,
-              manage_3_4a6f4d2a223dd0cbd58fa3391eba3566:false,
-              manage_3_659b66e1c96f72fd43653213283dad6c:false,
-              manage_3_93a3ba7ea9664bb78a75c6cfcb5ad086:false,
-              manage_3_1d5848c20332b61028c2dae44d381bdc:false,
-              manage_3_eb00f80d664cb611ce62816a4ad23594:false,
-              manage_3_912d60f11677fed3e391c9e5b2bb9794:false,
-              manage_3_f2abe985570eedf6eeda3df7d13a2094:false,
-              manage_3_ac58c1c56627222eda2b9b82fb5fd95a:false,
-              manage_3_432c059aaf53700a850b48b27b70cd97:false,
-              manage_3_e8f3a25a0a3775964b63bfccbb287af3:false,
-              manage_3_dfccd9642f75f1f62888307aa5301bcb:false,
-              manage_3_74abadfdeb7decb4d0577a40ef150f1d:false,
-              manage_3_adb9e9ce1f5caff3eb25293577d1d982:false,
-              manage_3_bf42ff8e6e1abb8fd6eda46d1b65392f:false,
-              manage_3_5f9c1f54ce9c89bea9b3833c811c450b:false,
-              manage_3_16d466abdb3c26d7a496d0a67b4010a3:false,
-              manage_3_2ba8cf705aea312e43d958248adddae2:false,
-              manage_3_a010c3e6ea6992ec91a5fb88a9fb81e1:false,
-              manage_3_cff9f54431cfe72837d0d5fce4812c0e:false,
-              manage_3_02ab92ba44833237479da4c7bf2a20bf:false,
-              manage_3_2680b594ea04e1eaa2f0f86fa8703927:false,
-              manage_3_f89059fa8cf6a4e2aa4ac25bf918eb93:false,
-              manage_3_1471a27379c7520d8e9827274f4eda4c:false,
-              manage_3_bbf6746909a10ea06b5bf90da3febe75:false,
-              manage_3_411923a861d031194161faf46e18bbc6:false,
-              manage_3_d9b06ee39794d7ba5009e48973557e7d:false,
-              manage_3_8db141fd5e8dddb3594bed79ee674186:false,
-              manage_3_451a378bb130e37c0d6df8ade5ee878d:false,
-              manage_3_14cdd5aad050d35790f96d974af2649c:false,
-              manage_3_9d7aca86b492f2f3de6e76cc46eb6f1f:false,
-              manage_3_d70335f3e47765777e97a6df470954f0:false,
-              manage_3_7ed26d75aa5fc9f64aa2e928e0bc6820:false,
-              manage_3_c1983b64fa2e69ba09728a887d228188:false,
-              manage_3_112b1dd14dc3be34ab5c2a94164b1289:false,
-              manage_3_8d330a272821944b135de0bd17a893c5:false,
-              manage_3_335dcb273e0ba2bb5636934cd5a2aa70:false,
-              manage_3_f6dfa8d9685a26c0ce81348d2d380a1a:false,
-              manage_3_dff0c79df0904929718acaf090a74bdf:false,
-              manage_3_b8d0b45248f658ea7087c2b44ef9ef3e:false,
-              manage_3_f2996afbc040676b42fcfa9104f440cb:false,
-              manage_3_e0bcac6378e3fcb149335f5dcba32356:false,
-              manage_3_3048060d9498288d2aeba3c4e5d5ba15:false,
-              manage_3_f576fc31ec07438895c5d9fb7c3d90ab:false,
-              manage_3_b7c98041fd8581cba620a358fd8edb75:false,
-              manage_3_798c851a424a86c0cadbe5100929ba9b:false,
-              manage_3_10daef5bbe24a06a76c39e0896059840:false,
-              manage_3_74d8cbb1962d864490a38c613fa378bd:false,
-              manage_3_de46d98a01545b07759eb91f5d9f6987:false,
-              manage_3_de95ecbdb72168bc543dd72f9d861a4f:false,
-              manage_3_1aeb980bd390f9be7a4bdc8b172ae828:false,
-              manage_3_b99f96d633ec4cca32b0a754440b7895:false,
-              manage_3_06976eb5f713263d7dbfdd3c3b8d6a6f:false,
-              manage_3_265a1c4bf93a596bef3040e3588568ea:false,
-              manage_3_366952a4034149cf5580d8c46ba00ff8:false,
-              manage_3_7d7e295174d1f7a3d5e3bf8bc4d73942:false,
-              manage_3_46d7ee850697192aad37ec60218c2d93:false,
-              manage_3_62e6ea8450dc11c783647133dc8b1554:false,
-              manage_3_1ef6036e9d9b07e287a79750e6a5748b:false,
-              manage_3_cd38778d09b32c7abb4095dce7ea3867:false,
-              manage_3_ab64611b27126aa5fa6bb00e14dbe770:false,
-              manage_3_026bf9a9ea41b6fd5769e531cd1bae57:false,
-              manage_3_ffdefc228bb8e3d7f56b69847849038a:false,
-              manage_3_df528b717c7728adcda5d76590a0b4f6:false,
-              manage_3_79b3a69dba14385b93aab9f443c3cb9a:false,
-              manage_3_8630039b1afea0b842b6ab05ec0a1d89:false,
-              manage_3_b4b892f4057915c31a561ff3b100799a:false,
-              manage_3_dedb98b74bce9f2f7eca72985ea9d7dd:false,
-              manage_3_ea4763bbd1b49c428b0b2fb3f8dded89:false,
-              manage_3_14df7ba5dc3fbf14ed5898233f5896e8:false,
-              manage_3_62949930b8d807f9b832f866b0d7d471:false,
-              manage_3_d29661a94cf457ec07499954dd05d7f2:false,
-              manage_3_e328c5236eb83fa6d0432e417eb4c25f:false,
-              manage_3_446ece75157eb3fccc8aa63c14b85def:false,
-              manage_3_e9a856899df2c12b16c6c603fba4b411:false,
-              manage_3_8e759579f91e3a675274bc5aa36b8ee9:false,
-              manage_3_4368285008630edf7778c66da254dcf4:false,
-              manage_3_782f8101b4770f25ffe86634f1e1b318:false,
-              manage_3_0861209991e052d001cf674a1335307a:false,
-              manage_3_5fff530e4e66488a3954d0e78de763d0:false,
-              manage_3_3456ba8782c9cf701e44fb5bd1430c18:false,
-              manage_3_1a92576ece35e4ff790e03e7dd647238:false,
-              manage_3_a57ba6720d4dcb0731d3e87e9223f663:false,
-              manage_3_c79ebd2801044f09160a6ecf71e963e9:false,
-              manage_3_9004da7bb73e3ac7de31529593cb1ced:false,
-              manage_3_7864f4e8b0104e5c8e21e8af13ad6d09:false,
-              manage_3_81e62723630207cfcae11df7ef24c560:false,
-              manage_3_5fec878ecdcdf5b2511085585b08ed52:false,
-              manage_3_b74624489b34ddf9f0bc7b533b827a67:false,
-              manage_3_c0dca038c0236fdfe708f4c330efcccc:false
-          }
+export default {
+  props: ['preview'],
+  data() {
+    return {
+      system_name: '',
+      business_level: '',
+      system_level: '',
+      security_level: '',
+      management: {
+        manage_3_1784702f03a7a2deb07cc38a4e6a7676: false,
+        manage_3_1b2fa800469f72920e553be8f0f0050a: false,
+        manage_3_52ec361c63e26a864749fb265fad4988: false,
+        manage_3_f3e71772c13bc31ddc51abdda96e88be: false,
+        manage_3_0284a53b1891d3ecbbbf5e2355c88aab: false,
+        manage_3_2e0da90099efab7fe7989659d5b70903: false,
+        manage_3_75b5af1d8a6026cb3bd5a21ff0497cfa: false,
+        manage_3_a3bbd7277f73d693e2b5c4d55b234590: false,
+        manage_3_0c7a27e7151c71506068714a16a1396a: false,
+        manage_3_9ea83032a64975bec561075d1b2ef156: false,
+        manage_3_0ab905737e33f544d9afa1ef1e88497b: false,
+        manage_3_430e75afb6e21afb74d07ac670891c0e: false,
+        manage_3_0acaae47ebcd6bec3f2e79b7d0957ff5: false,
+        manage_3_38d031c966024f3595b2bf8f9585b8ae: false,
+        manage_3_4755a88b0f54d0e29bc41c473021f100: false,
+        manage_3_90a1b26319d44f4e9597ff2f1fe80afa: false,
+        manage_3_56922f04db70967bcc4b72af91c9744e: false,
+        manage_3_a03ca7fc5a14b85f3f3f928a8d95c341: false,
+        manage_3_dcca99ed1b358a46b7400da590394f87: false,
+        manage_3_fb725c2ca87dd9b56b09081c42cb9e60: false,
+        manage_3_278f3f6593391ec67bcee8d089b8c150: false,
+        manage_3_65eb85a42b370990d6897109e471f843: false,
+        manage_3_b4011036049c7d4fb25b99c174fdfc59: false,
+        manage_3_5632ce02ad46d277a2df8eae1d24635f: false,
+        manage_3_ffff835fe83366332dfdde5afc4b84df: false,
+        manage_3_cc999f9227c2b8e0a11b2d6829291088: false,
+        manage_3_99778777b99cd0eb74d863765df5025e: false,
+        manage_3_9c12977d0ee8bc7bc2907fe3ae86c1ce: false,
+        manage_3_487e496ccbbf6c1ca5ee589ec67b8a2f: false,
+        manage_3_ae21f04ed8a69c59ea7b34b01b71d4b8: false,
+        manage_3_fa47342b49c0f17671e3640a2ee2f5c1: false,
+        manage_3_e9d1eae819bd91d183cc90b2d34c4852: false,
+        manage_3_c3831721cf393a34e36a8d2095a20a34: false,
+        manage_3_bcc9a00112c9315164f179e190d7204d: false,
+        manage_3_294113df964c4fc6e0211071f973de04: false,
+        manage_3_1064ff1650f5f0ea68d34a6b4a77c44e: false,
+        manage_3_be14cfe0e2fc00e3ae156c923b5050e1: false,
+        manage_3_857f5958942444fdeb35771ab224bd42: false,
+        manage_3_573556ac1861d2c80afee3792df1b908: false,
+        manage_3_066182ac96b0849d9880c24e3de6a36a: false,
+        manage_3_177fe7fe11cffab5b0c767492e7b453e: false,
+        manage_3_874597474ec6e42287c373525d53fcbd: false,
+        manage_3_2e170ca61b2c314d970ef9e10e6ec138: false,
+        manage_3_99bb3d870245bb85dffc7264c753d8ec: false,
+        manage_3_82439849d89f32d9af15797fb0a648d5: false,
+        manage_3_53787b2e00ab03bc3e5c95bbebf57e35: false,
+        manage_3_4c7e79be1f9dc3635f77864148d2f95e: false,
+        manage_3_3e7810971bd64c16c3d7e1cc1e60f531: false,
+        manage_3_75863819c2c6a33959e7117cecedf582: false,
+        manage_3_bc827454956c16867166ab8331d67118: false,
+        manage_3_54637e5fc9c3dd067c7f6289f5247010: false,
+        manage_3_66a1f16743a91b24fe6844b17872a430: false,
+        manage_3_b9892ddb8a0b9654d4ff8406993faa96: false,
+        manage_3_c18cf11fc3ebb6fd9d95b2e420144b92: false,
+        manage_3_c14108c1fcbacaa193fbb485a829b017: false,
+        manage_3_242cf7b5c644c245b6290caecd11c3cd: false,
+        manage_3_e32678ef5c68343293c8a9bb11a71860: false,
+        manage_3_e07847847dc9633438c176d82f36c6e5: false,
+        manage_3_0516050074fa345f10017f2816a732d2: false,
+        manage_3_29321414df8be6688ab025127fda9289: false,
+        manage_3_4489de51b0b204faf4b88b978549ea2b: false,
+        manage_3_a5ea40bde1d5bd6b43ce3e3bb807d538: false,
+        manage_3_b52f5f9287e9e0579a61440528186569: false,
+        manage_3_5aa761326a701eb01719b8e633277493: false,
+        manage_3_07941e72cf8767ad23314a0a783b73b6: false,
+        manage_3_2dbb880d5a9f9a98599a90b58dc63e35: false,
+        manage_3_4a6f4d2a223dd0cbd58fa3391eba3566: false,
+        manage_3_659b66e1c96f72fd43653213283dad6c: false,
+        manage_3_93a3ba7ea9664bb78a75c6cfcb5ad086: false,
+        manage_3_1d5848c20332b61028c2dae44d381bdc: false,
+        manage_3_eb00f80d664cb611ce62816a4ad23594: false,
+        manage_3_912d60f11677fed3e391c9e5b2bb9794: false,
+        manage_3_f2abe985570eedf6eeda3df7d13a2094: false,
+        manage_3_ac58c1c56627222eda2b9b82fb5fd95a: false,
+        manage_3_432c059aaf53700a850b48b27b70cd97: false,
+        manage_3_e8f3a25a0a3775964b63bfccbb287af3: false,
+        manage_3_dfccd9642f75f1f62888307aa5301bcb: false,
+        manage_3_74abadfdeb7decb4d0577a40ef150f1d: false,
+        manage_3_adb9e9ce1f5caff3eb25293577d1d982: false,
+        manage_3_bf42ff8e6e1abb8fd6eda46d1b65392f: false,
+        manage_3_5f9c1f54ce9c89bea9b3833c811c450b: false,
+        manage_3_16d466abdb3c26d7a496d0a67b4010a3: false,
+        manage_3_2ba8cf705aea312e43d958248adddae2: false,
+        manage_3_a010c3e6ea6992ec91a5fb88a9fb81e1: false,
+        manage_3_cff9f54431cfe72837d0d5fce4812c0e: false,
+        manage_3_02ab92ba44833237479da4c7bf2a20bf: false,
+        manage_3_2680b594ea04e1eaa2f0f86fa8703927: false,
+        manage_3_f89059fa8cf6a4e2aa4ac25bf918eb93: false,
+        manage_3_1471a27379c7520d8e9827274f4eda4c: false,
+        manage_3_bbf6746909a10ea06b5bf90da3febe75: false,
+        manage_3_411923a861d031194161faf46e18bbc6: false,
+        manage_3_d9b06ee39794d7ba5009e48973557e7d: false,
+        manage_3_8db141fd5e8dddb3594bed79ee674186: false,
+        manage_3_451a378bb130e37c0d6df8ade5ee878d: false,
+        manage_3_14cdd5aad050d35790f96d974af2649c: false,
+        manage_3_9d7aca86b492f2f3de6e76cc46eb6f1f: false,
+        manage_3_d70335f3e47765777e97a6df470954f0: false,
+        manage_3_7ed26d75aa5fc9f64aa2e928e0bc6820: false,
+        manage_3_c1983b64fa2e69ba09728a887d228188: false,
+        manage_3_112b1dd14dc3be34ab5c2a94164b1289: false,
+        manage_3_8d330a272821944b135de0bd17a893c5: false,
+        manage_3_335dcb273e0ba2bb5636934cd5a2aa70: false,
+        manage_3_f6dfa8d9685a26c0ce81348d2d380a1a: false,
+        manage_3_dff0c79df0904929718acaf090a74bdf: false,
+        manage_3_b8d0b45248f658ea7087c2b44ef9ef3e: false,
+        manage_3_f2996afbc040676b42fcfa9104f440cb: false,
+        manage_3_e0bcac6378e3fcb149335f5dcba32356: false,
+        manage_3_3048060d9498288d2aeba3c4e5d5ba15: false,
+        manage_3_f576fc31ec07438895c5d9fb7c3d90ab: false,
+        manage_3_b7c98041fd8581cba620a358fd8edb75: false,
+        manage_3_798c851a424a86c0cadbe5100929ba9b: false,
+        manage_3_10daef5bbe24a06a76c39e0896059840: false,
+        manage_3_74d8cbb1962d864490a38c613fa378bd: false,
+        manage_3_de46d98a01545b07759eb91f5d9f6987: false,
+        manage_3_de95ecbdb72168bc543dd72f9d861a4f: false,
+        manage_3_1aeb980bd390f9be7a4bdc8b172ae828: false,
+        manage_3_b99f96d633ec4cca32b0a754440b7895: false,
+        manage_3_06976eb5f713263d7dbfdd3c3b8d6a6f: false,
+        manage_3_265a1c4bf93a596bef3040e3588568ea: false,
+        manage_3_366952a4034149cf5580d8c46ba00ff8: false,
+        manage_3_7d7e295174d1f7a3d5e3bf8bc4d73942: false,
+        manage_3_46d7ee850697192aad37ec60218c2d93: false,
+        manage_3_62e6ea8450dc11c783647133dc8b1554: false,
+        manage_3_1ef6036e9d9b07e287a79750e6a5748b: false,
+        manage_3_cd38778d09b32c7abb4095dce7ea3867: false,
+        manage_3_ab64611b27126aa5fa6bb00e14dbe770: false,
+        manage_3_026bf9a9ea41b6fd5769e531cd1bae57: false,
+        manage_3_ffdefc228bb8e3d7f56b69847849038a: false,
+        manage_3_df528b717c7728adcda5d76590a0b4f6: false,
+        manage_3_79b3a69dba14385b93aab9f443c3cb9a: false,
+        manage_3_8630039b1afea0b842b6ab05ec0a1d89: false,
+        manage_3_b4b892f4057915c31a561ff3b100799a: false,
+        manage_3_dedb98b74bce9f2f7eca72985ea9d7dd: false,
+        manage_3_ea4763bbd1b49c428b0b2fb3f8dded89: false,
+        manage_3_14df7ba5dc3fbf14ed5898233f5896e8: false,
+        manage_3_62949930b8d807f9b832f866b0d7d471: false,
+        manage_3_d29661a94cf457ec07499954dd05d7f2: false,
+        manage_3_e328c5236eb83fa6d0432e417eb4c25f: false,
+        manage_3_446ece75157eb3fccc8aa63c14b85def: false,
+        manage_3_e9a856899df2c12b16c6c603fba4b411: false,
+        manage_3_8e759579f91e3a675274bc5aa36b8ee9: false,
+        manage_3_4368285008630edf7778c66da254dcf4: false,
+        manage_3_782f8101b4770f25ffe86634f1e1b318: false,
+        manage_3_0861209991e052d001cf674a1335307a: false,
+        manage_3_5fff530e4e66488a3954d0e78de763d0: false,
+        manage_3_3456ba8782c9cf701e44fb5bd1430c18: false,
+        manage_3_1a92576ece35e4ff790e03e7dd647238: false,
+        manage_3_a57ba6720d4dcb0731d3e87e9223f663: false,
+        manage_3_c79ebd2801044f09160a6ecf71e963e9: false,
+        manage_3_9004da7bb73e3ac7de31529593cb1ced: false,
+        manage_3_7864f4e8b0104e5c8e21e8af13ad6d09: false,
+        manage_3_81e62723630207cfcae11df7ef24c560: false,
+        manage_3_5fec878ecdcdf5b2511085585b08ed52: false,
+        manage_3_b74624489b34ddf9f0bc7b533b827a67: false,
+        manage_3_c0dca038c0236fdfe708f4c330efcccc: false
       }
-    },
-    computed: {
-        url () {
-            return this.$store.state.userCode.url
-        }
-    },
-    mounted () {
-        if(localStorage.inspId > 0) {
-            this.queryList()
-        } else {
-        }
-    },
-    methods: {
-        queryList() {
-            const url = this.url + '/insp/api/v1.0/manage/assess/' + localStorage.inspId
-            axios({
-                method:'get',
-                url: url
-            })
-            .then(response => {
-                if(response.data.status) {
-                    const res = response.data
-                    this.management = res.manage_assess
-                    this.system_name = res.system_name,
-                    this.business_level = res.business_level,
-                    this.system_level = res.system_level
-                    this.security_level = res.security_level
-                } else {
-                    this.$Message.error(response.data.desc)
-                }
-            })
-        },
-        submitAssess() {
-            const url = this.url + '/insp/api/v1.0/manage/assess/' + localStorage.inspId
-            axios({
-                method:'post',
-                url: url,
-                data: { manage_assess: this.management }
-            })
-            .then(response => {
-                if(response.data.status) {
-                    this.$Message.info(response.data.desc)
-                    window.location.href = '/#/protectaionList'
-                } else {
-                    this.$Message.error(response.data.desc)
-                }
-            })
-        }
     }
+  },
+  computed: {
+    url() {
+      return this.$store.state.userCode.url
+    }
+  },
+  mounted() {
+    if (localStorage.inspId > 0) {
+      this.queryList()
+    } else {
+    }
+  },
+  methods: {
+    queryList() {
+      const url = this.url + '/insp/api/v1.0/manage/assess/' + localStorage.inspId
+      axios({
+        method: 'get',
+        url: url
+      }).then(response => {
+        if (response.data.status) {
+          const res = response.data
+          this.management = res.manage_assess
+          ;(this.system_name = res.system_name),
+            (this.business_level = res.business_level),
+            (this.system_level = res.system_level)
+          this.security_level = res.security_level
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    },
+    submitAssess() {
+      const url = this.url + '/insp/api/v1.0/manage/assess/' + localStorage.inspId
+      axios({
+        method: 'post',
+        url: url,
+        data: { manage_assess: this.management }
+      }).then(response => {
+        if (response.data.status) {
+          this.$Message.info(response.data.desc)
+          window.location.href = '/#/protectaionList'
+        } else {
+          this.$Message.error(response.data.desc)
+        }
+      })
+    }
+  }
 }
 </script>

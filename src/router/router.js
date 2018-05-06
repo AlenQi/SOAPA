@@ -73,6 +73,12 @@ export const otherRouter = {
     },
     /*******************tec   manager***********************/
     {
+      path: '/downPdf',
+      title: '等保系统自评',
+      name: 'downPdf',
+      component: () => import('@/views/vocation/down-pdf/downPdf.vue')
+    },
+    {
       path: '/gradeProtectaion',
       title: '等保系统创建',
       name: 'gradeProtectaion',
